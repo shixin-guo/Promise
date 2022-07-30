@@ -1,0 +1,7 @@
+.root {
+  @apply appearance-none transition duration-150 ease-in-out text-accent-6;
+}
+
+.root:focus {
+  @apply outline-none shadow-outline-normal;
+}

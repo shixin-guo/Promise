@@ -1,0 +1,25 @@
+{
+  "title": "z / gallery",
+  "titleTemplate": "z / gallery",
+  "description": "z-gallery - https://z-gallery.vercel.app/",
+  "openGraph": {
+    "title": "Powered by z-gallery",
+    "description": "z-gallery - https://z-gallery.vercel.app/",
+    "type": "website",
+    "url": "https://z-gallery.vercel.app/",
+    "site_name": "z-gallery",
+    "images": [
+      {
+        "url": "/card.png",
+        "width": "800",
+        "height": "600",
+        "alt": "z-gallery"
+      }
+    ]
+  },
+  "twitter": {
+    "handle": "@shixin-guo",
+    "site": "@shixin-guo",
+    "cardType": "summary_large_image"
+  }
+}
