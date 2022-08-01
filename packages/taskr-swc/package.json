@@ -10,7 +10,7 @@
     "taskfile-swc.js"
   ],
   "devDependencies": {
-    "@swc/core": "1.2.207",
+    "@swc/core": "1.2.222",
     "prettier": "2.7.1"
   }
 }
