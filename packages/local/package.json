@@ -49,7 +49,7 @@
   "dependencies": {
     "@vercel/commerce": "^0.0.1",
     "@vercel/fetch": "^6.1.1",
-    "firebase": "^9.8.4",
+    "firebase": "^9.9.1",
     "firebase-admin": "^11.0.0"
   },
   "peerDependencies": {
