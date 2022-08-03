@@ -59,16 +59,33 @@ export default function CreatePage() {
   const [formInput, updateFormInput] =
     useState<FormInputInterface>(defaultFormInput)
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const { data: signer } = useSigner()
+  const { address, connector, isConnected } = useAccount()
+  console.log(address, connector, isConnected)
+  const { data: signer } = useSigner({
+    onError(error) {
+      console.log('Error', error)
+    },
+    onSettled(data, error) {
+      console.log('Settled', data, error)
+    },
+    onSuccess(data) {
+      console.log('Success', data)
+    },
+  })
+  console.log(signer)
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect()
+  console.log(connectors)
   const contract = useContract({
     addressOrName: marketplaceAddress,
     contractInterface: NFTMarketplace.abi,
     signerOrProvider: signer,
   })
   useEffect(() => {
+    console.log(1)
     if (signer) {
-      // contract.getListingPrice().then((res: any) => console.log(res))
-      // console.log(contract.getListingPrice())
+      contract.getListingPrice().then((res: any) => console.log(res))
+      console.log(contract.getListingPrice())
     }
   }, [signer])
   const metadata = {
@@ -266,7 +283,7 @@ export default function CreatePage() {
       return
     }
     setErrorMessage('')
-    // await listNFT2Chain()
+    await listNFT2Chain()
     await listNFT2Firebase()
     updateFormInput(defaultFormInput)
   }
@@ -275,6 +292,20 @@ export default function CreatePage() {
       <div className="mb-20 max-w-4xl p-6">
         <Text variant="pageHeading">Create a NFT</Text>
         <div className="group flex flex-col">
+          {!isConnected &&
+            connectors.map((connector) => (
+              <button
+                disabled={!connector.ready}
+                key={connector.id}
+                onClick={() => connect({ connector })}
+              >
+                {connector.name}
+                {!connector.ready && ' (unsupported)'}
+                {isLoading &&
+                  connector.id === pendingConnector?.id &&
+                  ' (connecting)'}
+              </button>
+            ))}
           <label className="text-base font-semibold my-1">Upload Image:</label>
           <Upload
             ref={lazyRoot}
