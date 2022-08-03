@@ -6,10 +6,13 @@ Start right now at [nextjs.org/commerce](https://nextjs.org/commerce)
 3. Install the dependencies: `yarn`
 4. Duplicate `site/.env.template` and rename it to `site/.env.local`
 5. Add proper store values to `site/.env.local`
-6. Run `cd site` and `yarn dev` to build and watch for code changes
-7. Run `yarn turbo run build` to check the build after your changes
+6. start local etherum node `yarn start:node`
+7. open another terminal and deplop contract `yarn dev:deploy`
+8. start local UI project
 
 ## Work in progress
+
+## Q&A
 
 lsof -n -i4TCP:8545
 kill -9 54486

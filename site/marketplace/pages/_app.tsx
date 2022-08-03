@@ -32,8 +32,8 @@ const { chains, provider, webSocketProvider } = configureChains(allChains, [
 const client = createClient({
   autoConnect: true,
   connectors: [
-    // new MetaMaskConnector({ chains }),
-    new InjectedConnector({ chains: [chain.hardhat] }),
+    new MetaMaskConnector({ chains }),
+    // new InjectedConnector({ chains: [chain.hardhat] }),
     // new CoinbaseWalletConnector({
     //   chains,
     //   options: {
@@ -44,13 +44,6 @@ const client = createClient({
     //   chains,
     //   options: {
     //     qrcode: true,
-    //   },
-    // }),
-    // new InjectedConnector({
-    //   chains,
-    //   options: {
-    //     name: 'Injected',
-    //     shimDisconnect: true,
     //   },
     // }),
   ],
