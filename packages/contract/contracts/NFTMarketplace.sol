@@ -33,7 +33,7 @@ contract NFTMarketplace is ERC721URIStorage {
       bool sold
     );
 
-    constructor() ERC721("Metaverse Tokens", "METT") {
+    constructor() ERC721("ZoomNFT", "ZNFT") {
       owner = payable(msg.sender);
     }
 
@@ -56,6 +56,12 @@ contract NFTMarketplace is ERC721URIStorage {
       _mint(msg.sender, newTokenId);
       _setTokenURI(newTokenId, tokenURI);
       createMarketItem(newTokenId, price);
+      console.log('newTokenId',newTokenId);
+      return newTokenId;
+    }
+
+    function getCreateTokenId() public view returns (uint) {
+      uint256 newTokenId = _tokenIds.current();
       return newTokenId;
     }
 

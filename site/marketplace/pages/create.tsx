@@ -271,8 +271,17 @@ export default function CreatePage() {
     let transaction = await contract.createToken(url, price, {
       value: listingPrice,
     })
-    await transaction.wait()
-    console.log('Transaction complete!', url)
+    const transactionResult = await transaction.wait()
+    const tokenID = transactionResult?.events
+      ?.find((item: any) => item.event === 'MarketItemCreated')
+      .args[0].toString()
+    // const tokenID = await contract.getCreateTokenId()
+    console.log(tokenID, 'tokenID')
+    return {
+      url,
+      price,
+      tokenID,
+    }
   }
   async function listNFT2Firebase() {
     uploadToGoogleStorage()
