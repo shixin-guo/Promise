@@ -5,7 +5,7 @@ import { useConnect, useContract, useSigner } from 'wagmi'
 // todo put into a util file
 // todo whether need use online prod json and address
 import { marketplaceAddress } from '../../../../packages/contract/config'
-import NFTMarketplace from '../../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import NFTMarketplace from '../../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/ZoomNftMarketplace.json'
 import type { SubmitCheckoutHook } from '@vercel/commerce/types/checkout'
 import type { MutationHook } from '@vercel/commerce/utils/types'
 
@@ -13,7 +13,7 @@ import { useCallback } from 'react'
 import useSubmitCheckout, {
   UseSubmitCheckout,
 } from '@vercel/commerce/checkout/use-submit-checkout'
-
+import useCart from '../cart/use-cart'
 export default useSubmitCheckout as UseSubmitCheckout<typeof handler>
 
 export const handler: MutationHook<SubmitCheckoutHook> = {
@@ -27,7 +27,8 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
   useHook: ({ fetch }) =>
     function useHook() {
       const { data: signer } = useSigner()
-
+      const { data: cartData, mutate: refreshCart } = useCart()
+      const cartItem = cartData.lineItems
       const contract = useContract({
         addressOrName: marketplaceAddress,
         contractInterface: NFTMarketplace.abi,
@@ -35,15 +36,21 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
       })
 
       return useCallback(
-        async function onSubmitCheckout(input) {
-          console.log(input)
-          // const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
-          // const transaction = await contract.createMarketSale(nft.tokenId, {
-          //   value: price,
-          // })
-          // return await transaction.wait()
-          // loadNFTs()
+        async function onSubmitCheckout() {
+          console.log('checkout ', cartData)
+          cartItem.map(async (nft: any) => {
+            console.log(nft.variant.price.toString(), signer)
+            // const price = ethers.utils.parseUnits(
+            //   nft.variant.price.toString(),
+            //   'ether'
+            // )
+            debugger
+            const transaction = await contract.createMarketSale(nft.tokenId)
+            await transaction.wait()
+            const data = await contract.fetchMarketItems()
 
+            console.log('fetchMarketItems', data)
+          })
           return {}
         },
         [fetch]

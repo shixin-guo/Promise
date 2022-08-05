@@ -108,7 +108,7 @@ const CheckoutSidebarView: FC = () => {
           <Button
             type="submit"
             width="100%"
-            disabled={!checkoutData?.hasPayment || !checkoutData?.hasShipping}
+            // disabled={!checkoutData?.hasPayment || !checkoutData?.hasShipping}
             loading={loadingSubmit}
           >
             Confirm Purchase
