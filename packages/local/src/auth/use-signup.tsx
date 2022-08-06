@@ -7,6 +7,7 @@ import useSignup, { UseSignup } from '@vercel/commerce/auth/use-signup'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { setDoc, doc } from 'firebase/firestore'
 import { getFirebaseDb } from '../firebase/clientApp'
+import { setCustomerToken } from '../utils'
 
 export default useSignup as UseSignup<typeof handler>
 
@@ -48,6 +49,8 @@ export const handler: MutationHook<any> = {
       return useCallback(
         async function signup(input) {
           const user = await fetch({ input })
+          const jwtToken = await user.getIdToken()
+          setCustomerToken(jwtToken)
           await customer.mutate()
           // await cart.mutate()
           // await wishlist.mutate()
