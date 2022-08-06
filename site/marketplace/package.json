@@ -17,6 +17,7 @@
     "@react-spring/web": "9.4.5",
     "@vercel/commerce": "^0.0.1",
     "@vercel/commerce-local": "^0.0.1",
+    "@zoom/appssdk": "^0.16.2",
     "autoprefixer": "10.4.7",
     "body-scroll-lock": "4.0.0-beta.0",
     "circular-dependency-plugin": "^5.2.2",

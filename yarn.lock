@@ -4115,6 +4115,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@zoom/appssdk@npm:^0.16.2":
+  version: 0.16.2
+  resolution: "@zoom/appssdk@npm:0.16.2"
+  checksum: dc89089b171532ee7847eacff318e341a6a994fdcc77b8e9a43f192ae3a93cf8e38ffcf24c3d0c453dc71586148ab96a8483ef7b10c3c5ca0a0e60c3344cc7a6
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:1":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -10360,6 +10367,7 @@ __metadata:
     "@types/react": 17.0.45
     "@vercel/commerce": ^0.0.1
     "@vercel/commerce-local": ^0.0.1
+    "@zoom/appssdk": ^0.16.2
     autoprefixer: 10.4.7
     body-scroll-lock: 4.0.0-beta.0
     circular-dependency-plugin: ^5.2.2
