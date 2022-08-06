@@ -42,6 +42,7 @@ export const handler: SWRHook<any> = {
                   productId: productId,
                   name: refData.name,
                   quantity: 1,
+                  tokenID: refData.tokenID,
                   discounts: [],
                   path: refData.name,
                   variant: {

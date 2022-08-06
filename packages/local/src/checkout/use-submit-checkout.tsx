@@ -13,7 +13,7 @@ import { useCallback } from 'react'
 import useSubmitCheckout, {
   UseSubmitCheckout,
 } from '@vercel/commerce/checkout/use-submit-checkout'
-
+import useCart from '../cart/use-cart'
 export default useSubmitCheckout as UseSubmitCheckout<typeof handler>
 
 export const handler: MutationHook<SubmitCheckoutHook> = {
@@ -27,7 +27,8 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
   useHook: ({ fetch }) =>
     function useHook() {
       const { data: signer } = useSigner()
-
+      const { data: cartData, mutate: refreshCart } = useCart()
+      const cartItem = cartData.lineItems
       const contract = useContract({
         addressOrName: marketplaceAddress,
         contractInterface: NFTMarketplace.abi,
@@ -35,15 +36,25 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
       })
 
       return useCallback(
-        async function onSubmitCheckout(input) {
-          console.log(input)
-          // const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
-          // const transaction = await contract.createMarketSale(nft.tokenId, {
-          //   value: price,
-          // })
-          // return await transaction.wait()
-          // loadNFTs()
+        async function onSubmitCheckout() {
+          cartItem.map(async (nft: any) => {
+            const price = ethers.utils.parseUnits(
+              nft.variant.price.toString(),
+              'ether'
+            )
+            const transaction = await contract.createMarketSale(nft.tokenID, {
+              value: price,
+            })
 
+            // const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
+            // const transaction = await contract.createMarketSale(nft.tokenId, {
+            //   value: price,
+            // })
+            await transaction.wait()
+            const data = await contract.fetchMarketItems()
+
+            console.log('fetchMarketItems', data)
+          })
           return {}
         },
         [fetch]

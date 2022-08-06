@@ -59,35 +59,17 @@ export default function CreatePage() {
   const [formInput, updateFormInput] =
     useState<FormInputInterface>(defaultFormInput)
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const { address, connector, isConnected } = useAccount()
-  console.log(address, connector, isConnected)
-  const { data: signer } = useSigner({
-    onError(error) {
-      console.log('Error', error)
-    },
-    onSettled(data, error) {
-      console.log('Settled', data, error)
-    },
-    onSuccess(data) {
-      console.log('Success', data)
-    },
-  })
-  console.log(signer)
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect()
-  console.log(connectors)
+  const { isConnected } = useAccount()
+  const { data: signer } = useSigner()
+  useEffect(() => {
+    console.log('signer', signer)
+  }, [signer])
+  const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
     addressOrName: marketplaceAddress,
     contractInterface: NFTMarketplace.abi,
     signerOrProvider: signer,
   })
-  useEffect(() => {
-    console.log(1)
-    if (signer) {
-      contract.getListingPrice().then((res: any) => console.log(res))
-      console.log(contract.getListingPrice())
-    }
-  }, [signer])
   const metadata = {
     contentType: 'image/jpeg',
   }
@@ -130,7 +112,7 @@ export default function CreatePage() {
     reader.addEventListener('load', () => callback(reader.result as string))
     reader.readAsDataURL(img)
   }
-  async function uploadToGoogleStorage() {
+  async function uploadToGoogleStorage({ tokenID }: { tokenID: String }) {
     // todo  move into local provider
     const uploadTask = uploadBytesResumable(
       storageRef,
@@ -177,6 +159,7 @@ export default function CreatePage() {
           addDoc(collection(firebaseDb, 'collections'), {
             name,
             id: name,
+            tokenID,
             path: snakeCase(name),
             description,
             price: {
@@ -264,27 +247,38 @@ export default function CreatePage() {
     return true
   }
   async function listNFT2Chain() {
-    const url = await uploadToIPFS()
+    // const url = await uploadToIPFS()
     const price = ethers.utils.parseUnits(formInput.price, 'ether')
     let listingPrice = await contract.getListingPrice()
     listingPrice = listingPrice.toString() || 1
-    let transaction = await contract.createToken(url, price, {
+    let transaction = await contract.createToken(formInput.name, price, {
       value: listingPrice,
     })
-    await transaction.wait()
-    console.log('Transaction complete!', url)
+    const transactionResult = await transaction.wait()
+    const tokenID = transactionResult?.events
+      ?.find((item: any) => item.event === 'MarketItemCreated')
+      .args[0].toString()
+    // const tokenID = await contract.getCreateTokenId()
+
+    const data = await contract.fetchMarketItems()
+
+    console.log('fetchMarketItems', data)
+    return {
+      price,
+      tokenID,
+    }
   }
-  async function listNFT2Firebase() {
-    uploadToGoogleStorage()
-  }
+
   async function listNFTForSale() {
     if (!validate()) {
       setErrorMessage('Please fill in all fields')
       return
     }
     setErrorMessage('')
-    await listNFT2Chain()
-    await listNFT2Firebase()
+    const { tokenID } = await listNFT2Chain()
+    await uploadToGoogleStorage({
+      tokenID,
+    })
     updateFormInput(defaultFormInput)
   }
   return (
