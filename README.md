@@ -14,9 +14,11 @@ Start right now at [nextjs.org/commerce](https://nextjs.org/commerce)
 
 ## Q&A
 
+### how to kill a port
+
 lsof -n -i4TCP:8545
 kill -9 54486
 
-What happens when a transaction nonce is too high?
+### What happens when a transaction nonce is too high?
 
 if you're using hardhat + metamask, and seeing this after restarting the node, try resetting your account on metamask: Settings > Advanced > Reset Account.
