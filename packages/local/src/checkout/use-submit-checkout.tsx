@@ -5,7 +5,7 @@ import { useConnect, useContract, useSigner } from 'wagmi'
 // todo put into a util file
 // todo whether need use online prod json and address
 import { marketplaceAddress } from '../../../../packages/contract/config'
-import NFTMarketplace from '../../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/ZoomNftMarketplace.json'
+import NFTMarketplace from '../../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 import type { SubmitCheckoutHook } from '@vercel/commerce/types/checkout'
 import type { MutationHook } from '@vercel/commerce/utils/types'
 
@@ -37,15 +37,19 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
 
       return useCallback(
         async function onSubmitCheckout() {
-          console.log('checkout ', cartData)
           cartItem.map(async (nft: any) => {
-            console.log(nft.variant.price.toString(), signer)
-            // const price = ethers.utils.parseUnits(
-            //   nft.variant.price.toString(),
-            //   'ether'
-            // )
-            debugger
-            const transaction = await contract.createMarketSale(nft.tokenId)
+            const price = ethers.utils.parseUnits(
+              nft.variant.price.toString(),
+              'ether'
+            )
+            const transaction = await contract.createMarketSale(nft.tokenID, {
+              value: price,
+            })
+
+            // const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
+            // const transaction = await contract.createMarketSale(nft.tokenId, {
+            //   value: price,
+            // })
             await transaction.wait()
             const data = await contract.fetchMarketItems()
 

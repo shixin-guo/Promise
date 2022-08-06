@@ -51,5 +51,5 @@ yarn-error.log*
 packages/contract/cache/solidity-files-cache.json
 
 #Hardhat files
-cache
-artifacts
+# cache
+# artifacts

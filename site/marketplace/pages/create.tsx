@@ -24,8 +24,7 @@ import {
 
 // todo whether need use online prod json and address
 import { marketplaceAddress } from '../../../packages/contract/config'
-import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/ZoomNftMarketplace.json'
-import { sign } from 'crypto'
+import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 
 const UploadIcon = '/upload.svg'
 const IpfsHttpClient = createIpfsHttpClient({
