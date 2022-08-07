@@ -15,6 +15,7 @@ const clientCredentials = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
+console.log(clientCredentials)
 export const firebaseApp: FirebaseApp = initializeApp(clientCredentials)
 
 export const firebaseDb = initializeFirestore(firebaseApp, {
