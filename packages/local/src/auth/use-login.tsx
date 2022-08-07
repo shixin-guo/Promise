@@ -24,7 +24,7 @@ export const handler: MutationHook<any> = {
           const { user } = await fetch({ input })
           const jwtToken = await user.getIdToken()
           setCustomerToken(jwtToken)
-          // await mutate()
+          await mutate()
           return user
         },
         [fetch]

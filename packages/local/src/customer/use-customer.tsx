@@ -19,8 +19,12 @@ export const handler: SWRHook<any> = {
       const auth = getAuth()
       const uid = auth.currentUser?.uid
       if (uid) {
-        const docSnap = await getDoc(doc(getFirebaseDb(), 'customer', uid))
-        return { ...docSnap.data(), uid }
+        try {
+          const docSnap = await getDoc(doc(getFirebaseDb(), 'customer', uid))
+          return { ...docSnap.data(), uid }
+        } catch (e) {
+          console.log('firestore', e)
+        }
       }
     }
     return null
