@@ -5681,6 +5681,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js@npm:^3.24.1":
+  version: 3.24.1
+  resolution: "core-js@npm:3.24.1"
+  checksum: 6fb5bf0fd9e9f3e69d95616dd03332fea6758a715d2628c108b5faf17b48b0f580e90c4febb0a523c4665b0991a810de16289f86187fe79d70cc722dbd3edf0e
+  languageName: node
+  linkType: hard
+
 "core-util-is@npm:~1.0.0":
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
@@ -10372,6 +10379,7 @@ __metadata:
     body-scroll-lock: 4.0.0-beta.0
     circular-dependency-plugin: ^5.2.2
     clsx: 1.1.1
+    core-js: ^3.24.1
     email-validator: 2.0.4
     eslint: 8.17.0
     eslint-config-next: 12.1.6

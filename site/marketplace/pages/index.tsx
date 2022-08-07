@@ -39,7 +39,7 @@ export async function getStaticProps({
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  createZoomConfig()
+  // createZoomConfig()
   return (
     <>
       <Grid variant="filled">

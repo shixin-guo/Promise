@@ -17,12 +17,18 @@ module.exports = function (task) {
     ) {
       // Don't compile .d.ts
       if (file.base.endsWith('.d.ts')) return
-
       const swcClientOptions = {
         module: {
           type: 'es6',
           ignoreDynamic: true,
         },
+        env: {
+          targets: {
+            chrome: "79"
+          },
+          mode: "usage"
+        },
+        minify: true,
         jsc: {
           loose: true,
           target: 'es2016',
@@ -41,6 +47,9 @@ module.exports = function (task) {
               useBuiltins: true,
             },
           },
+          minify: {
+            compress: true
+          }
         },
       }
       const swcServerOptions = {
