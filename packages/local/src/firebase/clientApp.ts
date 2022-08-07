@@ -1,5 +1,9 @@
 import { initializeApp, getApps, FirebaseApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import {
+  getFirestore,
+  setLogLevel,
+  enableIndexedDbPersistence,
+} from 'firebase/firestore'
 import { getAnalytics } from 'firebase/analytics'
 const clientCredentials = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -29,5 +33,19 @@ export const createFirebaseApp = () => {
 }
 
 export const getFirebaseDb = () => {
+  setLogLevel('debug')
+  const DB = getFirestore(firebaseApp)
+  enableIndexedDbPersistence(DB).catch((err) => {
+    if (err.code == 'failed-precondition') {
+      // Multiple tabs open, persistence can only be enabled
+      // in one tab at a a time.
+      // ...
+    } else if (err.code == 'unimplemented') {
+      // The current browser does not support all of the
+      // features required to enable persistence
+      // ...
+    }
+    console.log(err)
+  })
   return getFirestore(firebaseApp)
 }

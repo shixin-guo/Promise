@@ -1,5 +1,5 @@
 import { SWRHook } from '@vercel/commerce/utils/types'
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc, setLogLevel } from 'firebase/firestore'
 import { getFirebaseDb } from '../firebase/clientApp'
 import useCustomer, {
   UseCustomer,
