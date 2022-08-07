@@ -8,7 +8,7 @@ import { getCustomerToken } from '../utils'
 import { getAuth } from 'firebase/auth'
 import { doc, updateDoc, arrayRemove } from 'firebase/firestore'
 
-import { getFirebaseDb } from '../firebase/clientApp'
+import { firebaseDb } from '../firebase/clientApp'
 
 export default useRemoveItem as UseRemoveItem<typeof handler>
 
@@ -22,7 +22,7 @@ export const handler: MutationHook<any> = {
       const auth = getAuth()
       const uid = auth.currentUser?.uid
       if (uid) {
-        await updateDoc(doc(getFirebaseDb(), 'customer', uid), {
+        await updateDoc(doc(firebaseDb, 'customer', uid), {
           cart: arrayRemove(input),
         })
         return

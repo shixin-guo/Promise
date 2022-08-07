@@ -18,11 +18,7 @@ import { handler as useAddresses } from './customer/address/use-addresses'
 import { handler as useAddAddressItem } from './customer/address/use-add-item'
 import { handler as useUpdateAddressItem } from './customer/address/use-update-item'
 import { handler as useRemoveAddressItem } from './customer/address/use-remove-item'
-import {
-  firebaseApp,
-  createFirebaseApp,
-  getFirebaseDb,
-} from './firebase/clientApp'
+import { firebaseApp, firebaseDb } from './firebase/clientApp'
 // import { handler as useWishlist } from './wishlist/use-wishlist'
 // import { handler as useWishlistAddItem } from './wishlist/use-add-item'
 // import { handler as useWishlistRemoveItem } from './wishlist/use-remove-item'
@@ -57,9 +53,4 @@ export const localProvider = {
   // },
 }
 export type LocalProvider = typeof localProvider
-
-createFirebaseApp()
-
-const firebaseDb = getFirebaseDb()
-
 export { firebaseApp, firebaseDb }

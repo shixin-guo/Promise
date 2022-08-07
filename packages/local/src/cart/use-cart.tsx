@@ -4,7 +4,7 @@ import useCart, { UseCart } from '@vercel/commerce/cart/use-cart'
 import { getCustomerToken } from '../utils'
 import { getAuth } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
-import { getFirebaseDb } from '../firebase/clientApp'
+import { firebaseDb } from '../firebase/clientApp'
 
 export default useCart as UseCart<typeof handler>
 export const handler: SWRHook<any> = {
@@ -17,7 +17,7 @@ export const handler: SWRHook<any> = {
       const auth = getAuth()
       const uid = auth.currentUser?.uid
       if (uid) {
-        const user = await getDoc(doc(getFirebaseDb(), 'customer', uid))
+        const user = await getDoc(doc(firebaseDb, 'customer', uid))
         const customerCart = user.data()?.cart || []
         let lineItems: any = []
         let subtotalPrice = 0
@@ -33,7 +33,7 @@ export const handler: SWRHook<any> = {
             }) => {
               // todo difference variant and product price
               const refData = await (
-                await getDoc(doc(getFirebaseDb(), 'collections', productId))
+                await getDoc(doc(firebaseDb, 'collections', productId))
               ).data()
               if (refData) {
                 lineItems.push({

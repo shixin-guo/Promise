@@ -3,7 +3,6 @@ import { Product } from '@vercel/commerce/types/product'
 import { GetProductOperation } from '@vercel/commerce/types/product'
 
 import type { OperationContext } from '@vercel/commerce/api/operations'
-import { getFirebaseDb } from '../../firebase/clientApp'
 // todo remove into common or provider ?
 import admin from '../../firebase/nodeApp'
 
