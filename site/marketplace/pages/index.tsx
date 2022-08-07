@@ -4,6 +4,7 @@ import { ProductCard } from '@components/product'
 import { Grid, Marquee, Hero } from '@components/ui'
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import { createZoomConfig } from '@lib/zoom'
 
 export async function getStaticProps({
   preview,
@@ -38,6 +39,7 @@ export async function getStaticProps({
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  // createZoomConfig()
   return (
     <>
       <Grid variant="filled">
