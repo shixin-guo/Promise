@@ -22,8 +22,12 @@ export const handler: MutationHook<any> = {
       const auth = getAuth()
       const uid = auth.currentUser?.uid
       if (uid) {
+        const { productId, variantId } = input
         await updateDoc(doc(firebaseDb, 'customer', uid), {
-          cart: arrayRemove(input),
+          cart: arrayRemove({
+            productId,
+            variantId,
+          }),
         })
         return
       }
