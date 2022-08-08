@@ -8,6 +8,8 @@ import { ethers } from 'ethers'
 import { useContract, useSigner, useAccount, useConnect } from 'wagmi'
 import { create as createIpfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
+import zoomsdk from '@zoom/appssdk'
+
 import useCustomer from '@framework/customer/use-customer'
 import { firebaseDb } from '@framework/firebase/clientApp'
 import { RcFile } from '@components/ui/Upload/interface'
@@ -26,6 +28,7 @@ import {
 // todo whether need use online prod json and address
 import { marketplaceAddress } from '../../../packages/contract/config'
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import { createZoomConfig } from '@lib/zoom'
 
 const UploadIcon = '/upload.svg'
 const IpfsHttpClient = createIpfsHttpClient({
@@ -67,6 +70,10 @@ export default function CreatePage() {
   useEffect(() => {
     console.log('signer', signer)
   }, [signer])
+  // zoom screenshot
+  useEffect(() => {
+    createZoomConfig()
+  }, [])
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
     addressOrName: marketplaceAddress,
