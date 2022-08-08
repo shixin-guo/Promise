@@ -36,7 +36,6 @@ export default function getProductOperation({
       .collection('collections')
       .doc(variables?.slug || 'empty')
       .get()
-    console.log(querySnapshot)
     // todo  add a normalize js
     // todo FirebaseCustomerType is too SB
     const { name, description, price, images, variants, options } =
