@@ -6,7 +6,7 @@ import { MutationHook } from '@vercel/commerce/utils/types'
 import useSignup, { UseSignup } from '@vercel/commerce/auth/use-signup'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { setDoc, doc } from 'firebase/firestore'
-import { getFirebaseDb } from '../firebase/clientApp'
+import { firebaseDb } from '../firebase/clientApp'
 import { setCustomerToken } from '../utils'
 
 export default useSignup as UseSignup<typeof handler>
@@ -19,14 +19,11 @@ const createUser = async ({ email, password, firstName, lastName }: any) => {
     password
   )
   try {
-    await setDoc(
-      doc(getFirebaseDb(), 'customer', userCredentialImpl.user.uid),
-      {
-        firstName,
-        lastName,
-        email,
-      }
-    )
+    await setDoc(doc(firebaseDb, 'customer', userCredentialImpl.user.uid), {
+      firstName,
+      lastName,
+      email,
+    })
   } catch (e) {
     console.error('Error adding document: ', e)
   }

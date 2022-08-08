@@ -1,6 +1,5 @@
-import { initializeApp, getApps, FirebaseApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
-import { getAnalytics } from 'firebase/analytics'
+import { initializeApp, FirebaseApp } from 'firebase/app'
+import { initializeFirestore } from 'firebase/firestore'
 const clientCredentials = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -11,23 +10,5 @@ const clientCredentials = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
-// Initialize Firebase
-export let firebaseApp: FirebaseApp | undefined = undefined
-export const createFirebaseApp = () => {
-  if (getApps().length <= 0) {
-    const app = initializeApp(clientCredentials)
-    // Check that `window` is in scope for the analytics module!
-    if (typeof window !== 'undefined') {
-      // Enable analytics. https://firebase.google.com/docs/analytics/get-started
-      if ('measurementId' in clientCredentials) {
-        getAnalytics()
-      }
-    }
-    firebaseApp = app
-    return app
-  }
-}
-
-export const getFirebaseDb = () => {
-  return getFirestore(firebaseApp)
-}
+export const firebaseApp: FirebaseApp = initializeApp(clientCredentials)
+export const firebaseDb = initializeFirestore(firebaseApp, {})

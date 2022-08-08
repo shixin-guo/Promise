@@ -1,6 +1,6 @@
 import { SWRHook } from '@vercel/commerce/utils/types'
-import { doc, getDoc } from 'firebase/firestore'
-import { getFirebaseDb } from '../firebase/clientApp'
+import { doc, getDoc, setLogLevel } from 'firebase/firestore'
+import { firebaseDb } from '../firebase/clientApp'
 import useCustomer, {
   UseCustomer,
 } from '@vercel/commerce/customer/use-customer'
@@ -19,8 +19,12 @@ export const handler: SWRHook<any> = {
       const auth = getAuth()
       const uid = auth.currentUser?.uid
       if (uid) {
-        const docSnap = await getDoc(doc(getFirebaseDb(), 'customer', uid))
-        return { ...docSnap.data(), uid }
+        try {
+          const docSnap = await getDoc(doc(firebaseDb, 'customer', uid))
+          return { ...docSnap.data(), uid }
+        } catch (e) {
+          console.log('firestore', e)
+        }
       }
     }
     return null

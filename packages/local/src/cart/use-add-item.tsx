@@ -3,7 +3,7 @@ import { MutationHook } from '@vercel/commerce/utils/types'
 import { getCustomerToken } from '../utils'
 import { getAuth } from 'firebase/auth'
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
-import { getFirebaseDb } from '../firebase/clientApp'
+import { firebaseDb } from '../firebase/clientApp'
 import useCart from './use-cart'
 import { useCallback } from 'react'
 
@@ -18,7 +18,7 @@ export const handler: MutationHook<any> = {
       const auth = getAuth()
       const uid = auth.currentUser?.uid
       if (uid) {
-        await updateDoc(doc(getFirebaseDb(), 'customer', uid), {
+        await updateDoc(doc(firebaseDb, 'customer', uid), {
           cart: arrayUnion(input),
         })
         return null

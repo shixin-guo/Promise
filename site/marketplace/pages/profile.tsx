@@ -3,7 +3,9 @@ import useCustomer from '@framework/customer/use-customer'
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { Container, Text } from '@components/ui'
-
+import { firebaseDb } from '@framework/firebase/clientApp'
+import { collection, query, where } from 'firebase/firestore'
+const collectionsRef = collection(firebaseDb, 'collections')
 export async function getStaticProps({
   preview,
   locale,

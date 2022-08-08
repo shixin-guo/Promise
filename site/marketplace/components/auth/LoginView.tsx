@@ -58,9 +58,6 @@ const LoginView: React.FC = () => {
       onSubmit={handleLogin}
       className="w-80 flex flex-col justify-between p-3"
     >
-      <div className="flex justify-center pb-12 ">
-        <Logo width="64px" height="64px" />
-      </div>
       <div className="flex flex-col space-y-3">
         {message && (
           <div className="text-red border border-red p-3">

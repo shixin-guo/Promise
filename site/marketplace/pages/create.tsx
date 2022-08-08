@@ -8,7 +8,7 @@ import { useContract, useSigner, useAccount, useConnect } from 'wagmi'
 import { create as createIpfsHttpClient } from 'ipfs-http-client'
 
 import useCustomer from '@framework/customer/use-customer'
-import { firebaseDb } from '@framework/provider'
+import { firebaseDb } from '@framework/firebase/clientApp'
 import { RcFile } from '@components/ui/Upload/interface'
 import { Info } from '@components/icons'
 import { Layout } from '@components/common'
