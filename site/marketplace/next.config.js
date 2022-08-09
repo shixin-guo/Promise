@@ -33,7 +33,7 @@ const securityHeaders = [
   },
   {
     key: 'Referrer-Policy',
-    value: 'origin-when-cross-origin',
+    value: 'unsafe-url',
   },
   {
     key: 'Content-Security-Policy',
