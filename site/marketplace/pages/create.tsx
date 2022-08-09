@@ -30,7 +30,7 @@ import { marketplaceAddress } from '../../../packages/contract/config'
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 import { createZoomConfig } from '@lib/zoom'
 
-const UploadIcon = '/upload.svg'
+const UploadIcon = '/image.svg'
 const IpfsHttpClient = createIpfsHttpClient({
   url: 'https://ipfs.infura.io:5001/api/v0',
 })
@@ -251,6 +251,7 @@ export default function CreatePage() {
   }
   async function listNFT2Chain() {
     // const url = await uploadToIPFS()
+    debugger
     const price = ethers.utils.parseUnits(formInput.price, 'ether')
     let listingPrice = await contract.getListingPrice()
     listingPrice = listingPrice.toString() || 1
@@ -275,6 +276,7 @@ export default function CreatePage() {
     }
     setErrorMessage('')
     const { tokenID } = await listNFT2Chain()
+    debugger
     await uploadToGoogleStorage({
       tokenID,
     })
@@ -301,7 +303,8 @@ export default function CreatePage() {
                   ' (connecting)'}
               </button>
             ))}
-          <label className="text-base font-semibold my-1">Upload Image:</label>
+          <label className="text-base font-semibold my-1">Image</label>
+          <p className="text-xs mb-2 text-gray-500">File types supported {uploadTypeLimitList.map(ext => ext.replace('.', '').toUpperCase()).join(', ')}</p>
           <Upload
             ref={lazyRoot}
             className="w-80 h-48 rounded-lg bg-gray-400  flex items-center justify-center border-dashed border-4 border-gary-800 hover:opacity-75"
@@ -314,7 +317,7 @@ export default function CreatePage() {
           >
             {base64URL ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={base64URL} alt="avatar" className="object-fill" />
+              <img src={base64URL} alt="avatar" className="object-fill h-full" />
             ) : (
               <Image
                 className="rounded-lg"
