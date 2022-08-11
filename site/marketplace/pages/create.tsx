@@ -1,12 +1,13 @@
 import type { GetStaticPropsContext } from 'next'
 import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
+import useSearch from '@framework/product/use-search'
 import { collection, addDoc } from 'firebase/firestore'
 import { snakeCase } from 'lodash'
 import { ethers } from 'ethers'
 import { useContract, useSigner, useAccount, useConnect } from 'wagmi'
 import { create as createIpfsHttpClient } from 'ipfs-http-client'
-
+import { useRouter } from 'next/router'
 import useCustomer from '@framework/customer/use-customer'
 import { firebaseDb } from '@framework/firebase/clientApp'
 import { RcFile } from '@components/ui/Upload/interface'
@@ -54,7 +55,9 @@ const defaultFormInput = {
   file: null,
 }
 export default function CreatePage() {
+  const router = useRouter()
   const { data: customer } = useCustomer()
+  const { mutate: updateSearch } = useSearch({ isMy: true })
   const fileUrlRef = useRef('')
   const [formInput, updateFormInput] =
     useState<FormInputInterface>(defaultFormInput)
@@ -90,11 +93,6 @@ export default function CreatePage() {
   // Upload file and metadata to the object 'images/mountains.jpg'
   const storage = getStorage()
   const storageRef = ref(storage, 'images/' + formInput.name)
-
-  const handlerUploadError = (error: Error) => {
-    console.log(error, 'error')
-  }
-
   const beforeUnloadEvent = async (file: RcFile) => {
     updateFormInput({
       ...formInput,
@@ -200,8 +198,6 @@ export default function CreatePage() {
                 ],
               },
             ],
-          }).then((docRef) => {
-            console.log(docRef)
           })
         })
       }
@@ -259,10 +255,6 @@ export default function CreatePage() {
       ?.find((item: any) => item.event === 'MarketItemCreated')
       .args[0].toString()
     // const tokenID = await contract.getCreateTokenId()
-
-    const data = await contract.fetchMarketItems()
-
-    console.log('fetchMarketItems', data)
     return {
       price,
       tokenID,
@@ -280,6 +272,8 @@ export default function CreatePage() {
       tokenID,
     })
     updateFormInput(defaultFormInput)
+    updateSearch()
+    router.push('/orders')
   }
   return (
     <Container className="pt-4 pb-4 flex justify-center">
@@ -307,7 +301,9 @@ export default function CreatePage() {
             accept={uploadTypeLimitList.join()}
             action="https://httpbin.org/post"
             beforeUpload={beforeUnloadEvent}
-            onError={handlerUploadError}
+            onError={(error: Error) => {
+              console.log(error, 'error')
+            }}
           >
             {base64URL ? (
               // eslint-disable-next-line @next/next/no-img-element

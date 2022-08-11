@@ -42,19 +42,19 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
 
   return (
     <div className={className}>
-      <ProductOptions
+      {/* <ProductOptions
         options={product.options}
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
-      />
+      /> */}
       <Text
         className="pb-4 break-words w-full max-w-xl"
         html={product.descriptionHtml || product.description}
       />
-      <div className="flex flex-row justify-between items-center">
+      {/* <div className="flex flex-row justify-between items-center">
         <Rating value={4} />
         <div className="text-accent-6 pr-1 font-medium text-sm">36 reviews</div>
-      </div>
+      </div> */}
       <div>
         {process.env.COMMERCE_CART_ENABLED && (
           <Button

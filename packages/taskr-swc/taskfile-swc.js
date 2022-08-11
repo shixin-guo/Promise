@@ -22,13 +22,13 @@ module.exports = function (task) {
           type: 'es6',
           ignoreDynamic: true,
         },
-        env: {
-          targets: {
-            chrome: "79"
-          },
-          mode: "usage"
-        },
-        minify: true,
+        // env: {
+        //   targets: {
+        //     chrome: "79"
+        //   },
+        //   mode: "usage"
+        // },
+        // minify: true,
         jsc: {
           loose: true,
           target: 'es2016',
@@ -47,9 +47,9 @@ module.exports = function (task) {
               useBuiltins: true,
             },
           },
-          minify: {
-            compress: true
-          }
+          // minify: {
+          //   compress: true
+          // }
         },
       }
       const swcServerOptions = {
