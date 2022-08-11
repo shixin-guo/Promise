@@ -1,6 +1,7 @@
 import { SWRHook } from '@vercel/commerce/utils/types'
 import useSearch, { UseSearch } from '@vercel/commerce/product/use-search'
 import { firebaseDb } from '../firebase/clientApp'
+import { getAuth } from 'firebase/auth'
 import { Product } from '@vercel/commerce/types/product'
 import { collection, query, where, getDocs, orderBy } from 'firebase/firestore'
 
@@ -20,24 +21,44 @@ export const handler: SWRHook<any> = {
       ['price-desc', 'price_desc'],
       ['trending-desc', 'popularity'],
     ])
-    const { categoryId, search, sort = 'latest-desc' } = input
+    const { categoryId, search, sort = 'latest-desc', isMy = false } = input
     const mappedSort = sortMap.get(sort)
-    let q = query(collectionsRef)
+    let queryConstraints = []
+    const auth = getAuth()
+    const uid = auth.currentUser?.uid
+    if (isMy) {
+      queryConstraints.push(where('arthur', '==', uid))
+    }
     switch (mappedSort) {
-      case 'price-asc':
-        q = query(collectionsRef, orderBy('price.value'))
+      case 'price_asc':
+        queryConstraints.push(orderBy('price.value'))
         break
-      case 'price-desc':
-        q = query(collectionsRef, orderBy('price.value', 'desc'))
+      case 'price_desc':
+        queryConstraints.push(orderBy('price.value', 'desc'))
         break
       default:
-        query(collectionsRef)
         break
     }
+    const q = query(collectionsRef, ...queryConstraints)
+
     const querySnapshot = await getDocs(q)
     const products: Product[] = []
     querySnapshot.forEach((doc) => {
-      products.push(doc.data() as Product)
+      // todo  add a normalize js
+      // todo defined doc.data() type is Products
+      const { name, description, price, images, path, variants, options } =
+        doc.data()
+      products.push({
+        id: doc.id,
+        slug: doc.id,
+        path: doc.id,
+        description,
+        price,
+        images,
+        name,
+        variants,
+        options,
+      })
     })
     return {
       products,
@@ -53,7 +74,9 @@ export const handler: SWRHook<any> = {
           ['categoryId', input.categoryId],
           ['brandId', input.brandId],
           ['sort', input.sort],
+          ['isMy', input.isMy],
         ],
+
         swrOptions: {
           revalidateOnFocus: false,
           ...input.swrOptions,

@@ -29,7 +29,7 @@ export default function getAllProductsOperation({
       products.push({
         id: doc.id,
         slug: doc.id,
-        path: path,
+        path: doc.id,
         description,
         price,
         images,
