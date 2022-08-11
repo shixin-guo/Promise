@@ -251,7 +251,6 @@ export default function CreatePage() {
   }
   async function listNFT2Chain() {
     // const url = await uploadToIPFS()
-    debugger
     const price = ethers.utils.parseUnits(formInput.price, 'ether')
     let listingPrice = await contract.getListingPrice()
     listingPrice = listingPrice.toString() || 1
@@ -276,7 +275,6 @@ export default function CreatePage() {
     }
     setErrorMessage('')
     const { tokenID } = await listNFT2Chain()
-    debugger
     await uploadToGoogleStorage({
       tokenID,
     })
@@ -292,7 +290,7 @@ export default function CreatePage() {
           {!isConnected &&
             connectors.map((connector) => (
               <button
-                disabled={!connector.ready}
+                // disabled={!connector.ready}
                 key={connector.id}
                 onClick={() => connect({ connector })}
               >
