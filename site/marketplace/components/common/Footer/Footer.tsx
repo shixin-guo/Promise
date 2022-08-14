@@ -36,7 +36,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                 <span className="rounded-full border border-accent-6 mr-2">
                   <Logo />
                 </span>
-                <span>Z/Gallery</span>
+                <span>Z/NFT</span>
               </a>
             </Link>
           </div>

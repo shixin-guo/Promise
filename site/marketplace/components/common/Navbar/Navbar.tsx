@@ -21,7 +21,9 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
       <div className={s.nav}>
         <div className="flex items-center flex-1">
           <Link href="/">
-            <b>Z \ NFT</b>
+            <b>
+              <span style={{ color: '#2d8cff' }}>Z</span> \ NFT{' '}
+            </b>
           </Link>
           <nav className={s.navMenu}>
             <Link href="/search">
