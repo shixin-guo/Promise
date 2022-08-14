@@ -1,13 +1,15 @@
 import cn from 'clsx'
 import Link from 'next/link'
 import s from './UserNav.module.css'
-import { Avatar } from '@components/common'
 import useCart from '@framework/cart/use-cart'
 import { useUI } from '@components/ui/context'
 import { Heart, Bag, Menu } from '@components/icons'
 import CustomerMenuContent from './CustomerMenuContent'
-import useCustomer from '@framework/customer/use-customer'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useAccount } from 'wagmi'
+import { ConnectKitButton } from 'connectkit'
+import useLogin from '@framework/auth/use-login'
+
 import {
   Dropdown,
   DropdownTrigger as DropdownTriggerInst,
@@ -22,23 +24,27 @@ const UserNav: React.FC<{
   className?: string
 }> = ({ className }) => {
   const { data: cart } = useCart()
-  const { data: isCustomerLoggedIn } = useCustomer()
-  const {
-    toggleSidebar,
-    closeSidebarIfPresent,
-    openModal,
-    setSidebarView,
-    openSidebar,
-  } = useUI()
+  const { toggleSidebar, closeSidebarIfPresent, setSidebarView, openSidebar } =
+    useUI()
   const itemsCount = cart?.lineItems.reduce(countItem, 0) ?? 0
-  const DropdownTrigger = isCustomerLoggedIn
-    ? DropdownTriggerInst
-    : React.Fragment
-
+  const { isConnected } = useAccount()
+  const DropdownTrigger = isConnected ? DropdownTriggerInst : React.Fragment
+  const login = useLogin()
+  useEffect(() => {
+    // todo remove after demo
+    isConnected &&
+      login({
+        email: 'guo@12.com',
+        password: 'Pass@123',
+      })
+  }, [isConnected])
+  const onClickKitButton = (open: () => void) => {
+    !isConnected ? open() : null
+  }
   return (
     <nav className={cn(s.root, className)}>
       <ul className={s.list}>
-        {isCustomerLoggedIn && (
+        {isConnected && (
           <li className={cn(s.item, s.createButton)}>
             <Link href="/create">
               <a onClick={closeSidebarIfPresent} aria-label="Create a new NFT">
@@ -78,12 +84,8 @@ const UserNav: React.FC<{
           <li className={s.item}>
             <Dropdown>
               <DropdownTrigger>
-                <span
-                  aria-label="Menu"
-                  className={s.avatarButton}
-                  onClick={() => (isCustomerLoggedIn ? null : openModal())}
-                >
-                  <Avatar />
+                <span aria-label="Menu" className={s.avatarButton}>
+                  <ConnectKitButton onClick={onClickKitButton} />
                 </span>
               </DropdownTrigger>
               <CustomerMenuContent />

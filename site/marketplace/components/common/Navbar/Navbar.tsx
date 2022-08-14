@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
@@ -20,9 +21,7 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
       <div className={s.nav}>
         <div className="flex items-center flex-1">
           <Link href="/">
-            <a className={s.logo} aria-label="Logo">
-              <Logo />
-            </a>
+            <b>Z \ NFT</b>
           </Link>
           <nav className={s.navMenu}>
             <Link href="/search">
