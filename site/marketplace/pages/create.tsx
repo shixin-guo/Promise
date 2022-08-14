@@ -65,7 +65,7 @@ export default function CreatePage() {
   const [formInput, updateFormInput] =
     useState<FormInputInterface>(defaultFormInput)
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const { isConnected } = useAccount()
+  const { isConnected, address } = useAccount()
   const { data: signer } = useSigner()
   useEffect(() => {
     console.log('signer', signer)
@@ -176,7 +176,7 @@ export default function CreatePage() {
                 url: firestoreUrl,
               },
             ],
-            arthur: customer.uid,
+            arthur: address,
             variants: [
               {
                 id: name,
@@ -302,7 +302,12 @@ export default function CreatePage() {
               </button>
             ))}
           <label className="text-base font-semibold my-1">Image</label>
-          <p className="text-xs mb-2 text-gray-500">File types supported {uploadTypeLimitList.map(ext => ext.replace('.', '').toUpperCase()).join(', ')}</p>
+          <p className="text-xs mb-2 text-gray-500">
+            File types supported{' '}
+            {uploadTypeLimitList
+              .map((ext) => ext.replace('.', '').toUpperCase())
+              .join(', ')}
+          </p>
           <Upload
             ref={lazyRoot}
             className="w-80 h-48 rounded-lg bg-gray-400  flex items-center justify-center border-dashed border-4 border-gary-800 hover:opacity-75"
@@ -315,7 +320,11 @@ export default function CreatePage() {
           >
             {base64URL ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={base64URL} alt="avatar" className="object-fill h-full" />
+              <img
+                src={base64URL}
+                alt="avatar"
+                className="object-fill h-full"
+              />
             ) : (
               <Image
                 className="rounded-lg"

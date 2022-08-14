@@ -1,8 +1,8 @@
 import { SWRHook } from '@vercel/commerce/utils/types'
 import useSearch, { UseSearch } from '@vercel/commerce/product/use-search'
 import { firebaseDb } from '../firebase/clientApp'
-import { getAuth } from 'firebase/auth'
 import { Product } from '@vercel/commerce/types/product'
+import { useAccount } from 'wagmi'
 import { collection, query, where, getDocs, orderBy } from 'firebase/firestore'
 
 const collectionsRef = collection(firebaseDb, 'collections')
@@ -21,13 +21,18 @@ export const handler: SWRHook<any> = {
       ['price-desc', 'price_desc'],
       ['trending-desc', 'popularity'],
     ])
-    const { categoryId, search, sort = 'latest-desc', isMy = false } = input
+    const {
+      categoryId,
+      search,
+      sort = 'latest-desc',
+      isMy = false,
+      address,
+    } = input
     const mappedSort = sortMap.get(sort)
     let queryConstraints = []
-    const auth = getAuth()
-    const uid = auth.currentUser?.uid
-    if (isMy) {
-      queryConstraints.push(where('arthur', '==', uid))
+
+    if (isMy && address) {
+      queryConstraints.push(where('arthur', '==', address))
     }
     switch (mappedSort) {
       case 'price_asc':
@@ -68,6 +73,7 @@ export const handler: SWRHook<any> = {
   useHook:
     ({ useData }) =>
     (input = {}) => {
+      const { address } = useAccount()
       return useData({
         input: [
           ['search', input.search],
@@ -75,6 +81,7 @@ export const handler: SWRHook<any> = {
           ['brandId', input.brandId],
           ['sort', input.sort],
           ['isMy', input.isMy],
+          ['address', address],
         ],
 
         swrOptions: {
