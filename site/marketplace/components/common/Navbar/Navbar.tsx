@@ -3,8 +3,9 @@ import Link from 'next/link'
 import s from './Navbar.module.css'
 import NavbarRoot from './NavbarRoot'
 import { Container } from '@components/ui'
-import { Searchbar, UserNav } from '@components/common'
-
+import { Searchbar } from '@components/common'
+import dynamic from 'next/dynamic'
+const UserNav = dynamic(() => import('../UserNav/UserNav'), { ssr: false })
 interface Link {
   href: string
   label: string

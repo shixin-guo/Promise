@@ -44,7 +44,7 @@ const UserNav: React.FC<{
   return (
     <nav className={cn(s.root, className)}>
       <ul className={s.list}>
-        {/* {isConnected && (
+        {isConnected && (
           <li className={cn(s.item, s.createButton)}>
             <Link href="/create">
               <a onClick={closeSidebarIfPresent} aria-label="Create a new NFT">
@@ -52,7 +52,7 @@ const UserNav: React.FC<{
               </a>
             </Link>
           </li>
-        )} */}
+        )}
         {process.env.COMMERCE_CART_ENABLED && (
           <li className={s.item}>
             <Button
