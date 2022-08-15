@@ -27,7 +27,7 @@ const UserNav: React.FC<{
   const { toggleSidebar, closeSidebarIfPresent, setSidebarView, openSidebar } =
     useUI()
   const itemsCount = cart?.lineItems.reduce(countItem, 0) ?? 0
-  const { isConnected } = useAccount()
+  const { isConnected = false } = useAccount()
   const DropdownTrigger = isConnected ? DropdownTriggerInst : React.Fragment
   const login = useLogin()
   useEffect(() => {
@@ -37,14 +37,14 @@ const UserNav: React.FC<{
         email: 'guo@12.com',
         password: 'Pass@123',
       })
-  }, [isConnected])
+  }, [isConnected, login])
   const onClickKitButton = (open: () => void) => {
     !isConnected ? open() : null
   }
   return (
     <nav className={cn(s.root, className)}>
       <ul className={s.list}>
-        {isConnected && (
+        {/* {isConnected && (
           <li className={cn(s.item, s.createButton)}>
             <Link href="/create">
               <a onClick={closeSidebarIfPresent} aria-label="Create a new NFT">
@@ -52,7 +52,7 @@ const UserNav: React.FC<{
               </a>
             </Link>
           </li>
-        )}
+        )} */}
         {process.env.COMMERCE_CART_ENABLED && (
           <li className={s.item}>
             <Button
