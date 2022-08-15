@@ -7,6 +7,7 @@ export async function createZoomConfig() {
       capabilities: ["shareApp", "getScreenshot"]
     })
     console.log(resp)
+    console.log(zoomSDK)
   } catch (err) {
     console.log(err)
   }
