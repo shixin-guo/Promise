@@ -8,6 +8,8 @@ export async function createZoomConfig() {
     })
     console.log(resp)
     console.log(zoomSDK)
+
+    // test getscreentshot
   } catch (err) {
     console.log(err)
   }
