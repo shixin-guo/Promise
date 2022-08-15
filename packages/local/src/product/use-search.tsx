@@ -28,9 +28,12 @@ export const handler: SWRHook<any> = {
       isMy = false,
       address,
     } = input
+    console.log(search)
     const mappedSort = sortMap.get(sort)
     let queryConstraints = []
-
+    if (search) {
+      queryConstraints.push(where('name', '==', search))
+    }
     if (isMy && address) {
       queryConstraints.push(where('arthur', '==', address))
     }

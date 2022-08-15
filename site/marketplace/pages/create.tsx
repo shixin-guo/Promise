@@ -10,7 +10,6 @@ import { create as createIpfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import zoomsdk from '@zoom/appssdk'
 
-import useCustomer from '@framework/customer/use-customer'
 import { firebaseDb } from '@framework/firebase/clientApp'
 import { RcFile } from '@components/ui/Upload/interface'
 import { Info } from '@components/icons'
@@ -59,7 +58,6 @@ const defaultFormInput = {
 }
 export default function CreatePage() {
   const router = useRouter()
-  const { data: customer } = useCustomer()
   const { mutate: updateSearch } = useSearch({ isMy: true })
   const fileUrlRef = useRef('')
   const [formInput, updateFormInput] =
@@ -67,9 +65,6 @@ export default function CreatePage() {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const { isConnected, address } = useAccount()
   const { data: signer } = useSigner()
-  useEffect(() => {
-    console.log('signer', signer)
-  }, [signer])
   // zoom screenshot
   useEffect(() => {
     createZoomConfig()
