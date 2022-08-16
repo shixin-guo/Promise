@@ -16,7 +16,7 @@ export const handler: SWRHook<any> = {
   },
   async fetcher({ input, options, fetch }) {
     const sortMap = new Map([
-      ['latest-desc', ''],
+      ['latest-desc', 'latest-desc'],
       ['price-asc', 'price_asc'],
       ['price-desc', 'price_desc'],
       ['trending-desc', 'popularity'],
@@ -28,7 +28,6 @@ export const handler: SWRHook<any> = {
       isMy = false,
       address,
     } = input
-    console.log(search)
     const mappedSort = sortMap.get(sort)
     let queryConstraints = []
     if (search) {
@@ -38,6 +37,9 @@ export const handler: SWRHook<any> = {
       queryConstraints.push(where('arthur', '==', address))
     }
     switch (mappedSort) {
+      case 'latest-desc':
+        queryConstraints.push(orderBy('createTime', 'desc'))
+        break
       case 'price_asc':
         queryConstraints.push(orderBy('price.value'))
         break

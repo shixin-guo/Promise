@@ -166,6 +166,7 @@ export default function CreatePage() {
               value: Number(price),
               currencyCode: 'USD',
             },
+            createTime: Date.now(),
             images: [
               {
                 url: firestoreUrl,
@@ -376,7 +377,7 @@ export default function CreatePage() {
             </div> */}
           </div>
           <Button
-            className="mt-1"
+            className="mt-2 rounded-lg"
             onClick={listNFTForSale}
             disabled={!(loading || (formInput.price && formInput.file))}
             loading={loading}
