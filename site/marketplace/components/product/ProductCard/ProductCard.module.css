@@ -87,11 +87,11 @@
 
 /* Variant Simple */
 .simple .header .name {
-  @apply pt-1 text-sm leading-10 -mt-3;
+  @apply text-sm leading-10 -mt-3 -mb-2;
 }
 
 .simple .header .price {
-  @apply text-xs;
+  @apply text-xs leading-5;
 }
 
 /* Variant Slim */
