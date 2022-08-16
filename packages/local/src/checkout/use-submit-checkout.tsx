@@ -1,7 +1,5 @@
 import { ethers } from 'ethers'
-
 import { useConnect, useContract, useSigner } from 'wagmi'
-import { useAccount } from 'wagmi'
 // todo put into a util file
 // todo whether need use online prod json and address
 import { marketplaceAddress } from '../../../../packages/contract/config'
@@ -39,11 +37,6 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
         contractInterface: NFTMarketplace.abi,
         signerOrProvider: signer,
       })
-      console.log(signer)
-      // useEffect(() => {
-      //   console.log('checkout signer', signer)
-      // }, [signer])
-
       return useCallback(
         async function onSubmitCheckout() {
           cartItem.map(async (nft: any) => {

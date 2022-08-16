@@ -10,7 +10,6 @@ import { create as createIpfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import zoomsdk from '@zoom/appssdk'
 
-import useCustomer from '@framework/customer/use-customer'
 import { firebaseDb } from '@framework/firebase/clientApp'
 import { RcFile } from '@components/ui/Upload/interface'
 import { Info } from '@components/icons'
@@ -59,17 +58,13 @@ const defaultFormInput = {
 }
 export default function CreatePage() {
   const router = useRouter()
-  const { data: customer } = useCustomer()
   const { mutate: updateSearch } = useSearch({ isMy: true })
   const fileUrlRef = useRef('')
   const [formInput, updateFormInput] =
     useState<FormInputInterface>(defaultFormInput)
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const { isConnected } = useAccount()
+  const { isConnected, address } = useAccount()
   const { data: signer } = useSigner()
-  useEffect(() => {
-    console.log('signer', signer)
-  }, [signer])
   // zoom screenshot
   useEffect(() => {
     createZoomConfig()
@@ -171,12 +166,13 @@ export default function CreatePage() {
               value: Number(price),
               currencyCode: 'USD',
             },
+            createTime: Date.now(),
             images: [
               {
                 url: firestoreUrl,
               },
             ],
-            arthur: customer.uid,
+            arthur: address,
             variants: [
               {
                 id: name,
@@ -302,7 +298,12 @@ export default function CreatePage() {
               </button>
             ))}
           <label className="text-base font-semibold my-1">Image</label>
-          <p className="text-xs mb-2 text-gray-500">File types supported {uploadTypeLimitList.map(ext => ext.replace('.', '').toUpperCase()).join(', ')}</p>
+          <p className="text-xs mb-2 text-gray-500">
+            File types supported{' '}
+            {uploadTypeLimitList
+              .map((ext) => ext.replace('.', '').toUpperCase())
+              .join(', ')}
+          </p>
           <Upload
             ref={lazyRoot}
             className="w-80 h-48 rounded-lg bg-gray-400  flex items-center justify-center border-dashed border-4 border-gary-800 hover:opacity-75"
@@ -315,7 +316,11 @@ export default function CreatePage() {
           >
             {base64URL ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={base64URL} alt="avatar" className="object-fill h-full" />
+              <img
+                src={base64URL}
+                alt="avatar"
+                className="object-fill h-full"
+              />
             ) : (
               <Image
                 className="rounded-lg"
@@ -372,7 +377,7 @@ export default function CreatePage() {
             </div> */}
           </div>
           <Button
-            className="mt-1"
+            className="mt-2 rounded-lg"
             onClick={listNFTForSale}
             disabled={!(loading || (formInput.price && formInput.file))}
             loading={loading}

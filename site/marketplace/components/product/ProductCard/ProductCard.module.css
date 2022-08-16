@@ -47,14 +47,14 @@
 }
 
 .header .name {
-  @apply pt-0 max-w-full w-full leading-extra-loose
+  @apply pt-1 max-w-full w-full leading-extra-loose
   transition-colors ease-in-out duration-500;
-  font-size: 2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.4px;
 }
 
 .header .name span {
-  @apply py-4 px-6 bg-primary text-primary font-bold
+  @apply py-1 px-1 bg-primary text-primary font-bold
   transition-colors ease-in-out duration-500;
   font-size: inherit;
   letter-spacing: inherit;
@@ -63,7 +63,7 @@
 }
 
 .header .price {
-  @apply pt-2 px-6 pb-4 text-sm bg-primary text-accent-9
+  @apply pt-1 px-3 pb-1 text-xs bg-primary text-accent-9
   font-semibold inline-block tracking-wide
   transition-colors ease-in-out duration-500;
 }
@@ -87,11 +87,11 @@
 
 /* Variant Simple */
 .simple .header .name {
-  @apply pt-2 text-lg leading-10 -mt-1;
+  @apply text-sm leading-10 -mt-3 -mb-2;
 }
 
 .simple .header .price {
-  @apply text-sm;
+  @apply text-xs leading-5;
 }
 
 /* Variant Slim */
