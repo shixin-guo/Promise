@@ -6,11 +6,13 @@ export interface IScreenshot {
 }
 
 export function useGetZoomScreenshot() {
-  const getScreentshot = useCallback((size: number) => {
+  const getScreentshot = useCallback(async (size: number) => {
     try {
-      console.log((zoomSDK as any).getScreenshot)
+      const resp = await zoomSDK.callZoomApi('getScreenshot', size)
+      console.log(resp)
+      return resp
     } catch (err) {
-
+      console.log(err)
     }
   }, [])
   return getScreentshot
