@@ -29,6 +29,7 @@ import { marketplaceAddress } from '../../../packages/contract/config'
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 import { createZoomConfig } from '@lib/zoom'
 import { useZoomVirtualBackground } from '@lib/hooks/useZoomVirtualBackground'
+import { useGetZoomScreenshot } from '@lib/hooks/useGetZoomScreenshot'
 
 const UploadIcon = '/image.svg'
 const IpfsHttpClient = createIpfsHttpClient({
@@ -71,6 +72,7 @@ export default function CreatePage() {
     createZoomConfig()
   }, [])
   const zoombg = useZoomVirtualBackground()
+  const getScreenshot = useGetZoomScreenshot()
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
     addressOrName: marketplaceAddress,
@@ -386,7 +388,10 @@ export default function CreatePage() {
           >
             List NFT
           </Button>
-          <Button onClick={() => zoombg.upload('https://firebasestorage.googleapis.com/v0/b/zgallery-acf93.appspot.com/o/images%2F0813?alt=media&token=6ba6c787-6916-4765-adf8-e386c321fcc4')}>
+          <Button onClick={() => {
+            getScreenshot(1)
+            zoombg.upload('https://firebasestorage.googleapis.com/v0/b/zgallery-acf93.appspot.com/o/images%2F0813?alt=media&token=6ba6c787-6916-4765-adf8-e386c321fcc4')
+          }}>
             test setbg{zoombg.state}
           </Button>
           {errorMessage && (
