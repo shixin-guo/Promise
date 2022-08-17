@@ -28,12 +28,12 @@ export default function getSiteInfoOperation({}: OperationContext<any>) {
           slug: 'new-arrivals',
           path: '/new-arrivals',
         },
-        {
-          id: 'featured',
-          name: 'Featured',
-          slug: 'featured',
-          path: '/featured',
-        },
+        // {
+        //   id: 'featured',
+        //   name: 'Featured',
+        //   slug: 'featured',
+        //   path: '/featured',
+        // },
       ],
       brands: [],
     })

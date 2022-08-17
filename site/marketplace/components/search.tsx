@@ -14,7 +14,7 @@ import getSlug from '@lib/get-slug'
 import rangeMap from '@lib/range-map'
 
 const SORT = {
-  'trending-desc': 'Trending',
+  // 'trending-desc': 'Trending',
   'latest-desc': 'Latest arrivals',
   'price-asc': 'Price: Low to high',
   'price-desc': 'Price: High to low',
@@ -67,7 +67,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
   return (
     <Container>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
-        {!isMy && (
+        {
           <div className="col-span-8 lg:col-span-2 order-1 lg:order-none">
             {/* Categories */}
             <div className="relative inline-block w-full">
@@ -270,7 +270,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
               </div>
             </div>
           </div>
-        )}
+        }
         {/* Products */}
         <div className="col-span-8 order-3 lg:order-none">
           {(q || activeCategory || activeBrand) && (
@@ -326,7 +326,7 @@ export default function Search({ categories, brands }: SearchPropsType) {
                   product={product}
                   imgProps={{
                     width: 480,
-                    height: 480,
+                    height: (480 * 1080) / 1920,
                   }}
                 />
               ))}

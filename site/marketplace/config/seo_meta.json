@@ -1,19 +1,19 @@
 {
-  "title": "z / gallery",
-  "titleTemplate": "z / gallery",
-  "description": "z-gallery - https://z-gallery.vercel.app/",
+  "title": "Z / NFT",
+  "titleTemplate": "Z / NFT",
+  "description": "z-nft - https://z-nft.vercel.app/",
   "openGraph": {
-    "title": "Powered by z-gallery",
-    "description": "z-gallery - https://z-gallery.vercel.app/",
+    "title": "Powered by z-nft",
+    "description": "z-nft - https://z-nft.vercel.app/",
     "type": "website",
-    "url": "https://z-gallery.vercel.app/",
-    "site_name": "z-gallery",
+    "url": "https://z-nft.vercel.app/",
+    "site_name": "z-nft",
     "images": [
       {
         "url": "/card.png",
         "width": "800",
         "height": "600",
-        "alt": "z-gallery"
+        "alt": "z-nft"
       }
     ]
   },
