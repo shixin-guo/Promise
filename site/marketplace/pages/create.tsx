@@ -381,7 +381,7 @@ export default function CreatePage() {
           >
             List NFT
           </Button>
-          <Button onClick={() => zoombg.upload('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfonEKk1Cbw674HQ-YckNKhIPr4-Vhh_TW9CiN4eaXYw&s')}>
+          <Button onClick={() => zoombg.upload('https://firebasestorage.googleapis.com/v0/b/zgallery-acf93.appspot.com/o/images%2F0813?alt=media&token=6ba6c787-6916-4765-adf8-e386c321fcc4')}>
             test setbg{zoombg.state}
           </Button>
           {errorMessage && (
