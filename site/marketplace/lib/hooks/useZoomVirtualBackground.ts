@@ -1,3 +1,4 @@
+import { createZoomConfig } from '@lib/zoom';
 import { useState, useCallback } from 'react';
 import zoomSDK from '@zoom/appssdk';
 
@@ -8,7 +9,7 @@ export type ZoomVirtualBackgroundResult = PromiseType<ReturnType<typeof zoomSDK.
 export function useZoomVirtualBackground() {
   const [ state, setState ] = useState<ZoomVirtualBackgroundResult>('Null')
   
-  const upload = useCallback((data: ImageData | string) => {
+  const upload = useCallback(async (data: ImageData | string) => {
     const string = typeof data === 'string'
     const params = string ? {
       fileUrl: data
@@ -16,6 +17,7 @@ export function useZoomVirtualBackground() {
       imageData: data
     }
     try {
+      await createZoomConfig()
       zoomSDK.setVirtualBackground(params).then(resp => {
         setState(resp.message)
       }).catch(() => setState('Failure'))
