@@ -39,6 +39,7 @@ export function useZoomVirtualBackground() {
     const params = {
       imageData: string ? await dowloadFirebaseImage(data) : data
     }
+    console.log(params)
     try {
       await createZoomConfig()
       zoomSDK.setVirtualBackground(params).then(resp => {
