@@ -34,7 +34,7 @@ const IpfsHttpClient = createIpfsHttpClient({
   url: 'https://ipfs.infura.io:5001/api/v0',
 })
 
-const testUrl = 'https://firebasestorage.googleapis.com/v0/b/zgallery-acf93.appspot.com/o/images%2F0813?alt=media&token=6ba6c787-6916-4765-adf8-e386c321fcc4'
+const testUrl = 'https://firebasestorage.googleapis.com/v0/b/zgallery-acf93.appspot.com/o/images%2F0717?alt=media&token=90b80642-d62b-4328-9531-6e932ac32cc6'
 
 export async function getStaticProps({
   preview,
