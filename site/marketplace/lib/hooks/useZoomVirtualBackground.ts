@@ -43,9 +43,14 @@ export function useZoomVirtualBackground() {
     try {
       await createZoomConfig()
       zoomSDK.setVirtualBackground(params).then(resp => {
+        console.log(resp)
         setState(resp.message)
-      }).catch(() => setState('Failure'))
+      }).catch((err) => {
+        console.log(err)
+        setState('Failure')
+      })
     } catch (err) {
+      console.log(err)
       setState('Failure')
     }
   }, [setState])
