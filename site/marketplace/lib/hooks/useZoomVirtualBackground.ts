@@ -32,6 +32,7 @@ export type ZoomVirtualBackgroundResult = PromiseType<ReturnType<typeof zoomSDK.
 
 export function useZoomVirtualBackground() {
   const [ state, setState ] = useState<ZoomVirtualBackgroundResult>('Null')
+  const [ meeting, setMeeting ] = useState(false)
   
   const upload = useCallback(async (data: ImageData | string) => {
     setState('Pendding')
@@ -41,7 +42,12 @@ export function useZoomVirtualBackground() {
     }
     console.log(params)
     try {
-      await createZoomConfig()
+      const resp = await createZoomConfig()
+      if (resp?.runningContext === 'inMeeting') {
+        setMeeting(true)
+      } else {
+        setMeeting(false)
+      }
       zoomSDK.setVirtualBackground(params).then(resp => {
         console.log(resp)
         setState(resp.message)
@@ -51,10 +57,12 @@ export function useZoomVirtualBackground() {
       })
     } catch (err) {
       console.log(err)
+      setMeeting(false)
       setState('Failure')
     }
   }, [setState])
   return {
+    meeting,
     state,
     upload
   }

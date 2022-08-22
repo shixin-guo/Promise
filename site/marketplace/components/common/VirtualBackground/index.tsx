@@ -1,5 +1,4 @@
 import { Button } from "@components/ui";
-import { useZoomMeetingContext } from "@lib/hooks/useZoomMeetingContext";
 import { useZoomVirtualBackground } from "@lib/hooks/useZoomVirtualBackground";
 
 interface Props {
@@ -7,8 +6,7 @@ interface Props {
 }
 
 export function ZoomVirtualBackgroundBtn({url}: Props) {
-  const meeting = useZoomMeetingContext()
-  const { state, upload } = useZoomVirtualBackground()
+  const { state, upload, meeting } = useZoomVirtualBackground()
   if (!meeting) return null
   return (
     <Button
