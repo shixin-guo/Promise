@@ -43,6 +43,7 @@ export function useZoomVirtualBackground() {
     console.log(params)
     try {
       const resp = await createZoomConfig()
+      console.log(resp?.runningContext )
       if (resp?.runningContext === 'inMeeting') {
         setMeeting(true)
       } else {
