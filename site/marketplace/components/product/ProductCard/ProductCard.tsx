@@ -60,9 +60,6 @@ const ProductCard: FC<Props> = ({
             )}
           </>
         )}
-        {!!product.images[0]?.url && (
-          <ZoomVirtualBackgroundBtn url={product.images[0]?.url} />
-        )}
         {variant === 'simple' && (
           <>
             {process.env.COMMERCE_WISHLIST_ENABLED && (
@@ -114,6 +111,7 @@ const ProductCard: FC<Props> = ({
               name={product.name}
               price={`${price} ${product.price?.currencyCode}`}
             />
+            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
             <div className={s.imageContainer}>
               {product?.images && (
                 <div>
