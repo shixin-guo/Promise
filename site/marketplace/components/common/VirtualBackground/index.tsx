@@ -9,7 +9,7 @@ interface Props {
 export function ZoomVirtualBackgroundBtn({url}: Props) {
   const meeting = useZoomMeetingContext()
   const { state, upload } = useZoomVirtualBackground()
-  if (!meeting) return
+  if (!meeting) return null
   return (
     <Button
       disabled={state === 'Failure'}
