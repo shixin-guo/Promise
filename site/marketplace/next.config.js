@@ -2,7 +2,7 @@ const commerce = require('./commerce.config.json')
 const { withCommerceConfig } = require('./commerce-config')
 // const CircularDependencyPlugin = require('circular-dependency-plugin')
 const ContentSecurityPolicy = `
-  default-src 'self' data: blob: 'unsafe-inline' 'unsafe-eval' *.googleapis.com *.google.com *.gstatic.com vitals.vercel-insights.com *.googletagmanager.com *.firebase.com;
+  default-src 'self' data: blob: 'unsafe-inline' 'unsafe-eval' *.googleapis.com *.google.com *.gstatic.com vitals.vercel-insights.com *.googletagmanager.com *.firebase.com *.walletconnect.com;
   connect-src *;
 `
 // https://nextjs.org/docs/advanced-features/security-headers
