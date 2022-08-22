@@ -1,6 +1,6 @@
 import type { GetStaticPropsContext } from 'next'
-import Image from 'next/image'
-import { useState, useRef, useEffect } from 'react'
+import {default as NextImage} from 'next/image'
+import { useState, useRef } from 'react'
 import useSearch from '@framework/product/use-search'
 import { collection, addDoc } from 'firebase/firestore'
 import { snakeCase } from 'lodash'
@@ -8,7 +8,6 @@ import { ethers } from 'ethers'
 import { useContract, useSigner, useAccount, useConnect } from 'wagmi'
 import { create as createIpfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
-import zoomsdk from '@zoom/appssdk'
 
 import { firebaseDb } from '@framework/firebase/clientApp'
 import { RcFile } from '@components/ui/Upload/interface'
@@ -27,7 +26,6 @@ import {
 // todo whether need use online prod json and address
 import { marketplaceAddress } from '../../../packages/contract/config'
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
-import { createZoomConfig } from '@lib/zoom'
 
 const UploadIcon = '/image.svg'
 const IpfsHttpClient = createIpfsHttpClient({
@@ -65,10 +63,6 @@ export default function CreatePage() {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const { isConnected, address } = useAccount()
   const { data: signer } = useSigner()
-  // zoom screenshot
-  useEffect(() => {
-    createZoomConfig()
-  }, [])
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
     addressOrName: marketplaceAddress,
@@ -322,7 +316,7 @@ export default function CreatePage() {
                 className="object-fill h-full"
               />
             ) : (
-              <Image
+              <NextImage
                 className="rounded-lg"
                 width={60}
                 height={60}

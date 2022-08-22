@@ -5,6 +5,7 @@ import type { Product } from '@commerce/types/product'
 import s from './ProductCard.module.css'
 import Image, { ImageProps } from 'next/image'
 import WishlistButton from '@components/wishlist/WishlistButton'
+import { ZoomVirtualBackgroundBtn } from '@components/common/VirtualBackground'
 import usePrice from '@framework/product/use-price'
 import ProductTag from '../ProductTag'
 
@@ -59,7 +60,6 @@ const ProductCard: FC<Props> = ({
             )}
           </>
         )}
-
         {variant === 'simple' && (
           <>
             {process.env.COMMERCE_WISHLIST_ENABLED && (
@@ -69,6 +69,7 @@ const ProductCard: FC<Props> = ({
                 variant={product.variants[0]}
               />
             )}
+            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
             {!noNameTag && (
               <div className={s.header}>
                 <h3 className={s.name}>

@@ -6,7 +6,9 @@ export async function createZoomConfig() {
       popoutSize: {width: 480, height: 360},
       capabilities: ["shareApp", "getScreenshot"]
     })
-    console.log(resp)
+    console.log('resp', resp)
+    return resp
+    // test getscreentshot
   } catch (err) {
     console.log(err)
   }
