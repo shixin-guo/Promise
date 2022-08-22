@@ -69,6 +69,7 @@ const ProductCard: FC<Props> = ({
                 variant={product.variants[0]}
               />
             )}
+            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
             {!noNameTag && (
               <div className={s.header}>
                 <h3 className={s.name}>
@@ -111,7 +112,6 @@ const ProductCard: FC<Props> = ({
               name={product.name}
               price={`${price} ${product.price?.currencyCode}`}
             />
-            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
             <div className={s.imageContainer}>
               {product?.images && (
                 <div>

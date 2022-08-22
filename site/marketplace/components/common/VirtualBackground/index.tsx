@@ -7,6 +7,7 @@ interface Props {
 
 export function ZoomVirtualBackgroundBtn({url}: Props) {
   const { state, upload, meeting } = useZoomVirtualBackground()
+  console.log('meeting', meeting)
   if (!meeting) return null
   return (
     <Button
