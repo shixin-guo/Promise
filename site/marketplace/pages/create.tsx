@@ -1,6 +1,6 @@
 import type { GetStaticPropsContext } from 'next'
 import {default as NextImage} from 'next/image'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import useSearch from '@framework/product/use-search'
 import { collection, addDoc } from 'firebase/firestore'
 import { snakeCase } from 'lodash'
@@ -26,15 +26,11 @@ import {
 // todo whether need use online prod json and address
 import { marketplaceAddress } from '../../../packages/contract/config'
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
-import { useZoomVirtualBackground } from '@lib/hooks/useZoomVirtualBackground'
-import { useGetZoomScreenshot } from '@lib/hooks/useGetZoomScreenshot'
 
 const UploadIcon = '/image.svg'
 const IpfsHttpClient = createIpfsHttpClient({
   url: 'https://ipfs.infura.io:5001/api/v0',
 })
-
-const testUrl = 'https://firebasestorage.googleapis.com/v0/b/zgallery-acf93.appspot.com/o/images%2F0717?alt=media&token=90b80642-d62b-4328-9531-6e932ac32cc6'
 
 export async function getStaticProps({
   preview,
@@ -67,8 +63,6 @@ export default function CreatePage() {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const { isConnected, address } = useAccount()
   const { data: signer } = useSigner()
-  const zoombg = useZoomVirtualBackground()
-  const getScreenshot = useGetZoomScreenshot()
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
     addressOrName: marketplaceAddress,
@@ -383,11 +377,6 @@ export default function CreatePage() {
             loading={loading}
           >
             List NFT
-          </Button>
-          <Button onClick={() => {
-            zoombg.upload(testUrl)
-          }}>
-            test setbg{zoombg.state}
           </Button>
           {errorMessage && (
             <>
