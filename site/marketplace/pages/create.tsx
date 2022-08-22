@@ -28,6 +28,7 @@ import {
 import { marketplaceAddress } from '../../../packages/contract/config'
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 import { createZoomConfig } from '@lib/zoom'
+import { useZoomVirtualBackground } from '@lib/hooks/useZoomVirtualBackground'
 
 const UploadIcon = '/image.svg'
 const IpfsHttpClient = createIpfsHttpClient({
@@ -69,6 +70,7 @@ export default function CreatePage() {
   useEffect(() => {
     createZoomConfig()
   }, [])
+  const zoombg = useZoomVirtualBackground()
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
     addressOrName: marketplaceAddress,
@@ -383,6 +385,9 @@ export default function CreatePage() {
             loading={loading}
           >
             List NFT
+          </Button>
+          <Button onClick={() => zoombg.upload('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfonEKk1Cbw674HQ-YckNKhIPr4-Vhh_TW9CiN4eaXYw&s')}>
+            test setbg{zoombg.state}
           </Button>
           {errorMessage && (
             <>
