@@ -1,5 +1,5 @@
 import { createZoomConfig } from '@lib/zoom';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import zoomSDK from '@zoom/appssdk';
 
 function dowloadFirebaseImage(url: string) {
@@ -42,13 +42,6 @@ export function useZoomVirtualBackground() {
     }
     console.log(params)
     try {
-      const resp = await createZoomConfig()
-      console.log(resp?.runningContext )
-      if (resp?.runningContext === 'inMeeting') {
-        setMeeting(true)
-      } else {
-        setMeeting(false)
-      }
       zoomSDK.setVirtualBackground(params).then(resp => {
         console.log(resp)
         setState(resp.message)
@@ -58,10 +51,22 @@ export function useZoomVirtualBackground() {
       })
     } catch (err) {
       console.log(err)
-      setMeeting(false)
       setState('Failure')
     }
   }, [setState])
+  const handler = useCallback(async () => {
+    const resp = await createZoomConfig()
+    console.log(resp?.runningContext )
+    if (resp?.runningContext === 'inMeeting') {
+      setMeeting(true)
+    } else {
+      setMeeting(false)
+    }
+  }, [])
+  // use
+  useEffect(() => {
+    handler()
+  }, [handler])
   return {
     meeting,
     state,
