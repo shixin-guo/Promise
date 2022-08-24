@@ -33,6 +33,25 @@ class AjaxUploader extends Component<UploadProps> {
 
   private _isMounted: boolean = false
 
+  private handlePaste = (evt: ClipboardEvent) => {
+    const clipdata = evt.clipboardData
+    if (!clipdata) return
+    const files = clipdata.files
+    if (!files.length) return
+    const filter = [...files].filter((file: File) =>
+      attrAccept(file as RcFile, this.props.accept as string)
+    )
+    this.uploadFiles(filter)
+  }
+
+  private onPaste() {
+    window.document.addEventListener('paste', this.handlePaste)
+  }
+
+  private destoryPaste() {
+    window.document.removeEventListener('paste', this.handlePaste)
+  }
+
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { accept, directory } = this.props
     const { files } = e.target
@@ -101,10 +120,12 @@ class AjaxUploader extends Component<UploadProps> {
 
   componentDidMount() {
     this._isMounted = true
+    this.onPaste()
   }
 
   componentWillUnmount() {
     this._isMounted = false
+    this.destoryPaste()
     this.abort()
   }
 
@@ -313,6 +334,7 @@ class AjaxUploader extends Component<UploadProps> {
           onDrop: this.onFileDrop,
           onDragOver: this.onFileDrop,
           tabIndex: '0',
+
         }
     return (
       // @ts-ignore todo: fix type

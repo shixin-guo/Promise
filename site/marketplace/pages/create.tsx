@@ -316,13 +316,16 @@ export default function CreatePage() {
                 className="object-fill h-full"
               />
             ) : (
-              <NextImage
-                className="rounded-lg"
-                width={60}
-                height={60}
-                src={UploadIcon}
-                alt={'Product Image'}
-              />
+              <div className="flex items-center flex-col">
+                <p className="text-white">Drag, Paste and Click</p>
+                <NextImage
+                  className="rounded-lg"
+                  width={60}
+                  height={60}
+                  src={UploadIcon}
+                  alt={'Product Image'}
+                />
+              </div>
             )}
           </Upload>
           <label className="text-base font-semibold my-1">Name:</label>

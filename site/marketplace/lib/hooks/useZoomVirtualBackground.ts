@@ -11,12 +11,7 @@ function dowloadFirebaseImage(url: string) {
     }
     img.src = url
   }).then((img: any) => {
-    let [w,h] = [img.width,img.height]
-    // Say the file is 1920x1080
-    // divide max(w,h) by 256 to get factor
-    let factor = Math.max(w,h)/256
-    w = w/factor
-    h = h/factor
+    const [w,h] = [img.width,img.height]
     const canvas = document.createElement('canvas')
     canvas.width = w
     canvas.height = h
