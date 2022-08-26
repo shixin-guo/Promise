@@ -35,10 +35,11 @@ To deploy to Polygon test or main networks, update the configurations located in
 require('@nomiclabs/hardhat-waffle')
 const fs = require('fs')
 const privateKey =
-  fs.readFileSync('.secret').toString().trim() || '01234567890123456789'
+  fs.readFileSync('.secret').toString().trim() ||
+  '80ae8c1caa1d4dc6a972fd899ca864d4'
 
 // infuraId is optional if you are using Infura RPC
-const infuraId = fs.readFileSync('.infuraid').toString().trim() || ''
+const infuraId = '99e46b5ce4c64a9882f1303e95e62dd3'.toString().trim() || ''
 
 module.exports = {
   defaultNetwork: 'hardhat',
@@ -56,6 +57,10 @@ module.exports = {
       // Infura
       // url: `https://polygon-mainnet.infura.io/v3/${infuraId}`,
       url: 'https://rpc-mainnet.maticvigil.com',
+      accounts: [privateKey],
+    },
+    rinkeby: {
+      url: 'https://rinkeby.infura.io/v3/99e46b5ce4c64a9882f1303e95e62dd3',
       accounts: [privateKey],
     },
   },

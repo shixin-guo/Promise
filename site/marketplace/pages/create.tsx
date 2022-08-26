@@ -1,5 +1,5 @@
 import type { GetStaticPropsContext } from 'next'
-import {default as NextImage} from 'next/image'
+import { default as NextImage } from 'next/image'
 import { useState, useRef } from 'react'
 import useSearch from '@framework/product/use-search'
 import { collection, addDoc } from 'firebase/firestore'
@@ -24,7 +24,7 @@ import {
 } from 'firebase/storage'
 
 // todo whether need use online prod json and address
-import { marketplaceAddress } from '../../../packages/contract/config'
+
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 
 const UploadIcon = '/image.svg'
@@ -65,7 +65,7 @@ export default function CreatePage() {
   const { data: signer } = useSigner()
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
-    addressOrName: marketplaceAddress,
+    addressOrName: process.env.NEXT_PUBLIC_MARKETPLACEADDRESS || '',
     contractInterface: NFTMarketplace.abi,
     signerOrProvider: signer,
   })

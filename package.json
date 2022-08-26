@@ -17,6 +17,7 @@
     "dev:web": "turbo run dev --scope=next-commerce --include-dependencies --no-deps",
     "start:node": "yarn workspace contract start:node",
     "dev:deploy": "yarn workspace contract deploy:local",
+    "test:deploy": "yarn workspace contract deploy:rinkeby",
     "start": "turbo run start",
     "types": "turbo run types",
     "prettier-fix": "prettier --write ."
