@@ -12,31 +12,36 @@
 
   & .header .name span,
   & .header .price,
-  & .wishlistButton {
+  & .wishlistButton,
+  & .zoomVirtualBg {
     @apply bg-secondary text-secondary;
   }
 
   &:nth-child(6n + 1) .header .name span,
   &:nth-child(6n + 1) .header .price,
-  &:nth-child(6n + 1) .wishlistButton {
+  &:nth-child(6n + 1) .wishlistButton,
+  & .zoomVirtualBg {
     @apply bg-violet text-white;
   }
 
   &:nth-child(6n + 5) .header .name span,
   &:nth-child(6n + 5) .header .price,
-  &:nth-child(6n + 5) .wishlistButton {
+  &:nth-child(6n + 5) .wishlistButton,
+  & .zoomVirtualBg {
     @apply bg-blue text-white;
   }
 
   &:nth-child(6n + 3) .header .name span,
   &:nth-child(6n + 3) .header .price,
-  &:nth-child(6n + 3) .wishlistButton {
+  &:nth-child(6n + 3) .wishlistButton,
+  & .zoomVirtualBg {
     @apply bg-pink text-white;
   }
 
   &:nth-child(6n + 6) .header .name span,
   &:nth-child(6n + 6) .header .price,
-  &:nth-child(6n + 6) .wishlistButton {
+  &:nth-child(6n + 6) .wishlistButton,
+  & .zoomVirtualBg {
     @apply bg-cyan text-white;
   }
 }

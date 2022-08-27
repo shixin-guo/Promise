@@ -300,7 +300,7 @@ export default function CreatePage() {
           </p>
           <Upload
             ref={lazyRoot}
-            className="w-80 h-48 rounded-lg bg-gray-400  flex items-center justify-center border-dashed border-4 border-gary-800 hover:opacity-75"
+            className="h-60 rounded-lg bg-gray-400  flex items-center justify-center border-dashed border-4 border-gary-800 hover:opacity-75 w-full"
             accept={uploadTypeLimitList.join()}
             action="https://httpbin.org/post"
             beforeUpload={beforeUnloadEvent}

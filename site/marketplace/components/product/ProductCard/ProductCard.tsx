@@ -45,6 +45,7 @@ const ProductCard: FC<Props> = ({
             <div className={s.header}>
               <span>{product.name}</span>
             </div>
+            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
             {product?.images && (
               <div>
                 <Image
@@ -112,6 +113,7 @@ const ProductCard: FC<Props> = ({
               name={product.name}
               price={`${price} ${product.price?.currencyCode}`}
             />
+            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
             <div className={s.imageContainer}>
               {product?.images && (
                 <div>

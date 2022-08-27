@@ -13,7 +13,7 @@
 }
 
 .sliderContainer {
-  @apply flex items-center justify-center overflow-x-hidden bg-violet;
+  @apply flex items-center justify-center overflow-x-hidden bg-blue;
 }
 
 .imageContainer {
@@ -22,6 +22,11 @@
 
 .imageContainer > span {
   height: 100% !important;
+  width: 100% !important;
+}
+
+.imageContainer > span .img {
+  object-fit: contain;
 }
 
 .sliderContainer .img {
