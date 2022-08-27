@@ -61,11 +61,11 @@ export default function Home({
         ))}
       </Marquee> */}
       <Hero
-        headline=" Dessert dragée halvah croissant."
-        description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
+        headline="Capturing memorable moments during your Zoom meeting"
+        description=" A Zoom App to capture these screenshots capture should be useful. It can even turn them into NFTs for sharing and be engraved on the blockchain. It would also support applying NFT assets (image, video) as virtual background."
       />
       <Grid layout="B" variant="filled">
-        {products.slice(6, 9).map((product: any, i: number) => (
+        {products.slice(3, 7).map((product: any, i: number) => (
           <ProductCard
             key={product.id}
             product={product}
@@ -77,7 +77,7 @@ export default function Home({
         ))}
       </Grid>
       {/* <Marquee>
-        {products.slice(3).map((product: any) => (
+        {products.slice(6)?.map((product: any) => (
           <ProductCard key={product.id} product={product} variant="slim" />
         ))}
       </Marquee> */}

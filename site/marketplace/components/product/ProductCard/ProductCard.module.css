@@ -87,7 +87,10 @@
 
 /* Variant Simple */
 .simple .header .name {
-  @apply text-sm leading-10 -mt-3 -mb-2;
+  margin-top: -0.05rem;
+  margin-bottom: 0;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .simple .header .price {

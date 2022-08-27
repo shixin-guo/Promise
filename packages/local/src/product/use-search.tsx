@@ -34,23 +34,26 @@ export const handler: SWRHook<any> = {
       queryConstraints.push(where('name', '==', search))
     }
     if (isMy && address) {
-      queryConstraints.push(where('arthur', '==', address))
-    }
-    switch (mappedSort) {
-      case 'latest-desc':
-        queryConstraints.push(orderBy('createTime', 'desc'))
-        break
-      case 'price_asc':
-        queryConstraints.push(orderBy('price.value'))
-        break
-      case 'price_desc':
-        queryConstraints.push(orderBy('price.value', 'desc'))
-        break
-      default:
-        break
+      queryConstraints.push(
+        where('arthur', '==', address),
+        orderBy('createTime', 'desc')
+      )
+    } else {
+      switch (mappedSort) {
+        case 'latest-desc':
+          queryConstraints.push(orderBy('createTime', 'desc'))
+          break
+        case 'price_asc':
+          queryConstraints.push(orderBy('price.value'))
+          break
+        case 'price_desc':
+          queryConstraints.push(orderBy('price.value', 'desc'))
+          break
+        default:
+          break
+      }
     }
     const q = query(collectionsRef, ...queryConstraints)
-
     const querySnapshot = await getDocs(q)
     const products: Product[] = []
     querySnapshot.forEach((doc) => {
@@ -90,7 +93,7 @@ export const handler: SWRHook<any> = {
         ],
 
         swrOptions: {
-          revalidateOnFocus: false,
+          revalidateOnFocus: true,
           ...input.swrOptions,
         },
       })

@@ -62,13 +62,13 @@ const ProductCard: FC<Props> = ({
         )}
         {variant === 'simple' && (
           <>
-            {process.env.COMMERCE_WISHLIST_ENABLED && (
+            {/* {process.env.COMMERCE_WISHLIST_ENABLED && (
               <WishlistButton
                 className={s.wishlistButton}
                 productId={product.id}
                 variant={product.variants[0]}
               />
-            )}
+            )} */}
             <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
             {!noNameTag && (
               <div className={s.header}>

@@ -64,7 +64,6 @@ export default function CreatePage() {
   const { isConnected, address } = useAccount()
   const { data: signer } = useSigner()
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
-  console.log(process.env.NEXT_PUBLIC_MARKETPLACEADDRESS)
   const contract = useContract({
     addressOrName: process.env.NEXT_PUBLIC_MARKETPLACEADDRESS || '',
     contractInterface: NFTMarketplace.abi,
@@ -197,6 +196,8 @@ export default function CreatePage() {
               },
             ],
           })
+          setLoading(false)
+          router.push('/orders')
         })
       }
     )
@@ -265,13 +266,12 @@ export default function CreatePage() {
       return
     }
     setErrorMessage('')
+    setLoading(true)
     const { tokenID } = await listNFT2Chain()
     await uploadToGoogleStorage({
       tokenID,
     })
     updateFormInput(defaultFormInput)
-    updateSearch()
-    router.push('/orders')
   }
   return (
     <Container className="pt-4 pb-4 flex justify-center">
