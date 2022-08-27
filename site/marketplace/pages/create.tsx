@@ -64,6 +64,7 @@ export default function CreatePage() {
   const { isConnected, address } = useAccount()
   const { data: signer } = useSigner()
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
+  console.log(process.env.NEXT_PUBLIC_MARKETPLACEADDRESS)
   const contract = useContract({
     addressOrName: process.env.NEXT_PUBLIC_MARKETPLACEADDRESS || '',
     contractInterface: NFTMarketplace.abi,
