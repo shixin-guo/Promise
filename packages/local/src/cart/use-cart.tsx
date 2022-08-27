@@ -47,6 +47,9 @@ export const handler: SWRHook<any> = {
                   path: refData.name,
                   variant: {
                     price: refData.price.value,
+                    image: {
+                      url: refData.images?.[0]?.url,
+                    },
                   },
                 })
                 subtotalPrice = subtotalPrice + refData.price.value

@@ -19,7 +19,7 @@ export default function getAllProductsOperation({
     preview?: boolean
   } = {}): Promise<{ products: Product[] | any[] }> {
     const db = admin.firestore()
-    const querySnapshot = await db.collection('collections').limit(5).get()
+    const querySnapshot = await db.collection('collections').limit(6).get()
     let products: Product[] = []
     // todo  add a normalize js
     querySnapshot.forEach((doc) => {
