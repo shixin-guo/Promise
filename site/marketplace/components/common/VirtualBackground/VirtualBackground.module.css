@@ -1,6 +1,6 @@
 .zoomVirtualBg {
   position: absolute;
   bottom: 0;
-  right: 0;
-  z-index: 30;
+  z-index: 40;
+  padding: 2px 5px;
 }
