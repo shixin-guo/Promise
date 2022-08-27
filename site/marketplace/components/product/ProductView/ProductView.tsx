@@ -56,7 +56,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
               />
             )}
           </div>
-
+          
           <ProductSidebar
             key={product.id}
             product={product}
