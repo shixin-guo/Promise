@@ -10,6 +10,7 @@ import { Container, Text } from '@components/ui'
 import { SEO } from '@components/common'
 import ProductSidebar from '../ProductSidebar'
 import ProductTag from '../ProductTag'
+import { ZoomVirtualBackgroundBtn } from '@components/common/VirtualBackground'
 interface ProductViewProps {
   product: Product
   relatedProducts: Product[]
@@ -48,6 +49,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                 ))}
               </ProductSlider>
             </div>
+            {!!product.images.length && <ZoomVirtualBackgroundBtn url={product.images[0].url} />}
             {process.env.COMMERCE_WISHLIST_ENABLED && (
               <WishlistButton
                 className={s.wishlistButton}
