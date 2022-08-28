@@ -23,12 +23,10 @@ export async function getStaticProps({
 }
 
 export default function Profile() {
-  const { data } = useCustomer()
   const { data: trees } = useSearch({
     search: '',
     isMy: true,
   })
-  console.log(trees)
   return (
     <Container className="pt-4">
       <Text variant="pageHeading">My Forest</Text>
