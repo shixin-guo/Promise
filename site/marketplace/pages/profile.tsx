@@ -3,6 +3,10 @@ import useCustomer from '@framework/customer/use-customer'
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { Container, Text } from '@components/ui'
+import useSearch from '@framework/product/use-search'
+import Image from 'next/image'
+import Png1 from '../public/trees/1.png'
+
 export async function getStaticProps({
   preview,
   locale,
@@ -13,7 +17,6 @@ export async function getStaticProps({
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
-
   return {
     props: { pages, categories },
   }
@@ -21,28 +24,45 @@ export async function getStaticProps({
 
 export default function Profile() {
   const { data } = useCustomer()
+  const { data: trees } = useSearch({
+    search: '',
+    isMy: true,
+  })
+  console.log(trees)
   return (
     <Container className="pt-4">
-      <Text variant="pageHeading">My Profile</Text>
-      <div className="grid grid-cols-4">
-        {data && (
-          <div className="flex flex-col divide-accent-2 divide-y">
-            <div className="flex flex-row items-center space-x-4 py-4">
-              <span className="text-lg font-medium text-accent-600 flex-1">
-                Full Name
-              </span>
-              <span>
-                {data.firstName} {data.lastName}
-              </span>
-            </div>
-            <div className="flex flex-row items-center space-x-4 py-4">
-              <span className="text-lg font-medium text-accent-600 flex-1">
-                Email
-              </span>
-              <span>{data.email}</span>
-            </div>
+      <Text variant="pageHeading">My Forest</Text>
+      <div className="bg-white">
+        <div className="max-w-2xl mx-auto py-16 px-4 sm:py-6 sm:px-2 lg:max-w-7xl lg:px-2">
+          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {trees?.products.map((tree: any, index: number) => (
+              <div key={tree.name + index} className="group relative">
+                <div className="w-full min-h-40 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
+                  <Image
+                    src={`/trees/${index % 8}.png`}
+                    alt={'sdds'}
+                    width={240}
+                    height={240}
+                    className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                  />
+                </div>
+                <div className="mt-4 flex justify-between">
+                  <div>
+                    <h3 className="text-sm text-gray-700">
+                      <a href={tree.href}>
+                        <span aria-hidden="true" className="absolute inset-0" />
+                        {tree.name}
+                        <p>
+                          <a href="">Treejer Link</a>
+                        </p>
+                      </a>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </Container>
   )

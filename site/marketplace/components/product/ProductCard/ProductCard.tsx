@@ -29,7 +29,7 @@ const ProductCard: FC<Props> = ({
   const { price } = usePrice({
     amount: product.price.value,
     baseAmount: product.price.retailPrice,
-    currencyCode: product.price.currencyCode!,
+    currencyCode: 'ETH',
   })
   const rootClassName = cn(
     s.root,
@@ -76,9 +76,7 @@ const ProductCard: FC<Props> = ({
                 <h3 className={s.name}>
                   <span>{product.name}</span>
                 </h3>
-                <div className={s.price}>
-                  {`${price} ${product.price?.currencyCode}`}
-                </div>
+                <div className={s.price}>{`${price} ETH`}</div>
               </div>
             )}
             <div className={s.imageContainer}>
@@ -109,10 +107,7 @@ const ProductCard: FC<Props> = ({
                 variant={product.variants[0] as any}
               />
             )}
-            <ProductTag
-              name={product.name}
-              price={`${price} ${product.price?.currencyCode}`}
-            />
+            <ProductTag name={product.name} price={`${price} ${'ETH'}`} />
             <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
             <div className={s.imageContainer}>
               {product?.images && (

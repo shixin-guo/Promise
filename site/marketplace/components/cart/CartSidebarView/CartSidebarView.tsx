@@ -17,13 +17,13 @@ const CartSidebarView: FC = () => {
   const { price: subTotal } = usePrice(
     data && {
       amount: Number(data.subtotalPrice),
-      currencyCode: data.currency.code,
+      currencyCode: 'ETH',
     }
   )
   const { price: total } = usePrice(
     data && {
       amount: Number(data.totalPrice),
-      currencyCode: data.currency.code,
+      currencyCode: 'ETH',
     }
   )
   const handleClose = () => closeSidebar()
@@ -82,11 +82,7 @@ const CartSidebarView: FC = () => {
             </Link>
             <ul className={s.lineItemsList}>
               {data!.lineItems.map((item: any) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  currencyCode={data!.currency.code}
-                />
+                <CartItem key={item.id} item={item} currencyCode={'ETH'} />
               ))}
             </ul>
           </div>

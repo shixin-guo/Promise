@@ -15,7 +15,7 @@ const LINKS = [
     href: '/orders',
   },
   {
-    name: 'My Profile',
+    name: 'My Forest',
     href: '/profile',
   },
   {

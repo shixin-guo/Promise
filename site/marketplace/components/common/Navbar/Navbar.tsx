@@ -20,11 +20,11 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
     <Container clean className="mx-auto max-w-8xl px-6">
       <div className={s.nav}>
         <div className="flex items-center flex-1">
-          <Link href="/">
+          {/* <Link href="/">
             <b>
               <span style={{ color: '#2d8cff' }}>Z</span> / NFT
             </b>
-          </Link>
+          </Link> */}
           <nav className={s.navMenu}>
             <Link href="/search">
               <a className={s.link}>All</a>

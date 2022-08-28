@@ -32,13 +32,13 @@ export default function Cart() {
   const { price: subTotal } = usePrice(
     data && {
       amount: Number(data.subtotalPrice),
-      currencyCode: data.currency.code,
+      currencyCode: 'ETH',
     }
   )
   const { price: total } = usePrice(
     data && {
       amount: Number(data.totalPrice),
-      currencyCode: data.currency.code,
+      currencyCode: 'ETH',
     }
   )
 

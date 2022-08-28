@@ -43,7 +43,7 @@ export default function Home({
   return (
     <>
       <Grid variant="filled">
-        {products.slice(0, 3).map((product: any, i: number) => (
+        {products.slice(3, 7).map((product: any, i: number) => (
           <ProductCard
             key={product.id}
             product={product}
@@ -65,7 +65,7 @@ export default function Home({
         description=" A Zoom App to capture these screenshots capture should be useful. It can even turn them into NFTs for sharing and be engraved on the blockchain. It would also support applying NFT assets (image, video) as virtual background."
       />
       <Grid layout="B" variant="filled">
-        {products.slice(3, 7).map((product: any, i: number) => (
+        {products.slice(0, 3).map((product: any, i: number) => (
           <ProductCard
             key={product.id}
             product={product}

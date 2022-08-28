@@ -38,13 +38,13 @@ const CheckoutSidebarView: FC = () => {
   const { price: subTotal } = usePrice(
     cartData && {
       amount: Number(cartData.subtotalPrice),
-      currencyCode: cartData.currency.code,
+      currencyCode: 'ETH',
     }
   )
   const { price: total } = usePrice(
     cartData && {
       amount: Number(cartData.totalPrice),
-      currencyCode: cartData.currency.code,
+      currencyCode: 'ETH',
     }
   )
 

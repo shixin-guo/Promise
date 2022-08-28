@@ -20,18 +20,14 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
   const { price } = usePrice({
     amount: product.price.value,
     baseAmount: product.price.retailPrice,
-    currencyCode: product.price.currencyCode!,
+    currencyCode: 'ETH',
   })
   return (
     <>
       <Container className="max-w-none w-full" clean>
         <div className={cn(s.root, 'fit')}>
           <div className={cn(s.main, 'fit')}>
-            <ProductTag
-              name={product.name}
-              price={`${price} ${product.price?.currencyCode}`}
-              fontSize={32}
-            />
+            <ProductTag name={product.name} price={`${price}`} fontSize={32} />
             <div className={s.sliderContainer}>
               <ProductSlider key={product.id}>
                 {product.images.map((image, i) => (
@@ -49,7 +45,9 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                 ))}
               </ProductSlider>
             </div>
-            {!!product.images.length && <ZoomVirtualBackgroundBtn url={product.images[0].url} />}
+            {!!product.images.length && (
+              <ZoomVirtualBackgroundBtn url={product.images[0].url} />
+            )}
             {process.env.COMMERCE_WISHLIST_ENABLED && (
               <WishlistButton
                 className={s.wishlistButton}
@@ -58,7 +56,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
               />
             )}
           </div>
-          
+
           <ProductSidebar
             key={product.id}
             product={product}
@@ -66,7 +64,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
           />
         </div>
         <hr className="mt-7 border-accent-2" />
-        <section className="py-12 px-6 mb-10">
+        {/* <section className="py-12 px-6 mb-10">
           <Text variant="sectionHeading">Related Products</Text>
           <div className={s.relatedProductsGrid}>
             {relatedProducts.map((p) => (
@@ -88,7 +86,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </Container>
       <SEO
         title={product.name}
