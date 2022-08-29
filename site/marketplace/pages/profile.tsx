@@ -5,7 +5,6 @@ import { Layout } from '@components/common'
 import { Container, Text } from '@components/ui'
 import useSearch from '@framework/product/use-search'
 import Image from 'next/image'
-import Png1 from '../public/trees/1.png'
 import zoomSDK from '@zoom/appssdk'
 export async function getStaticProps({
   preview,
@@ -52,13 +51,13 @@ export default function Profile() {
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-gray-700">
-                      <a>
-                        <span aria-hidden="true" className="absolute inset-0" />
-                        <span className="text-lg">{tree.name}</span>
-                        <p>
-                          <a onClick={openTreejer}>Open it in Treejer </a>
-                        </p>
-                      </a>
+                      <span className="text-lg">{tree.name}</span>
+                      <button
+                        onClick={openTreejer}
+                        className="text-blue-600 hover:text-blue-600"
+                      >
+                        Check Status in Treejer
+                      </button>
                     </h3>
                   </div>
                 </div>
