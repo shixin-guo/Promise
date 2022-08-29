@@ -1,17 +1,21 @@
 import { ethers } from 'ethers'
-import { useConnect, useContract, useSigner } from 'wagmi'
+import { useConnect, useContract, useSigner, useAccount } from 'wagmi'
 // todo put into a util file
 // todo whether need use online prod json and address
 import NFTMarketplace from '../../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 import type { SubmitCheckoutHook } from '@vercel/commerce/types/checkout'
 import type { MutationHook } from '@vercel/commerce/utils/types'
+import { doc, updateDoc } from 'firebase/firestore'
 
+import { firebaseDb } from '../firebase/clientApp'
 import { useCallback, useEffect } from 'react'
 import useSubmitCheckout, {
   UseSubmitCheckout,
 } from '@vercel/commerce/checkout/use-submit-checkout'
 import useRemoveItem from '../cart/use-remove-item'
 import useCart from '../cart/use-cart'
+import { useRouter } from 'next/router'
+
 export default useSubmitCheckout as UseSubmitCheckout<typeof handler>
 
 export const handler: MutationHook<SubmitCheckoutHook> = {
@@ -25,6 +29,9 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
   },
   useHook: ({ fetch }) =>
     function useHook() {
+      const { address } = useAccount()
+      const router = useRouter()
+
       const { data: signer } = useSigner()
       const removeItemFromCart = useRemoveItem()
       const { connect, connectors, error, isLoading, pendingConnector } =
@@ -43,13 +50,20 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
               nft.variant.price.toString(),
               'ether'
             )
+            debugger
             const transaction = await contract.createMarketSale(nft.tokenID, {
               value: price,
             })
-
             await transaction.wait()
             await await fetch(nft)
             await removeItemFromCart(nft)
+            debugger
+            const washingtonRef = doc(firebaseDb, 'collections', nft.id)
+            await updateDoc(washingtonRef, {
+              arthur: address,
+            })
+            router.push('/orders')
+            console.log(111)
           })
           return {}
         },

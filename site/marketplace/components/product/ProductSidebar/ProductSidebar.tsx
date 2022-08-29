@@ -5,7 +5,7 @@ import { ProductOptions } from '@components/product'
 import Image from 'next/image'
 
 import type { Product } from '@commerce/types/product'
-import { Button, Text, Rating, Collapse, useUI } from '@components/ui'
+import { Button, Text, Rating, Input, Collapse, useUI } from '@components/ui'
 import {
   getProductVariant,
   selectDefaultOptionFromProduct,
@@ -43,8 +43,13 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
       setLoading(false)
     }
   }
+  const [wording, setWording] = useState('Gift your friend this NFT')
   const sendAsGift = async () => {
     setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      setWording('Completed')
+    }, 3000)
   }
   return (
     <div className={className}>
@@ -53,10 +58,10 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
       /> */}
-      <Text
+      {/* <Text
         className="pb-4 break-words w-full max-w-xl text-lg"
         html={product.name}
-      />
+      /> */}
       <Text
         className="pb-4 break-words w-full max-w-xl"
         html={product.descriptionHtml || product.description}
@@ -68,16 +73,25 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
       <div>
         {process.env.COMMERCE_CART_ENABLED &&
           (isOwner ? (
-            <Button
-              aria-label="Add to Cart"
-              type="button"
-              className={s.button}
-              onClick={sendAsGift}
-              loading={loading}
-              disabled={variant?.availableForSale === false}
-            >
-              Gift your friend this NFT
-            </Button>
+            <>
+              <label className="text-base font-semibold my-1">
+                Your Friend Email:
+              </label>
+              <Input
+                className="w-full border-2 border-gray-300 rounded-lg p-2 pb-2 mb-3"
+                placeholder="Provide Your Friend Email"
+              />
+              <Button
+                aria-label="Add to Cart"
+                type="button"
+                className={s.button}
+                onClick={sendAsGift}
+                loading={loading}
+                disabled={variant?.availableForSale === false}
+              >
+                {wording}
+              </Button>
+            </>
           ) : (
             <Button
               aria-label="Add to Cart"

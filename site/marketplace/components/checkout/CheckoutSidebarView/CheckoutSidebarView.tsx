@@ -10,11 +10,9 @@ import useCheckout from '@framework/checkout/use-checkout'
 import ShippingWidget from '../ShippingWidget'
 import PaymentWidget from '../PaymentWidget'
 import s from './CheckoutSidebarView.module.css'
-import { useRouter } from 'next/router'
 import { useCheckoutContext } from '../context'
 
 const CheckoutSidebarView: FC = () => {
-  const router = useRouter()
   const [loadingSubmit, setLoadingSubmit] = useState(false)
   const { setSidebarView, closeSidebar } = useUI()
   const { data: cartData, mutate: refreshCart } = useCart()
@@ -31,7 +29,6 @@ const CheckoutSidebarView: FC = () => {
       setLoadingSubmit(false)
       refreshCart()
       closeSidebar()
-      router.push('/profile')
     } catch {
       // TODO - handle error UI here.
       setLoadingSubmit(false)

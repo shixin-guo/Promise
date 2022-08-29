@@ -52,12 +52,12 @@ export default function Profile() {
                   <div>
                     <h3 className="text-sm text-gray-700">
                       <span className="text-lg">{tree.name}</span>
-                      <button
+                      {/* <button
                         onClick={openTreejer}
                         className="text-blue-600 hover:text-blue-600"
                       >
                         Check Status in Treejer
-                      </button>
+                      </button> */}
                     </h3>
                   </div>
                 </div>
