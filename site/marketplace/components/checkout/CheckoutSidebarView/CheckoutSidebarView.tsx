@@ -10,9 +10,11 @@ import useCheckout from '@framework/checkout/use-checkout'
 import ShippingWidget from '../ShippingWidget'
 import PaymentWidget from '../PaymentWidget'
 import s from './CheckoutSidebarView.module.css'
+import { useRouter } from 'next/router'
 import { useCheckoutContext } from '../context'
 
 const CheckoutSidebarView: FC = () => {
+  const router = useRouter()
   const [loadingSubmit, setLoadingSubmit] = useState(false)
   const { setSidebarView, closeSidebar } = useUI()
   const { data: cartData, mutate: refreshCart } = useCart()
@@ -29,6 +31,7 @@ const CheckoutSidebarView: FC = () => {
       setLoadingSubmit(false)
       refreshCart()
       closeSidebar()
+      router.push('/profile')
     } catch {
       // TODO - handle error UI here.
       setLoadingSubmit(false)
@@ -64,10 +67,10 @@ const CheckoutSidebarView: FC = () => {
           isValid={checkoutData?.hasPayment}
           onClick={() => setSidebarView('PAYMENT_VIEW')}
         />
-        <ShippingWidget
+        {/* <ShippingWidget
           isValid={checkoutData?.hasShipping}
           onClick={() => setSidebarView('SHIPPING_VIEW')}
-        />
+        /> */}
 
         <ul className={s.lineItemsList}>
           {cartData!.lineItems.map((item: any) => (
@@ -94,10 +97,10 @@ const CheckoutSidebarView: FC = () => {
             <span>Taxes</span>
             <span>Calculated at checkout</span>
           </li>
-          <li className="flex justify-between py-1">
+          {/* <li className="flex justify-between py-1">
             <span>Shipping</span>
             <span className="font-bold tracking-wide">FREE</span>
-          </li>
+          </li> */}
         </ul>
         <div className="flex justify-between border-t border-accent-2 py-3 font-bold mb-2">
           <span>Total</span>

@@ -45,6 +45,7 @@ export type Product = {
   options: ProductOption[]
   vendor?: string
   createTime?: Date
+  arthur?: string
 }
 
 export type SearchProductsBody = {

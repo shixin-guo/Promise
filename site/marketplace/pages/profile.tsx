@@ -35,23 +35,23 @@ export default function Profile() {
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {trees?.products.map((tree: any, index: number) => (
               <div key={tree.name + index} className="group relative">
-                <div className="w-full min-h-40 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:aspect-none">
+                <div className="w-full min-h-40 min-w-40 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-60 lg:w-60 lg:aspect-none">
                   <Image
                     src={`/trees/${index % 8}.png`}
                     alt={'sdds'}
                     width={240}
                     height={240}
-                    className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                    className="w-full h-full object-center object-cover lg:w-full lg:h-full bg-gray-200"
                   />
                 </div>
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-gray-700">
-                      <a href={tree.href}>
+                      <a href={'https://treejer.com/tree/659'}>
                         <span aria-hidden="true" className="absolute inset-0" />
-                        {tree.name}
+                        <span className="text-lg">{tree.name}</span>
                         <p>
-                          <a href="">Treejer Link</a>
+                          <a href="">Open it in Treejer </a>
                         </p>
                       </a>
                     </h3>

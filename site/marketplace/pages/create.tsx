@@ -318,7 +318,7 @@ export default function CreatePage() {
               />
             ) : (
               <div className="flex items-center flex-col">
-                <p className="text-white">Drag, Paste and Click</p>
+                <p className="text-white">Drag, Paste or Click</p>
                 <NextImage
                   className="rounded-lg"
                   width={60}

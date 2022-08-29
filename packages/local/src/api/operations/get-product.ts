@@ -17,6 +17,7 @@ export type FirebaseCustomerType = {
   images: any
   variants: any
   options: any
+  arthur: string
 }
 export default function getProductOperation({
   commerce,
@@ -38,9 +39,8 @@ export default function getProductOperation({
       .get()
     // todo  add a normalize js
     // todo FirebaseCustomerType is too SB
-    const { name, description, price, images, variants, options } =
+    const { name, description, price, images, variants, options, arthur } =
       querySnapshot.data() as FirebaseCustomerType
-
     return {
       product: {
         id: variables?.slug,
@@ -51,6 +51,7 @@ export default function getProductOperation({
         name,
         variants,
         options,
+        arthur,
       },
     }
   }
