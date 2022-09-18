@@ -53,3 +53,13 @@ packages/contract/cache/solidity-files-cache.json
 #Hardhat files
 # cache
 # artifacts
+
+
+
+###########################
+generated/
+build/
+auth
+
+# SUBGRAPH file. Because it's generated per each network
+subgraph.yaml

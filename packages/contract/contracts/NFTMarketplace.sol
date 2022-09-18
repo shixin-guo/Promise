@@ -23,6 +23,7 @@ contract NFTMarketplace is ERC721URIStorage {
       address payable owner;
       uint256 price;
       bool sold;
+      string fileUrl;
     }
 
     event MarketItemCreated (
@@ -30,7 +31,9 @@ contract NFTMarketplace is ERC721URIStorage {
       address seller,
       address owner,
       uint256 price,
-      bool sold
+      bool sold,
+      string fileUrl
+      
     );
 
     constructor() ERC721("ZoomNFT", "ZNFT") {
@@ -49,27 +52,23 @@ contract NFTMarketplace is ERC721URIStorage {
     }
 
     /* Mints a token and lists it in the marketplace */
-    function createToken(string memory tokenURI, uint256 price) public payable returns (uint) {
+    function createToken(string memory tokenURI, uint256 price, string memory fileUrl) public payable returns (uint) {
       _tokenIds.increment();
       uint256 newTokenId = _tokenIds.current();
 
       _mint(msg.sender, newTokenId);
       _setTokenURI(newTokenId, tokenURI);
-      createMarketItem(newTokenId, price);
-      console.log('newTokenId',newTokenId);
-      return newTokenId;
-    }
-
-    function getCreateTokenId() public view returns (uint) {
-      uint256 newTokenId = _tokenIds.current();
+      createMarketItem(newTokenId, price, fileUrl);
       return newTokenId;
     }
 
     function createMarketItem(
       uint256 tokenId,
-      uint256 price
+      uint256 price,
+      string memory fileUrl
     ) private {
       require(price > 0, "Price must be at least 1 wei");
+      // require(fileUrl != '',"ImageUrl can not be empty" );
       require(msg.value == listingPrice, "Price must be equal to listing price");
 
       idToMarketItem[tokenId] =  MarketItem(
@@ -77,7 +76,8 @@ contract NFTMarketplace is ERC721URIStorage {
         payable(msg.sender),
         payable(address(this)),
         price,
-        false
+        false,
+        fileUrl
       );
 
       _transfer(msg.sender, address(this), tokenId);
@@ -86,7 +86,8 @@ contract NFTMarketplace is ERC721URIStorage {
         msg.sender,
         address(this),
         price,
-        false
+        false,
+        fileUrl
       );
     }
 

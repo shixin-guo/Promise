@@ -8,8 +8,8 @@ Feature Request:
 3. Install the dependencies: `yarn`
 4. Duplicate `site/.env.template` and rename it to `site/.env.local`
 5. Add proper store values to `site/.env.local`
-6. start local etherum node `yarn start:node`
-7. open another terminal and deplop contract `yarn dev:deploy`
+6. start local ethereum node `yarn start:node`
+7. open another terminal and deploy contract `yarn dev:deploy`
 8. start local UI project
 
 ## Work in progress

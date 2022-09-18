@@ -8,13 +8,20 @@ import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
 import { useTheme } from 'next-themes'
 import { ConnectKitProvider } from 'connectkit'
-import { WagmiConfig, createClient, allChains, configureChains } from 'wagmi'
+import {
+  WagmiConfig,
+  createClient,
+  allChains,
+  configureChains,
+  chain,
+} from 'wagmi'
 
 import { publicProvider } from 'wagmi/providers/public'
 
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { InjectedConnector } from 'wagmi/connectors/injected'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check'
 import { firebaseApp } from '@framework/provider'
@@ -26,7 +33,7 @@ const client = createClient({
   autoConnect: true,
   connectors: [
     new MetaMaskConnector({ chains }),
-    // new InjectedConnector({ chains: [chain.hardhat] }),
+    new InjectedConnector({ chains: [chain.hardhat] }),
     new CoinbaseWalletConnector({
       chains,
       options: {

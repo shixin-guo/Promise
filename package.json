@@ -1,5 +1,5 @@
 {
-  "name": "commerce",
+  "name": "znft-website",
   "license": "MIT",
   "private": true,
   "workspaces": {
@@ -12,9 +12,9 @@
     ]
   },
   "scripts": {
-    "build": "turbo run build --scope=next-commerce --include-dependencies --no-deps",
+    "build": "turbo run build --scope=marketplace --include-dependencies --no-deps",
     "dev": "turbo run dev",
-    "dev:web": "turbo run dev --scope=next-commerce --include-dependencies --no-deps",
+    "dev:web": "turbo run dev --scope=marketplace --include-dependencies --no-deps",
     "start:node": "yarn workspace contract start:node",
     "dev:deploy": "yarn workspace contract deploy:local",
     "test:deploy": "yarn workspace contract deploy:rinkeby",
