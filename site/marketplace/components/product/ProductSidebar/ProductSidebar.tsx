@@ -71,41 +71,40 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         <div className="text-accent-6 pr-1 font-medium text-sm">36 reviews</div>
       </div> */}
       <div>
-        {process.env.COMMERCE_CART_ENABLED &&
-          (isOwner ? (
-            <>
-              <label className="text-base font-semibold my-1">
-                Your Friend Email:
-              </label>
-              <Input
-                className="w-full border-2 border-gray-300 rounded-lg p-2 pb-2 mb-3"
-                placeholder="Provide Your Friend Email"
-              />
-              <Button
-                aria-label="Add to Cart"
-                type="button"
-                className={s.button}
-                onClick={sendAsGift}
-                loading={loading}
-                disabled={variant?.availableForSale === false}
-              >
-                {wording}
-              </Button>
-            </>
-          ) : (
-            <Button
-              aria-label="Add to Cart"
-              type="button"
-              className={s.button}
-              onClick={addToCart}
-              loading={loading}
-              disabled={variant?.availableForSale === false}
-            >
-              {variant?.availableForSale === false
-                ? 'Not Available'
-                : 'Add To Cart'}
-            </Button>
-          ))}
+        (isOwner ? (
+        <>
+          <label className="text-base font-semibold my-1">
+            Your Friend Email:
+          </label>
+          <Input
+            className="w-full border-2 border-gray-300 rounded-lg p-2 pb-2 mb-3"
+            placeholder="Provide Your Friend Email"
+          />
+          <Button
+            aria-label="Add to Cart"
+            type="button"
+            className={s.button}
+            onClick={sendAsGift}
+            loading={loading}
+            disabled={variant?.availableForSale === false}
+          >
+            {wording}
+          </Button>
+        </>
+        ) : (
+        <Button
+          aria-label="Add to Cart"
+          type="button"
+          className={s.button}
+          onClick={addToCart}
+          loading={loading}
+          disabled={variant?.availableForSale === false}
+        >
+          {variant?.availableForSale === false
+            ? 'Not Available'
+            : 'Add To Cart'}
+        </Button>
+        ))
       </div>
       <div className="mt-6">
         <Collapse title="Donate to charity">
