@@ -1,6 +1,6 @@
 {
-  "name": "znft-subgraph",
-  "license": "UNLICENSED",
+  "name": "subgraph",
+  "license": "MIT",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",

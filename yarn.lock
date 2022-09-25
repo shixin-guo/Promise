@@ -15902,6 +15902,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"subgraph@workspace:packages/subgraph":
+  version: 0.0.0-use.local
+  resolution: "subgraph@workspace:packages/subgraph"
+  dependencies:
+    "@graphprotocol/graph-cli": 0.33.1
+    "@graphprotocol/graph-ts": 0.27.0
+    matchstick-as: 0.5.0
+  languageName: unknown
+  linkType: soft
+
 "superagent@npm:^6.1.0":
   version: 6.1.0
   resolution: "superagent@npm:6.1.0"
@@ -17521,16 +17531,6 @@ __metadata:
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
   languageName: node
   linkType: hard
-
-"znft-subgraph@workspace:packages/subgraph":
-  version: 0.0.0-use.local
-  resolution: "znft-subgraph@workspace:packages/subgraph"
-  dependencies:
-    "@graphprotocol/graph-cli": 0.33.1
-    "@graphprotocol/graph-ts": 0.27.0
-    matchstick-as: 0.5.0
-  languageName: unknown
-  linkType: soft
 
 "znft-website@workspace:.":
   version: 0.0.0-use.local
