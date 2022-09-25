@@ -1,13 +1,21 @@
 import { default as NextImage } from 'next/image'
 import { useState, useRef } from 'react'
 import { ethers, providers } from 'ethers'
-import { useContract, useSigner, useAccount, useConnect } from 'wagmi'
+import {
+  useContract,
+  useSigner,
+  useAccount,
+  useConnect,
+  useProvider,
+} from 'wagmi'
 import { useRouter } from 'next/router'
 import { RcFile } from '@components/ui/Upload/interface'
 import { Info } from '@components/icons'
 import { Layout } from '@components/common'
 import { Button, Text, Container, Upload, Input } from '@components/ui'
 import { WebBundlr } from '@bundlr-network/client'
+// @ts-ignore
+import fileReaderStream from 'filereader-stream'
 
 // todo whether need use online prod json and address
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
@@ -44,27 +52,29 @@ export default function CreatePage() {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const { isConnected } = useAccount()
   const { data: signer } = useSigner()
+  // const provider = useProvider()
+  // const currency = 'ethereum'
+
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
     addressOrName: process.env.NEXT_PUBLIC_MARKETPLACEADDRESS || '',
     contractInterface: NFTMarketplace.abi,
     signerOrProvider: signer,
   })
-  const initBundlr = async () => {
-    if (signer) {
-      // todo move into env file
-      // const bundlerHttpAddress = 'http://node1.bundlr.network'
-      const bundlerHttpAddress = 'https://devnet.bundlr.network'
-      const provider = new providers.Web3Provider(window.ethereum)
-      await provider._ready()
-      const currency = 'matic'
-      const Bundlr = new WebBundlr(bundlerHttpAddress, currency, provider)
-
-      await Bundlr.utils.getBundlerAddress(currency)
-      await Bundlr.ready()
-      return Bundlr
-    }
-  }
+  // const initBundlr = async () => {
+  //   if (signer) {
+  //     // todo move into env file
+  //     // const bundlerHttpAddress = 'http://node1.bundlr.network'
+  //     const bundlerHttpAddress = 'https://devnet.bundlr.network'
+  //     const Bundlr = new WebBundlr(bundlerHttpAddress, currency, provider, {
+  //       providerUrl: 'http://127.0.0.1:8545/',
+  //       contractAddress: '',
+  //     })
+  //     await Bundlr.utils.getBundlerAddress(currency)
+  //     await Bundlr.ready()
+  //     return Bundlr
+  //   }
+  // }
 
   const [base64URL, setBase64URL] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -89,26 +99,40 @@ export default function CreatePage() {
 
   async function uploadToArweave() {
     setLoading(true)
-    const bundlr = await initBundlr()
-    const uploader = bundlr!.uploader.chunkedUploader
+    // const bundlr = await initBundlr()
 
-    uploader?.setBatchSize(2)
-    uploader?.setChunkSize(2_000_000)
-    uploader?.on('chunkUpload', (e) => {
-      console.log(e)
-    })
+    // Get the cost for upload
+
     const { file } = formInput
-    console.log(file)
-    const bufferFile = await file!.arrayBuffer()
-    const res = await uploader.uploadData(bufferFile, {
-      tags: [
-        {
-          name: 'Content-Type',
-          value: file?.type ?? 'application/octet-stream',
-        },
-      ],
+    // test
+    debugger
+    const resA = await fetch('/api/upload', {
+      method: 'POST',
+      body: file,
     })
-    return res.data.id
+    const resB = await resA.json()
+    console.log(resB)
+    debugger
+    // test
+    // const stream = fileReaderStream(file)
+
+    // const uploader = bundlr!.uploader.chunkedUploader
+
+    // uploader?.setBatchSize(2)
+    // uploader?.setChunkSize(2_000_000)
+    // uploader?.on('chunkUpload', (e) => {
+    //   console.log(e)
+    // })
+
+    // const res = await uploader.uploadData(stream, {
+    //   tags: [
+    //     {
+    //       name: 'Content-Type',
+    //       value: file?.type ?? 'application/octet-stream',
+    //     },
+    //   ],
+    // })
+    // return res.data.id
   }
 
   async function listNFT2Chain() {
@@ -117,9 +141,10 @@ export default function CreatePage() {
       setErrorMessage('Please fill in all fields')
       return
     }
+    const fileUrl = await uploadToArweave()
+    debugger
     const price = ethers.utils.parseUnits(inputPrice, 'ether')
     const listingPrice = await contract.getListingPrice()
-    const fileUrl = await uploadToArweave()
     let transaction = await contract.createToken(
       formInput.name,
       price,
