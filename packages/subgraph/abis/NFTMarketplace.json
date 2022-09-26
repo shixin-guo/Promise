@@ -135,7 +135,7 @@
     "inputs": [
       { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
     ],
-    "name": "createMarketSale",
+    "name": "buyToken",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

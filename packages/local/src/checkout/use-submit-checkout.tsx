@@ -51,7 +51,7 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
               'ether'
             )
             debugger
-            const transaction = await contract.createMarketSale(nft.tokenID, {
+            const transaction = await contract.buyToken(nft.tokenID, {
               value: price,
             })
             await transaction.wait()

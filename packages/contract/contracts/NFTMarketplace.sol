@@ -5,8 +5,6 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-import "hardhat/console.sol";
-
 contract NFTMarketplace is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
@@ -33,16 +31,21 @@ contract NFTMarketplace is ERC721URIStorage {
       uint256 price,
       bool sold,
       string fileUrl
-      
+    );
+
+    event UpdateListingPrice (
+      uint256 listingPrice
     );
 
     constructor() ERC721("ZoomNFT", "ZNFT") {
+      emit UpdateListingPrice(listingPrice);
       owner = payable(msg.sender);
     }
 
     /* Updates the listing price of the contract */
     function updateListingPrice(uint _listingPrice) public payable {
       require(owner == msg.sender, "Only marketplace owner can update listing price.");
+      emit UpdateListingPrice(_listingPrice);
       listingPrice = _listingPrice;
     }
 
@@ -91,27 +94,20 @@ contract NFTMarketplace is ERC721URIStorage {
       );
     }
 
-    /* allows someone to resell a token they have purchased */
-    function resellToken(uint256 tokenId, uint256 price) public payable {
-      require(idToMarketItem[tokenId].owner == msg.sender, "Only item owner can perform this operation");
-      require(msg.value == listingPrice, "Price must be equal to listing price");
-      idToMarketItem[tokenId].sold = false;
-      idToMarketItem[tokenId].price = price;
-      idToMarketItem[tokenId].seller = payable(msg.sender);
-      idToMarketItem[tokenId].owner = payable(address(this));
-      _itemsSold.decrement();
-
-      _transfer(msg.sender, address(this), tokenId);
-    }
+    event BuyMarketItem(
+      uint256 indexed tokenId,
+      address seller,
+      address owner,
+      bool sold
+    );
 
     /* Creates the sale of a marketplace item */
-    /* Transfers ownership of the item, as well as funds between parties */
-    function createMarketSale(
+    /* Transfers ownership of the tokenID, as well as funds between parties */
+    function buyToken(
       uint256 tokenId
       ) public payable {
       uint price = idToMarketItem[tokenId].price;
       address seller = idToMarketItem[tokenId].seller;
-      console.log(price, seller);
       require(msg.value == price, "Please submit the asking price in order to complete the purchase");
       idToMarketItem[tokenId].owner = payable(msg.sender);
       idToMarketItem[tokenId].sold = true;
@@ -120,7 +116,42 @@ contract NFTMarketplace is ERC721URIStorage {
       _transfer(address(this), msg.sender, tokenId);
       payable(owner).transfer(listingPrice);
       payable(seller).transfer(msg.value);
+      emit BuyMarketItem(
+        tokenId,
+        msg.sender,
+        address(this),
+        true
+      );
     }
+
+    event ResellMarketItem(
+      uint256 indexed tokenId,
+      address seller,
+      address owner,
+      uint256 price,
+      bool sold
+    );
+    /* allows someone to resell a token they have purchased */
+    // token belong to marketplace , seller is pervious holder
+    function resellToken(uint256 tokenId, uint256 price) public payable {
+      require(idToMarketItem[tokenId].owner == msg.sender, "Only item owner can perform this operation");
+      require(msg.value == listingPrice, "Price must be equal to listing price");
+      idToMarketItem[tokenId].sold = false;
+      idToMarketItem[tokenId].price = price;
+      idToMarketItem[tokenId].seller = payable(msg.sender);
+      idToMarketItem[tokenId].owner = payable(address(this));
+      _itemsSold.decrement();
+      _transfer(msg.sender, address(this), tokenId);
+      emit ResellMarketItem(
+        tokenId,
+        msg.sender,
+        address(this),
+        price,
+        false
+      );
+    }
+
+   
 
     /* Returns all unsold market items */
     function fetchMarketItems() public view returns (MarketItem[] memory) {
