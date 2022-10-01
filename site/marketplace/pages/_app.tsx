@@ -54,23 +54,6 @@ const Noop: FC = ({ children }) => <>{children}</>
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const Layout = (Component as any).Layout || Noop
-  useEffect(() => {
-    // Pass your reCAPTCHA v3 site key (public key) to activate(). Make sure this
-    // key is the counterpart to the secret key you set in the Firebase console.
-
-    // todo private key hidden
-    initializeAppCheck(firebaseApp, {
-      provider: new ReCaptchaV3Provider(
-        '6LfxOtwgAAAAANbZFszWuXI0D_Lfjx2CjH8xOH8i'
-      ),
-
-      // Optional argument. If true, the SDK automatically refreshes App Check
-      // tokens as needed.
-      isTokenAutoRefreshEnabled: true,
-    })
-    document.body.classList?.remove('loading')
-  }, [])
-
   return (
     <WagmiConfig client={client}>
       <ConnectKitProvider mode={'light'}>

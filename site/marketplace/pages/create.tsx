@@ -104,6 +104,7 @@ export default function CreatePage() {
     // Get the cost for upload
 
     const { file } = formInput
+    console.log(file)
     // test
     debugger
     const resA = await fetch('/api/upload', {

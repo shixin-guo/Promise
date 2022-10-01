@@ -16,7 +16,7 @@
     "@nomiclabs/hardhat-ethers": "2.1.1",
     "@nomiclabs/hardhat-waffle": "2.0.3",
     "autoprefixer": "10.4.11",
-    "eslint": "8.23.1",
+    "eslint": "8.24.0",
     "hardhat": "2.11.2",
     "postcss": "8.4.16"
   }
