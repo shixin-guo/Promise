@@ -23,8 +23,6 @@ import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check'
-import { firebaseApp } from '@framework/provider'
 
 const { chains, provider, webSocketProvider } = configureChains(allChains, [
   publicProvider(),
