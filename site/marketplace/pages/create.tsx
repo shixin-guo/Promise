@@ -1,21 +1,12 @@
 import { default as NextImage } from 'next/image'
 import { useState, useRef } from 'react'
-import { ethers, providers } from 'ethers'
-import {
-  useContract,
-  useSigner,
-  useAccount,
-  useConnect,
-  useProvider,
-} from 'wagmi'
+import { ethers } from 'ethers'
+import { useContract, useSigner, useAccount, useConnect } from 'wagmi'
 import { useRouter } from 'next/router'
 import { RcFile } from '@components/ui/Upload/interface'
 import { Info } from '@components/icons'
 import { Layout } from '@components/common'
 import { Button, Text, Container, Upload, Input } from '@components/ui'
-import { WebBundlr } from '@bundlr-network/client'
-// @ts-ignore
-import fileReaderStream from 'filereader-stream'
 
 // todo whether need use online prod json and address
 import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
@@ -50,10 +41,8 @@ export default function CreatePage() {
   const [formInput, updateFormInput] =
     useState<FormInputInterface>(defaultFormInput)
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const { isConnected } = useAccount()
+  const { isConnected, address } = useAccount()
   const { data: signer } = useSigner()
-  // const provider = useProvider()
-  // const currency = 'ethereum'
 
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
@@ -61,20 +50,6 @@ export default function CreatePage() {
     contractInterface: NFTMarketplace.abi,
     signerOrProvider: signer,
   })
-  // const initBundlr = async () => {
-  //   if (signer) {
-  //     // todo move into env file
-  //     // const bundlerHttpAddress = 'http://node1.bundlr.network'
-  //     const bundlerHttpAddress = 'https://devnet.bundlr.network'
-  //     const Bundlr = new WebBundlr(bundlerHttpAddress, currency, provider, {
-  //       providerUrl: 'http://127.0.0.1:8545/',
-  //       contractAddress: '',
-  //     })
-  //     await Bundlr.utils.getBundlerAddress(currency)
-  //     await Bundlr.ready()
-  //     return Bundlr
-  //   }
-  // }
 
   const [base64URL, setBase64URL] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -99,41 +74,16 @@ export default function CreatePage() {
 
   async function uploadToArweave() {
     setLoading(true)
-    // const bundlr = await initBundlr()
-
-    // Get the cost for upload
-
     const { file } = formInput
-    console.log(file)
-    // test
-    debugger
+    const payload = new FormData()
+    payload.append('image', file!)
+    payload.append('creator', address!)
     const resA = await fetch('/api/upload', {
       method: 'POST',
-      body: file,
+      body: payload,
     })
-    const resB = await resA.json()
-    console.log(resB)
-    debugger
-    // test
-    // const stream = fileReaderStream(file)
-
-    // const uploader = bundlr!.uploader.chunkedUploader
-
-    // uploader?.setBatchSize(2)
-    // uploader?.setChunkSize(2_000_000)
-    // uploader?.on('chunkUpload', (e) => {
-    //   console.log(e)
-    // })
-
-    // const res = await uploader.uploadData(stream, {
-    //   tags: [
-    //     {
-    //       name: 'Content-Type',
-    //       value: file?.type ?? 'application/octet-stream',
-    //     },
-    //   ],
-    // })
-    // return res.data.id
+    const url = await resA.json()
+    return url
   }
 
   async function listNFT2Chain() {
@@ -143,7 +93,6 @@ export default function CreatePage() {
       return
     }
     const fileUrl = await uploadToArweave()
-    debugger
     const price = ethers.utils.parseUnits(inputPrice, 'ether')
     const listingPrice = await contract.getListingPrice()
     let transaction = await contract.createToken(
@@ -157,11 +106,6 @@ export default function CreatePage() {
     await transaction.wait()
     setLoading(false)
     router.push('/orders')
-    // todo
-    // const tokenID = transactionResult?.events
-    //   ?.find((item: any) => item.event === 'MarketItemCreated')
-    //   .args[0].toString()
-    // const tokenID = await contract.getCreateTokenId()
   }
 
   async function listNFTForSale() {
