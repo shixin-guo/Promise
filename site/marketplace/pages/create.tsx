@@ -41,10 +41,8 @@ export default function CreatePage() {
   const [formInput, updateFormInput] =
     useState<FormInputInterface>(defaultFormInput)
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const { isConnected, address } = useAccount()
+  const { address } = useAccount()
   const { data: signer } = useSigner()
-
-  const { connect, connectors, isLoading, pendingConnector } = useConnect()
   const contract = useContract({
     addressOrName: process.env.NEXT_PUBLIC_MARKETPLACEADDRESS || '',
     contractInterface: NFTMarketplace.abi,
@@ -78,7 +76,7 @@ export default function CreatePage() {
     const payload = new FormData()
     payload.append('image', file!)
     payload.append('creator', address!)
-    const resA = await fetch('/api/upload', {
+    const resA = await fetch('/api/upload/arweare', {
       method: 'POST',
       body: payload,
     })
@@ -93,6 +91,9 @@ export default function CreatePage() {
       return
     }
     const fileUrl = await uploadToArweave()
+    // const fileUrl =
+    //   'https://arweave.net/dgX-d6RUAowbeTSeihe7rKooy9CsoxicvzT-uSRdyU0'
+    // debugger
     const price = ethers.utils.parseUnits(inputPrice, 'ether')
     const listingPrice = await contract.getListingPrice()
     let transaction = await contract.createToken(
@@ -123,20 +124,6 @@ export default function CreatePage() {
       <div className="mb-20 max-w-4xl p-6">
         <Text variant="pageHeading">Create a NFT</Text>
         <div className="group flex flex-col">
-          {!isConnected &&
-            connectors.map((connector) => (
-              <button
-                // disabled={!connector.ready}
-                key={connector.id}
-                onClick={() => connect({ connector })}
-              >
-                {connector.name}
-                {!connector.ready && ' (unsupported)'}
-                {isLoading &&
-                  connector.id === pendingConnector?.id &&
-                  ' (connecting)'}
-              </button>
-            ))}
           <label className="text-base font-semibold my-1">Image</label>
           <p className="text-xs mb-2 text-gray-500">
             File types supported{' '}

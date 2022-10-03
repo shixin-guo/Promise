@@ -2,5 +2,14 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "css.lint.unknownAtRules": "ignore",
-  "cSpell.words": ["Arweave", "bundlr", "MARKETPLACEADDRESS", "znft"]
+  "cSpell.words": [
+    "arweare",
+    "Arweave",
+    "bundlr",
+    "connectkit",
+    "MARKETPLACEADDRESS",
+    "Searchbar",
+    "Treejer",
+    "znft"
+  ]
 }

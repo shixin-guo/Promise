@@ -5,7 +5,7 @@ import NavbarRoot from './NavbarRoot'
 import { Container } from '@components/ui'
 import { Searchbar } from '@components/common'
 import dynamic from 'next/dynamic'
-const UserNav = dynamic(() => import('../UserNav/UserNav'), { ssr: false })
+const UserNav = dynamic(() => import('../UserNav'), { ssr: false })
 interface Link {
   href: string
   label: string
@@ -20,11 +20,6 @@ const Navbar: FC<NavbarProps> = ({ links }) => (
     <Container clean className="mx-auto max-w-8xl px-6">
       <div className={s.nav}>
         <div className="flex items-center flex-1">
-          {/* <Link href="/">
-            <b>
-              <span style={{ color: '#2d8cff' }}>Z</span> / NFT
-            </b>
-          </Link> */}
           <nav className={s.navMenu}>
             <Link href="/search">
               <a className={s.link}>All</a>
