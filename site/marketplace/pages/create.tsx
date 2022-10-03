@@ -1,7 +1,7 @@
 import { default as NextImage } from 'next/image'
 import { useState, useRef } from 'react'
 import { ethers } from 'ethers'
-import { useContract, useSigner, useAccount, useConnect } from 'wagmi'
+import { useContract, useSigner, useAccount } from 'wagmi'
 import { useRouter } from 'next/router'
 import { RcFile } from '@components/ui/Upload/interface'
 import { Info } from '@components/icons'
