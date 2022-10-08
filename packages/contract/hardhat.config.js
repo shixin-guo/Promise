@@ -1,4 +1,5 @@
 require('@nomiclabs/hardhat-waffle')
+require('@openzeppelin/hardhat-upgrades')
 const fs = require('fs')
 
 const infuraId = '99e46b5ce4c64a9882f1303e95e62dd3'

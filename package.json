@@ -12,9 +12,9 @@
     "build": "turbo run build --scope=marketplace --include-dependencies --no-deps",
     "dev": "turbo run dev",
     "dev:web": "turbo run dev --scope=marketplace --include-dependencies --no-deps",
-    "start:node": "yarn workspace contract start:node",
-    "dev:deploy": "yarn workspace contract deploy:local",
-    "test:deploy": "yarn workspace contract deploy:rinkeby",
+    "contract:start": "yarn workspace contract start:node",
+    "contract:local": "yarn workspace contract deploy:local",
+    "contract:rinkeby": "yarn workspace contract deploy:rinkeby",
     "start": "turbo run start",
     "types": "turbo run types",
     "prettier-fix": "prettier --write ."

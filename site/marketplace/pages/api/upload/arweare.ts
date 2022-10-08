@@ -3,17 +3,11 @@ import { IncomingForm, PersistentFile } from 'formidable'
 import BigNumber from 'bignumber.js'
 import fs from 'fs'
 import type { NextApiRequest, NextApiResponse } from 'next'
-// todo
-// const bundlerHttpAddress = 'http://node1.bundlr.network'
-const bundlerHttpAddress = 'https://devnet.bundlr.network'
-
+const bundlerHttpAddress = process.env.NEXT_PUBLIC_BUNDLER_HTTP_ADDRESS!
 const currency = 'ethereum'
-
-// todo how to remove privateKey from code and env file
-const privateKey =
-  '08a6ef685b8ee7fcf57bdfa4ce526b1f599da1c06b373bd3a5bf7f08c79c903d'
+const privateKey = process.env.NEXT_PUBLIC_ARWEARE_ACCOUNT_PRIVATE_KEY
 const bundlr = new Bundlr(bundlerHttpAddress, currency, privateKey, {
-  providerUrl: 'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+  providerUrl: process.env.NEXT_PUBLIC_INFURA_RPC_URL,
 })
 const uploader = bundlr.uploader.chunkedUploader
 // todo auto fund
@@ -24,8 +18,13 @@ const fundBundlr = async (dataSize: number): Promise<void> => {
   const adjustedPrice = price.multipliedBy(1.1)
 
   if (adjustedPrice.isGreaterThan(balance)) {
-    console.log('Funding Bundlr Node')
-    // console.log(adjustedPrice.toString(), balance.toString());
+    console.log(
+      'Funding Bundlr Node...',
+      'adjustedPrice: ',
+      adjustedPrice.toString(),
+      'balance: ',
+      balance.toString()
+    )
     await bundlr.fund(
       adjustedPrice.minus(balance).integerValue(BigNumber.ROUND_CEIL)
     )

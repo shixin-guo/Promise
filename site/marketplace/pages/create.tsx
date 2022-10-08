@@ -91,9 +91,9 @@ export default function CreatePage() {
       return
     }
     const fileUrl = await uploadToArweave()
+    // test url
     // const fileUrl =
     //   'https://arweave.net/dgX-d6RUAowbeTSeihe7rKooy9CsoxicvzT-uSRdyU0'
-    // debugger
     const price = ethers.utils.parseUnits(inputPrice, 'ether')
     const listingPrice = await contract.getListingPrice()
     let transaction = await contract.createToken(

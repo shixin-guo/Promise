@@ -2,18 +2,21 @@
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
+// import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract NFTMarketplace is ERC721URIStorage {
+contract NFTMarketplace is ERC721Upgradeable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     Counters.Counter private _itemsSold;
 
-    uint256 listingPrice = 0.005 ether;
+    uint256 private listingPrice ;
     address payable owner;
 
     mapping(uint256 => MarketItem) private idToMarketItem;
+    // Optional mapping for token URIs
+    mapping(uint256 => string) private _tokenURIs;
 
     struct MarketItem {
       uint256 tokenId;
@@ -36,11 +39,15 @@ contract NFTMarketplace is ERC721URIStorage {
     event UpdateListingPrice (
       uint256 listingPrice
     );
-
-    constructor() ERC721("ZoomNFT", "ZNFT") {
-      emit UpdateListingPrice(listingPrice);
-      owner = payable(msg.sender);
+    // todo normal contract and an upgradeable contract is that an upgradeable contract does not have a constructor()
+    function globalStore() public {
+      listingPrice = 0.005 ether;
+      // owner = Owner;
     }
+    // constructor() ERC721("ZoomNFT", "ZNFT") {
+    //   emit UpdateListingPrice(listingPrice);
+    //   owner = payable(msg.sender);
+    // }
 
     /* Updates the listing price of the contract */
     function updateListingPrice(uint _listingPrice) public payable {
@@ -54,13 +61,44 @@ contract NFTMarketplace is ERC721URIStorage {
       return listingPrice;
     }
 
+    /**
+     * @dev See {IERC721Metadata-tokenURI}.
+     */
+    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        _requireMinted(tokenId);
+
+        string memory _tokenURI = _tokenURIs[tokenId];
+        string memory base = _baseURI();
+
+        // If there is no base URI, return the token URI.
+        if (bytes(base).length == 0) {
+            return _tokenURI;
+        }
+        // If both are set, concatenate the baseURI and tokenURI (via abi.encodePacked).
+        if (bytes(_tokenURI).length > 0) {
+            return string(abi.encodePacked(base, _tokenURI));
+        }
+
+        return super.tokenURI(tokenId);
+    }
+    /**
+      * @dev Sets `_tokenURI` as the tokenURI of `tokenId`.
+      *
+      * Requirements:
+      *
+      * - `tokenId` must exist.
+      */
+    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
+      require(_exists(tokenId), "ERC721URIStorage: URI set of nonexistent token");
+      _tokenURIs[tokenId] = _tokenURI;
+    }
     /* Mints a token and lists it in the marketplace */
-    function createToken(string memory tokenURI, uint256 price, string memory fileUrl) public payable returns (uint) {
+    function createToken(string memory newTokenURI, uint256 price, string memory fileUrl) public payable returns (uint) {
       _tokenIds.increment();
       uint256 newTokenId = _tokenIds.current();
 
       _mint(msg.sender, newTokenId);
-      _setTokenURI(newTokenId, tokenURI);
+      _setTokenURI(newTokenId, newTokenURI);
       createMarketItem(newTokenId, price, fileUrl);
       return newTokenId;
     }

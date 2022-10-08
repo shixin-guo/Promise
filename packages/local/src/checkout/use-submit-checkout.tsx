@@ -1,5 +1,6 @@
 import { ethers } from 'ethers'
 import { useConnect, useContract, useSigner, useAccount } from 'wagmi'
+
 // todo put into a util file
 // todo whether need use online prod json and address
 import NFTMarketplace from '../../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
@@ -50,20 +51,17 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
               nft.variant.price.toString(),
               'ether'
             )
-            debugger
             const transaction = await contract.buyToken(nft.tokenID, {
               value: price,
             })
             await transaction.wait()
             await await fetch(nft)
             await removeItemFromCart(nft)
-            debugger
             const washingtonRef = doc(firebaseDb, 'collections', nft.id)
             await updateDoc(washingtonRef, {
               arthur: address,
             })
             router.push('/orders')
-            console.log(111)
           })
           return {}
         },
