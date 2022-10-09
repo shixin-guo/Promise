@@ -51,15 +51,20 @@ yarn-error.log*
 packages/contract/cache/solidity-files-cache.json
 
 #Hardhat files
-# cache
-# artifacts
+artifacts/
+artifacts-ref/
+hh-cache/
+hh-cache-coverage/
+hh-cache-ref/
+temp-src-coverage/
+
 
 
 
 ###########################
 generated/
-build/
-auth
+
+
 
 # SUBGRAPH file. Because it's generated per each network
 subgraph.yaml

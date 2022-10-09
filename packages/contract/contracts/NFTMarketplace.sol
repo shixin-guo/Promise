@@ -189,8 +189,6 @@ contract NFTMarketplace is ERC721Upgradeable {
       );
     }
 
-   
-
     /* Returns all unsold market items */
     function fetchMarketItems() public view returns (MarketItem[] memory) {
       uint itemCount = _tokenIds.current();

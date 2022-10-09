@@ -15,7 +15,6 @@
     "contract:start": "yarn workspace contract start:node",
     "contract:local": "yarn workspace contract deploy:local",
     "contract:rinkeby": "yarn workspace contract deploy:rinkeby",
-    "start": "turbo run start",
     "types": "turbo run types",
     "prettier-fix": "prettier --write ."
   },

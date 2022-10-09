@@ -9,7 +9,7 @@ import type { MutationHook } from '@vercel/commerce/utils/types'
 import { doc, updateDoc } from 'firebase/firestore'
 
 import { firebaseDb } from '../firebase/clientApp'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import useSubmitCheckout, {
   UseSubmitCheckout,
 } from '@vercel/commerce/checkout/use-submit-checkout'
@@ -35,8 +35,6 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
 
       const { data: signer } = useSigner()
       const removeItemFromCart = useRemoveItem()
-      const { connect, connectors, error, isLoading, pendingConnector } =
-        useConnect()
       const { data: cartData, mutate: refreshCart } = useCart()
       const cartItem = cartData.lineItems
       const contract = useContract({

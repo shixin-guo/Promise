@@ -5,7 +5,7 @@ import fs from 'fs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 const bundlerHttpAddress = process.env.NEXT_PUBLIC_BUNDLER_HTTP_ADDRESS!
 const currency = 'ethereum'
-const privateKey = process.env.NEXT_PUBLIC_ARWEARE_ACCOUNT_PRIVATE_KEY
+const privateKey = process.env.op_account_private_key
 const bundlr = new Bundlr(bundlerHttpAddress, currency, privateKey, {
   providerUrl: process.env.NEXT_PUBLIC_INFURA_RPC_URL,
 })
