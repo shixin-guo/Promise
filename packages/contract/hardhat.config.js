@@ -1,4 +1,7 @@
 require('@nomiclabs/hardhat-waffle')
+require('dotenv').config({
+  path: '../../.env',
+})
 require('@openzeppelin/hardhat-upgrades')
 const fs = require('fs')
 
@@ -21,8 +24,8 @@ module.exports = {
     //   url: "https://rpc-mainnet.maticvigil.com",
     //   accounts: [process.env.privateKey]
     // }
-    rinkeby: {
-      url: `https://rinkeby.infura.io/v3/${process.env.infura_project_id}`,
+    goerli: {
+      url: `https://goerli.infura.io/v3/${process.env.infura_project_id}`,
       accounts: [process.env.op_account_private_key],
     },
   },

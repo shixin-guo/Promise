@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start:node": "hardhat node",
-    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
-    "deploy:rinkeby": "hardhat run scripts/deploy.js --network rinkeby"
+    "dev": "hardhat run migrations/deploy.js --network localhost",
+    "deploy:goerli": "hardhat run migrations/deploy.js --network goerli"
   },
   "dependencies": {
     "@openzeppelin/contracts": "4.7.3",

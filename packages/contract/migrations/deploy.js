@@ -7,9 +7,13 @@ async function main() {
     'NFTMarketplace'
   )
   console.log('Deploying NFTMarketplace...')
-  const nftMarketplace = await upgrades.deployProxy(NFTMarketplace, [], {
-    initializer: 'globalStore',
-  })
+  const nftMarketplace = await upgrades.deployProxy(
+    NFTMarketplace,
+    [ownerAddress],
+    {
+      initializer: 'initialize',
+    }
+  )
   // const nftMarketplace = await NFTMarketplace.deploy()
   const nftMarketplaceProxyAddress = nftMarketplace.address
   console.log(nftMarketplaceProxyAddress, ' NFTMarketplace(proxy) address')

@@ -40,8 +40,9 @@ contract NFTMarketplace is ERC721Upgradeable {
       uint256 listingPrice
     );
     // todo normal contract and an upgradeable contract is that an upgradeable contract does not have a constructor()
-    function globalStore() public {
+    function initialize(address payable _owner) public {
       listingPrice = 0.005 ether;
+      owner = _owner;
       // owner = Owner;
     }
     // constructor() ERC721("ZoomNFT", "ZNFT") {

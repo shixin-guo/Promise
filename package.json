@@ -11,10 +11,10 @@
   "scripts": {
     "build": "turbo run build --scope=marketplace --include-dependencies --no-deps",
     "dev": "turbo run dev",
-    "dev:web": "turbo run dev --scope=marketplace --include-dependencies --no-deps",
+    "dev:ui": "turbo run dev --scope=marketplace --include-dependencies --no-deps",
     "contract:start": "yarn workspace contract start:node",
-    "contract:local": "yarn workspace contract deploy:local",
-    "contract:rinkeby": "yarn workspace contract deploy:rinkeby",
+    "contract:deploy:local": "yarn workspace contract deploy:local",
+    "contract:goerli": "yarn workspace contract deploy:goerli",
     "types": "turbo run types",
     "prettier-fix": "prettier --write ."
   },
@@ -43,5 +43,8 @@
   "packageManager": "yarn@3.2.1",
   "installConfig": {
     "hoistingLimits": "**/@nomiclabs/**"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
   }
 }

@@ -68,3 +68,5 @@ generated/
 
 # SUBGRAPH file. Because it's generated per each network
 subgraph.yaml
+packages/contract/.openzeppelin/
+packages/contract/cache/
