@@ -13,7 +13,7 @@
     "dev": "turbo run dev",
     "dev:ui": "turbo run dev --scope=marketplace --include-dependencies --no-deps",
     "contract:start": "yarn workspace contract start:node",
-    "contract:deploy:local": "yarn workspace contract deploy:local",
+    "contract:local": "yarn workspace contract deploy:local",
     "contract:goerli": "yarn workspace contract deploy:goerli",
     "types": "turbo run types",
     "prettier-fix": "prettier --write ."

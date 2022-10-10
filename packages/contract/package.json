@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start:node": "hardhat node",
-    "dev": "hardhat run migrations/deploy.js --network localhost",
-    "deploy:goerli": "hardhat run migrations/deploy.js --network goerli"
+    "clean": "hardhat clean",
+    "deploy:local": "hardhat run script/deploy.js --network localhost",
+    "deploy:goerli": "hardhat run script/deploy.js --network goerli",
+    "deploy:sepolia": "hardhat run script/deploy.js --network sepolia"
   },
   "dependencies": {
     "@openzeppelin/contracts": "4.7.3",

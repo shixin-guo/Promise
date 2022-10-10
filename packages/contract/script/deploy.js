@@ -1,11 +1,11 @@
-const hardhat = require('hardhat')
+require('@openzeppelin/hardhat-upgrades')
+const { ethers, upgrades } = require('hardhat')
+
 const fs = require('fs')
 // todo
-const ownerAddress = '0xe7a30f9798966A088e59B51b62624125B1ec17a9'
+const ownerAddress = '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199'
 async function main() {
-  const NFTMarketplace = await hardhat.ethers.getContractFactory(
-    'NFTMarketplace'
-  )
+  const NFTMarketplace = await ethers.getContractFactory('NFTMarketplace')
   console.log('Deploying NFTMarketplace...')
   const nftMarketplace = await upgrades.deployProxy(
     NFTMarketplace,
@@ -14,7 +14,8 @@ async function main() {
       initializer: 'initialize',
     }
   )
-  // const nftMarketplace = await NFTMarketplace.deploy()
+
+  await nftMarketplace.deployed()
   const nftMarketplaceProxyAddress = nftMarketplace.address
   console.log(nftMarketplaceProxyAddress, ' NFTMarketplace(proxy) address')
 

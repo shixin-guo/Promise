@@ -28,6 +28,10 @@ module.exports = {
       url: `https://goerli.infura.io/v3/${process.env.infura_project_id}`,
       accounts: [process.env.op_account_private_key],
     },
+    sepolia: {
+      url: `https://sepolia.infura.io/v3/99e46b5ce4c64a9882f1303e95e62dd3`,
+      accounts: [process.env.op_account_private_key],
+    },
   },
   solidity: {
     version: '0.8.4',
