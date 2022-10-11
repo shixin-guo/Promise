@@ -1,8 +1,6 @@
 {
   "baseBranch": "origin/main",
   "globalDependencies": [".env"],
-
-  "globalEnv": ["FIREBASE_PRIVATE_KEY", "FIREBASE_CLIENT_EMAIL"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -23,8 +21,7 @@
       "outputs": []
     },
     "dev": {
-      "cache": true,
-      "env": ["FIREBASE_PRIVATE_KEY", "FIREBASE_CLIENT_EMAIL"]
+      "cache": true
     },
     "start": {
       "cache": true
