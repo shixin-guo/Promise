@@ -57,9 +57,9 @@ hh-cache/
 hh-cache-coverage/
 hh-cache-ref/
 temp-src-coverage/
-
-
-
+packages/contract/abi/@openzeppelin
+packages/contract/.openzeppelin/
+packages/contract/cache/
 
 ###########################
 generated/
@@ -68,5 +68,3 @@ generated/
 
 # SUBGRAPH file. Because it's generated per each network
 subgraph.yaml
-packages/contract/.openzeppelin/
-packages/contract/cache/

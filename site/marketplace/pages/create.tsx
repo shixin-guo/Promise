@@ -1,6 +1,6 @@
 import { default as NextImage } from 'next/image'
 import { useState, useRef } from 'react'
-import { ethers } from 'ethers'
+import { ethers, ContractInterface } from 'ethers'
 import { useContract, useSigner, useAccount } from 'wagmi'
 import { useRouter } from 'next/router'
 import { RcFile } from '@components/ui/Upload/interface'
@@ -9,7 +9,7 @@ import { Layout } from '@components/common'
 import { Button, Text, Container, Upload, Input } from '@components/ui'
 
 // todo whether need use online prod json and address
-import NFTMarketplace from '../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import NFTMarketplace from 'contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 
 const UploadIcon = '/image.svg'
 interface FormInputInterface {
@@ -43,9 +43,10 @@ export default function CreatePage() {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const { address } = useAccount()
   const { data: signer } = useSigner()
+  // todo ts
   const contract = useContract({
     addressOrName: process.env.NEXT_PUBLIC_MARKETPLACEADDRESS || '',
-    contractInterface: NFTMarketplace.abi,
+    contractInterface: NFTMarketplace as unknown as ContractInterface,
     signerOrProvider: signer,
   })
 

@@ -5,6 +5,7 @@
   "scripts": {
     "start:node": "hardhat node",
     "clean": "hardhat clean",
+    "export-abi": "hardhat export-abi",
     "deploy:local": "hardhat run script/deploy.js --network localhost",
     "deploy:goerli": "hardhat run script/deploy.js --network goerli",
     "deploy:sepolia": "hardhat run script/deploy.js --network sepolia"
@@ -14,7 +15,8 @@
     "@openzeppelin/contracts-upgradeable": "^4.8.0-rc.1",
     "@openzeppelin/hardhat-upgrades": "^1.21.0",
     "axios": "0.27.2",
-    "ethers": "5.7.1"
+    "ethers": "5.7.1",
+    "hardhat-abi-exporter": "^2.10.0"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "2.1.1",

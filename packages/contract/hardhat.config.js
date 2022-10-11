@@ -3,11 +3,18 @@ require('dotenv').config({
   path: '../../.env',
 })
 require('@openzeppelin/hardhat-upgrades')
+require('hardhat-abi-exporter')
 const fs = require('fs')
 
 module.exports = {
   defaultNetwork: 'hardhat',
   allowUnlimitedContractSize: true,
+  abiExporter: [
+    {
+      path: './abi',
+      format: 'json',
+    },
+  ],
   networks: {
     hardhat: {
       chainId: 1337,
