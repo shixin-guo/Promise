@@ -8,7 +8,7 @@ import { Info } from '@components/icons'
 import { Layout } from '@components/common'
 import { Button, Text, Container, Upload, Input } from '@components/ui'
 
-import NFTMarketplace from 'contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import NFTMarketplace from 'contract/abi/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 
 const UploadIcon = '/image.svg'
 interface FormInputInterface {

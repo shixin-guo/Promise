@@ -13,7 +13,7 @@ import { WagmiConfig, createClient, chain } from 'wagmi'
 const client = createClient(
   getDefaultClient({
     appName: 'ZNFT',
-    chains: [chain.localhost, chain.mainnet],
+    chains: [chain.localhost, chain.mainnet, chain.goerli, chain.sepolia],
   })
 )
 const Noop: FC = ({ children }) => <>{children}</>
