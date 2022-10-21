@@ -42,7 +42,7 @@
     "react-merge-refs": "1.1.0",
     "react-use-measure": "2.1.1",
     "tabbable": "5.3.3",
-    "tailwindcss": "3.0.24",
+    "tailwindcss": "3.2.1",
     "wagmi": "^0.5.9"
   },
   "devDependencies": {
