@@ -1,6 +1,12 @@
-type znfEntity @entity {
+type znftEntity @entity {
   id: ID!
   count: BigInt!
   owner: Bytes! # address
-  approved: Bytes! # address
+  fileUrl: String!
+  price: BigInt!
+}
+type UpdateListingPriceEntity @entity {
+  id: ID!
+  price: BigInt!
+  operator: Bytes! # address
 }

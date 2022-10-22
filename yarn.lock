@@ -238,7 +238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bundlr-network/client@npm:^0.8.8":
+"@bundlr-network/client@npm:^0.8.9":
   version: 0.8.9
   resolution: "@bundlr-network/client@npm:0.8.9"
   dependencies:
@@ -505,7 +505,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^1.3.2":
+"@eslint/eslintrc@npm:^1.3.3":
   version: 1.3.3
   resolution: "@eslint/eslintrc@npm:1.3.3"
   dependencies:
@@ -791,6 +791,34 @@ __metadata:
     bech32: 1.1.4
     ws: 7.4.6
   checksum: 673745e967e7215b46b7d3024f5ee02be975d6cf66b605f87a0e5beaa349d6d30c987165f98eceddaf7996f64a1ec414f0715f25fc3458aead6eea4c4820c399
+  languageName: node
+  linkType: hard
+
+"@ethersproject/providers@npm:5.7.2":
+  version: 5.7.2
+  resolution: "@ethersproject/providers@npm:5.7.2"
+  dependencies:
+    "@ethersproject/abstract-provider": ^5.7.0
+    "@ethersproject/abstract-signer": ^5.7.0
+    "@ethersproject/address": ^5.7.0
+    "@ethersproject/base64": ^5.7.0
+    "@ethersproject/basex": ^5.7.0
+    "@ethersproject/bignumber": ^5.7.0
+    "@ethersproject/bytes": ^5.7.0
+    "@ethersproject/constants": ^5.7.0
+    "@ethersproject/hash": ^5.7.0
+    "@ethersproject/logger": ^5.7.0
+    "@ethersproject/networks": ^5.7.0
+    "@ethersproject/properties": ^5.7.0
+    "@ethersproject/random": ^5.7.0
+    "@ethersproject/rlp": ^5.7.0
+    "@ethersproject/sha2": ^5.7.0
+    "@ethersproject/strings": ^5.7.0
+    "@ethersproject/transactions": ^5.7.0
+    "@ethersproject/web": ^5.7.0
+    bech32: 1.1.4
+    ws: 7.4.6
+  checksum: 1754c731a5ca6782ae9677f4a9cd8b6246c4ef21a966c9a01b133750f3c578431ec43ec254e699969c4a0f87e84463ded50f96b415600aabd37d2056aee58c19
   languageName: node
   linkType: hard
 
@@ -1531,9 +1559,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphprotocol/graph-cli@npm:0.34.0":
-  version: 0.34.0
-  resolution: "@graphprotocol/graph-cli@npm:0.34.0"
+"@graphprotocol/graph-cli@npm:0.35.0":
+  version: 0.35.0
+  resolution: "@graphprotocol/graph-cli@npm:0.35.0"
   dependencies:
     assemblyscript: 0.19.10
     binary-install-raw: 0.0.13
@@ -1562,16 +1590,16 @@ __metadata:
     yaml: 1.9.2
   bin:
     graph: bin/graph
-  checksum: 3d2e4dd05ae7acee55f0ba058e7eb64ccb145cffdf7a6798ae2221f20882d0371edb4c669fff0e7176448406e114c1374d10ea1aa4e487e28c576f710b075a4c
+  checksum: c50ac69ca84fe855b5ab24175cca605d71ba8ad91d8f8fe8c18e6a96e027a13aace3d3b2686162c8f1e89fbfe3796cdc62a18b6fc57e8adff9008f5a244d03f3
   languageName: node
   linkType: hard
 
-"@graphprotocol/graph-ts@npm:0.28.0":
-  version: 0.28.0
-  resolution: "@graphprotocol/graph-ts@npm:0.28.0"
+"@graphprotocol/graph-ts@npm:0.28.1":
+  version: 0.28.1
+  resolution: "@graphprotocol/graph-ts@npm:0.28.1"
   dependencies:
     assemblyscript: 0.19.10
-  checksum: f94a1abb65efa8024435b7564c9867e2663b6a2456c14e01904b9174f0d71ddc0b21472d56891c5c9ca4318abdc882a059b328be0f7b193b17a28a43d6726a0d
+  checksum: f8e7aa9a770bf9e6953b771d7e4a84ec997d692cffc24c4f9ca227f317c1181452c9939de05df23b774b4abfecc7dc1e2e31f5e75b3376070e5f38cbb7885927
   languageName: node
   linkType: hard
 
@@ -1632,13 +1660,6 @@ __metadata:
     debug: ^4.1.1
     minimatch: ^3.0.4
   checksum: 009d64be8d5bd098ff04e10af79e34f5633245250581fca032fac12a8667b2df8e7d169e69c05bff4d83ea3dd3c7d2d0e05ea9b94d89a7d092e26530caf6f8a3
-  languageName: node
-  linkType: hard
-
-"@humanwhocodes/gitignore-to-minimatch@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@humanwhocodes/gitignore-to-minimatch@npm:1.0.2"
-  checksum: aba5c40c9e3770ed73a558b0bfb53323842abfc2ce58c91d7e8b1073995598e6374456d38767be24ab6176915f0a8d8b23eaae5c85e2b488c0dccca6d795e2ad
   languageName: node
   linkType: hard
 
@@ -2158,90 +2179,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-darwin-arm64@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-darwin-arm64@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-darwin-arm64@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-darwin-arm64@npm:0.1.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-darwin-x64@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-darwin-x64@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-darwin-x64@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-darwin-x64@npm:0.1.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-freebsd-x64@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-freebsd-x64@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-freebsd-x64@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-freebsd-x64@npm:0.1.0"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-linux-arm64-gnu@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-linux-arm64-gnu@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-linux-arm64-gnu@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-linux-arm64-gnu@npm:0.1.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-linux-arm64-musl@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-linux-arm64-musl@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-linux-arm64-musl@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-linux-arm64-musl@npm:0.1.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-linux-x64-gnu@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-linux-x64-gnu@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-linux-x64-gnu@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-linux-x64-gnu@npm:0.1.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-linux-x64-musl@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-linux-x64-musl@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-linux-x64-musl@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-linux-x64-musl@npm:0.1.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-win32-arm64-msvc@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-win32-arm64-msvc@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-win32-arm64-msvc@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-win32-arm64-msvc@npm:0.1.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-win32-ia32-msvc@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-win32-ia32-msvc@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-win32-ia32-msvc@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-win32-ia32-msvc@npm:0.1.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer-win32-x64-msvc@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer-win32-x64-msvc@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer-win32-x64-msvc@npm:0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer-win32-x64-msvc@npm:0.1.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@nomicfoundation/solidity-analyzer@npm:^0.0.3":
-  version: 0.0.3
-  resolution: "@nomicfoundation/solidity-analyzer@npm:0.0.3"
+"@nomicfoundation/solidity-analyzer@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@nomicfoundation/solidity-analyzer@npm:0.1.0"
   dependencies:
-    "@nomicfoundation/solidity-analyzer-darwin-arm64": 0.0.3
-    "@nomicfoundation/solidity-analyzer-darwin-x64": 0.0.3
-    "@nomicfoundation/solidity-analyzer-freebsd-x64": 0.0.3
-    "@nomicfoundation/solidity-analyzer-linux-arm64-gnu": 0.0.3
-    "@nomicfoundation/solidity-analyzer-linux-arm64-musl": 0.0.3
-    "@nomicfoundation/solidity-analyzer-linux-x64-gnu": 0.0.3
-    "@nomicfoundation/solidity-analyzer-linux-x64-musl": 0.0.3
-    "@nomicfoundation/solidity-analyzer-win32-arm64-msvc": 0.0.3
-    "@nomicfoundation/solidity-analyzer-win32-ia32-msvc": 0.0.3
-    "@nomicfoundation/solidity-analyzer-win32-x64-msvc": 0.0.3
+    "@nomicfoundation/solidity-analyzer-darwin-arm64": 0.1.0
+    "@nomicfoundation/solidity-analyzer-darwin-x64": 0.1.0
+    "@nomicfoundation/solidity-analyzer-freebsd-x64": 0.1.0
+    "@nomicfoundation/solidity-analyzer-linux-arm64-gnu": 0.1.0
+    "@nomicfoundation/solidity-analyzer-linux-arm64-musl": 0.1.0
+    "@nomicfoundation/solidity-analyzer-linux-x64-gnu": 0.1.0
+    "@nomicfoundation/solidity-analyzer-linux-x64-musl": 0.1.0
+    "@nomicfoundation/solidity-analyzer-win32-arm64-msvc": 0.1.0
+    "@nomicfoundation/solidity-analyzer-win32-ia32-msvc": 0.1.0
+    "@nomicfoundation/solidity-analyzer-win32-x64-msvc": 0.1.0
   dependenciesMeta:
     "@nomicfoundation/solidity-analyzer-darwin-arm64":
       optional: true
@@ -2263,17 +2284,17 @@ __metadata:
       optional: true
     "@nomicfoundation/solidity-analyzer-win32-x64-msvc":
       optional: true
-  checksum: dd3e1e6aa75716eb22f256be06d6a4d808ef732f77c26b4489ae8f9508271799d555dff547cf037373b0974d892b4cc7f78bc4ea5027eee8561e4dd394fe61ac
+  checksum: 42dc5ba40e76bf14945fb6a423554bbbc6c99596675065d7d6f3c9a49ec39e37f3f77ecfedcf906fdb1bb33b033a5d92a90c645c886d6ff23334c8af8b14ff67
   languageName: node
   linkType: hard
 
-"@nomiclabs/hardhat-ethers@npm:2.1.1":
-  version: 2.1.1
-  resolution: "@nomiclabs/hardhat-ethers@npm:2.1.1"
+"@nomiclabs/hardhat-ethers@npm:2.2.0":
+  version: 2.2.0
+  resolution: "@nomiclabs/hardhat-ethers@npm:2.2.0"
   peerDependencies:
     ethers: ^5.0.0
     hardhat: ^2.0.0
-  checksum: c702ffcd2830cdd4eda90e0f6ee191be327bb4c0293d90631eb7e44442662ff4f7282725f0e2f8f456cd2a3dbf7590a682ef31f5c6c141ba6b562870a02e1523
+  checksum: 5ad702c2b784eb446882278abdba2c284eb27d09740c2161f9336f27d607f17fff3ad7cf7f814835302efefb6869322d0e69c87a08164f2d4743181d2fd6d6b0
   languageName: node
   linkType: hard
 
@@ -3092,126 +3113,126 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-android-arm-eabi@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-android-arm-eabi@npm:1.3.4"
+"@swc/core-android-arm-eabi@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-android-arm-eabi@npm:1.3.9"
   dependencies:
     "@swc/wasm": 1.2.122
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-android-arm64@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-android-arm64@npm:1.3.4"
+"@swc/core-android-arm64@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-android-arm64@npm:1.3.9"
   dependencies:
     "@swc/wasm": 1.2.130
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-darwin-arm64@npm:1.3.4"
+"@swc/core-darwin-arm64@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-darwin-arm64@npm:1.3.9"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-darwin-x64@npm:1.3.4"
+"@swc/core-darwin-x64@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-darwin-x64@npm:1.3.9"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-freebsd-x64@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-freebsd-x64@npm:1.3.4"
+"@swc/core-freebsd-x64@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-freebsd-x64@npm:1.3.9"
   dependencies:
     "@swc/wasm": 1.2.130
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.4"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.9"
   dependencies:
     "@swc/wasm": 1.2.130
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.4"
+"@swc/core-linux-arm64-gnu@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.9"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.4"
+"@swc/core-linux-arm64-musl@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.9"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.4"
+"@swc/core-linux-x64-gnu@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.9"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.4"
+"@swc/core-linux-x64-musl@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.9"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.4"
+"@swc/core-win32-arm64-msvc@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.9"
   dependencies:
     "@swc/wasm": 1.2.130
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.4"
+"@swc/core-win32-ia32-msvc@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.9"
   dependencies:
     "@swc/wasm": 1.2.130
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.4"
+"@swc/core-win32-x64-msvc@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.9"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@swc/core@npm:1.3.4"
+"@swc/core@npm:1.3.9":
+  version: 1.3.9
+  resolution: "@swc/core@npm:1.3.9"
   dependencies:
-    "@swc/core-android-arm-eabi": 1.3.4
-    "@swc/core-android-arm64": 1.3.4
-    "@swc/core-darwin-arm64": 1.3.4
-    "@swc/core-darwin-x64": 1.3.4
-    "@swc/core-freebsd-x64": 1.3.4
-    "@swc/core-linux-arm-gnueabihf": 1.3.4
-    "@swc/core-linux-arm64-gnu": 1.3.4
-    "@swc/core-linux-arm64-musl": 1.3.4
-    "@swc/core-linux-x64-gnu": 1.3.4
-    "@swc/core-linux-x64-musl": 1.3.4
-    "@swc/core-win32-arm64-msvc": 1.3.4
-    "@swc/core-win32-ia32-msvc": 1.3.4
-    "@swc/core-win32-x64-msvc": 1.3.4
+    "@swc/core-android-arm-eabi": 1.3.9
+    "@swc/core-android-arm64": 1.3.9
+    "@swc/core-darwin-arm64": 1.3.9
+    "@swc/core-darwin-x64": 1.3.9
+    "@swc/core-freebsd-x64": 1.3.9
+    "@swc/core-linux-arm-gnueabihf": 1.3.9
+    "@swc/core-linux-arm64-gnu": 1.3.9
+    "@swc/core-linux-arm64-musl": 1.3.9
+    "@swc/core-linux-x64-gnu": 1.3.9
+    "@swc/core-linux-x64-musl": 1.3.9
+    "@swc/core-win32-arm64-msvc": 1.3.9
+    "@swc/core-win32-ia32-msvc": 1.3.9
+    "@swc/core-win32-x64-msvc": 1.3.9
   dependenciesMeta:
     "@swc/core-android-arm-eabi":
       optional: true
@@ -3241,7 +3262,7 @@ __metadata:
       optional: true
   bin:
     swcx: run_swcx.js
-  checksum: 24b4ca4a096fea53056ed227a8aa09aa38cfe5eef344451397e66a2d183ded119872cf4fc8c671c0a6eb34985537cbf8d8a7e742b9e27dad0735426693d11dc8
+  checksum: 761918f1bca5d494eaaafd49720717e3b3071df5bc6ef8b298a778ba4e4d20bc5a78c939a0b1c98623f9fe23e535a16a359179b72390cd1f5cbc891ea53c22fa
   languageName: node
   linkType: hard
 
@@ -4423,10 +4444,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zoom/appssdk@npm:^0.16.5":
-  version: 0.16.5
-  resolution: "@zoom/appssdk@npm:0.16.5"
-  checksum: 1124e624a360fe41b54f56fc9280d7e3f9704c46dec4a0beb564824300f7e9e895b9e6c52dc4b721c72ca5e111611b8867ea432132c2b20d9a37ec2775d60791
+"@zoom/appssdk@npm:^0.16.6":
+  version: 0.16.6
+  resolution: "@zoom/appssdk@npm:0.16.6"
+  checksum: 73802252d6ee186b9b75f86d821c8f4ad7d6252be839298e66339891f4cc7b8b3c89451ddbc6b700b8b6c46a260fa5255aef372b7687dbc41bdd7cf86824b4a5
   languageName: node
   linkType: hard
 
@@ -6543,17 +6564,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "contract@workspace:packages/contract"
   dependencies:
-    "@nomiclabs/hardhat-ethers": 2.1.1
+    "@nomiclabs/hardhat-ethers": 2.2.0
     "@nomiclabs/hardhat-waffle": 2.0.3
     "@openzeppelin/contracts": 4.7.3
     "@openzeppelin/contracts-upgradeable": ^4.8.0-rc.1
     "@openzeppelin/hardhat-upgrades": ^1.21.0
     autoprefixer: 10.4.11
     axios: 0.27.2
-    eslint: 8.24.0
-    ethers: 5.7.1
-    hardhat: 2.11.2
-    hardhat-abi-exporter: ^2.10.0
+    eslint: 8.25.0
+    ethers: 5.7.2
+    hardhat: 2.12.0
+    hardhat-abi-exporter: ^2.10.1
     postcss: 8.4.17
   languageName: unknown
   linkType: soft
@@ -7706,13 +7727,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.24.0":
-  version: 8.24.0
-  resolution: "eslint@npm:8.24.0"
+"eslint@npm:8.25.0":
+  version: 8.25.0
+  resolution: "eslint@npm:8.25.0"
   dependencies:
-    "@eslint/eslintrc": ^1.3.2
+    "@eslint/eslintrc": ^1.3.3
     "@humanwhocodes/config-array": ^0.10.5
-    "@humanwhocodes/gitignore-to-minimatch": ^1.0.2
     "@humanwhocodes/module-importer": ^1.0.1
     ajv: ^6.10.0
     chalk: ^4.0.0
@@ -7751,7 +7771,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: ca293ce7116599b742d7ab4d43db469beec22f40dd272092d809498be3cff3a7c567769f9763bdf6799aac13dd53447b93a99629b7b54092783046eb57eaced6
+  checksum: 7acf2693b522b573657b53d2245b5522d3a131e4224b1cbf01e2c3579632fdbf62599284f68bc483e6e4eba23ae3643c9544744e0214a86e727cc361cedcd0fa
   languageName: node
   linkType: hard
 
@@ -8016,7 +8036,45 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethers@npm:5.7.1, ethers@npm:^5.5.1":
+"ethers@npm:5.7.2":
+  version: 5.7.2
+  resolution: "ethers@npm:5.7.2"
+  dependencies:
+    "@ethersproject/abi": 5.7.0
+    "@ethersproject/abstract-provider": 5.7.0
+    "@ethersproject/abstract-signer": 5.7.0
+    "@ethersproject/address": 5.7.0
+    "@ethersproject/base64": 5.7.0
+    "@ethersproject/basex": 5.7.0
+    "@ethersproject/bignumber": 5.7.0
+    "@ethersproject/bytes": 5.7.0
+    "@ethersproject/constants": 5.7.0
+    "@ethersproject/contracts": 5.7.0
+    "@ethersproject/hash": 5.7.0
+    "@ethersproject/hdnode": 5.7.0
+    "@ethersproject/json-wallets": 5.7.0
+    "@ethersproject/keccak256": 5.7.0
+    "@ethersproject/logger": 5.7.0
+    "@ethersproject/networks": 5.7.1
+    "@ethersproject/pbkdf2": 5.7.0
+    "@ethersproject/properties": 5.7.0
+    "@ethersproject/providers": 5.7.2
+    "@ethersproject/random": 5.7.0
+    "@ethersproject/rlp": 5.7.0
+    "@ethersproject/sha2": 5.7.0
+    "@ethersproject/signing-key": 5.7.0
+    "@ethersproject/solidity": 5.7.0
+    "@ethersproject/strings": 5.7.0
+    "@ethersproject/transactions": 5.7.0
+    "@ethersproject/units": 5.7.0
+    "@ethersproject/wallet": 5.7.0
+    "@ethersproject/web": 5.7.1
+    "@ethersproject/wordlists": 5.7.0
+  checksum: b7c08cf3e257185a7946117dbbf764433b7ba0e77c27298dec6088b3bc871aff711462b0621930c56880ff0a7ceb8b1d3a361ffa259f93377b48e34107f62553
+  languageName: node
+  linkType: hard
+
+"ethers@npm:^5.5.1":
   version: 5.7.1
   resolution: "ethers@npm:5.7.1"
   dependencies:
@@ -9271,21 +9329,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hardhat-abi-exporter@npm:^2.10.0":
-  version: 2.10.0
-  resolution: "hardhat-abi-exporter@npm:2.10.0"
+"hardhat-abi-exporter@npm:^2.10.1":
+  version: 2.10.1
+  resolution: "hardhat-abi-exporter@npm:2.10.1"
   dependencies:
     "@ethersproject/abi": ^5.5.0
     delete-empty: ^3.0.0
   peerDependencies:
     hardhat: ^2.0.0
-  checksum: 9f32e097b256ea8308d9e738594c88895db387f17b6f92924bad7de2f3209ca26754a8519940578622f9e8df7e19bd1e4e47058c0cef8d100d4ad2977650f5e7
+  checksum: 5dba9ebb7bd1002311b504a87cc0f9197ffe5066a61d27073f49bde2adcd080e94ef9e2e696e4fb26c9731df1bed76967e1e0428742af36b37d9c70f9944c98b
   languageName: node
   linkType: hard
 
-"hardhat@npm:2.11.2":
-  version: 2.11.2
-  resolution: "hardhat@npm:2.11.2"
+"hardhat@npm:2.12.0":
+  version: 2.12.0
+  resolution: "hardhat@npm:2.12.0"
   dependencies:
     "@ethersproject/abi": ^5.1.2
     "@metamask/eth-sig-util": ^4.0.0
@@ -9299,7 +9357,7 @@ __metadata:
     "@nomicfoundation/ethereumjs-tx": ^4.0.0
     "@nomicfoundation/ethereumjs-util": ^8.0.0
     "@nomicfoundation/ethereumjs-vm": ^6.0.0
-    "@nomicfoundation/solidity-analyzer": ^0.0.3
+    "@nomicfoundation/solidity-analyzer": ^0.1.0
     "@sentry/node": ^5.18.1
     "@types/bn.js": ^5.1.0
     "@types/lru-cache": ^5.1.0
@@ -9347,7 +9405,7 @@ __metadata:
       optional: true
   bin:
     hardhat: internal/cli/cli.js
-  checksum: 6fc289931c970a16fe09f7aa2b14f8b4f4a63304895be7e89112d4065cfdb15887d90cdd827d10f413fb5cc1ca09fb0b512b7ffc79dc6bc121368bda70dffb4a
+  checksum: 28ae9e7d6cf8e66167a94efbabd5ac4c086f0c05a77b190162906f1dd46b4971eb2eb94412b1eaee5626ab2ec6431a94feae15348b10ba10c1a4b7efcef789ec
   languageName: node
   linkType: hard
 
@@ -11783,7 +11841,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "marketplace@workspace:site/marketplace"
   dependencies:
-    "@bundlr-network/client": ^0.8.8
+    "@bundlr-network/client": ^0.8.9
     "@next/bundle-analyzer": 12.3.1
     "@radix-ui/react-dropdown-menu": 0.1.6
     "@react-spring/web": 9.5.4
@@ -11797,7 +11855,7 @@ __metadata:
     "@types/react": 17.0.50
     "@vercel/commerce": ^0.0.1
     "@vercel/commerce-local": ^0.0.1
-    "@zoom/appssdk": ^0.16.5
+    "@zoom/appssdk": ^0.16.6
     autoprefixer: 10.4.11
     body-scroll-lock: 4.0.0-beta.0
     circular-dependency-plugin: ^5.2.2
@@ -11805,10 +11863,10 @@ __metadata:
     connectkit: ^0.0.2
     core-js: ^3.25.2
     email-validator: 2.0.4
-    eslint: 8.24.0
+    eslint: 8.25.0
     eslint-config-next: 12.3.1
     eslint-config-prettier: 8.5.0
-    ethers: 5.7.1
+    ethers: 5.7.2
     formidable: ^2.0.1
     js-cookie: 3.0.1
     keen-slider: 6.8.2
@@ -11830,7 +11888,7 @@ __metadata:
     tabbable: 5.3.3
     tailwindcss: 3.1.8
     typescript: 4.8.3
-    wagmi: ^0.6.7
+    wagmi: ^0.6.8
   languageName: unknown
   linkType: soft
 
@@ -15808,8 +15866,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "subgraph@workspace:packages/subgraph"
   dependencies:
-    "@graphprotocol/graph-cli": 0.34.0
-    "@graphprotocol/graph-ts": 0.28.0
+    "@graphprotocol/graph-cli": 0.35.0
+    "@graphprotocol/graph-ts": 0.28.1
     matchstick-as: 0.5.0
   languageName: unknown
   linkType: soft
@@ -16024,7 +16082,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "taskr-swc@workspace:packages/taskr-swc"
   dependencies:
-    "@swc/core": 1.3.4
+    "@swc/core": 1.3.9
     prettier: 2.7.1
   languageName: unknown
   linkType: soft
@@ -16355,58 +16413,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.5.5":
-  version: 1.5.5
-  resolution: "turbo-darwin-64@npm:1.5.5"
+"turbo-darwin-64@npm:1.5.6":
+  version: 1.5.6
+  resolution: "turbo-darwin-64@npm:1.5.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.5.5":
-  version: 1.5.5
-  resolution: "turbo-darwin-arm64@npm:1.5.5"
+"turbo-darwin-arm64@npm:1.5.6":
+  version: 1.5.6
+  resolution: "turbo-darwin-arm64@npm:1.5.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.5.5":
-  version: 1.5.5
-  resolution: "turbo-linux-64@npm:1.5.5"
+"turbo-linux-64@npm:1.5.6":
+  version: 1.5.6
+  resolution: "turbo-linux-64@npm:1.5.6"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.5.5":
-  version: 1.5.5
-  resolution: "turbo-linux-arm64@npm:1.5.5"
+"turbo-linux-arm64@npm:1.5.6":
+  version: 1.5.6
+  resolution: "turbo-linux-arm64@npm:1.5.6"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.5.5":
-  version: 1.5.5
-  resolution: "turbo-windows-64@npm:1.5.5"
+"turbo-windows-64@npm:1.5.6":
+  version: 1.5.6
+  resolution: "turbo-windows-64@npm:1.5.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:1.5.5":
-  version: 1.5.5
-  resolution: "turbo-windows-arm64@npm:1.5.5"
+"turbo-windows-arm64@npm:1.5.6":
+  version: 1.5.6
+  resolution: "turbo-windows-arm64@npm:1.5.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:1.5.5":
-  version: 1.5.5
-  resolution: "turbo@npm:1.5.5"
+"turbo@npm:1.5.6":
+  version: 1.5.6
+  resolution: "turbo@npm:1.5.6"
   dependencies:
-    turbo-darwin-64: 1.5.5
-    turbo-darwin-arm64: 1.5.5
-    turbo-linux-64: 1.5.5
-    turbo-linux-arm64: 1.5.5
-    turbo-windows-64: 1.5.5
-    turbo-windows-arm64: 1.5.5
+    turbo-darwin-64: 1.5.6
+    turbo-darwin-arm64: 1.5.6
+    turbo-linux-64: 1.5.6
+    turbo-linux-arm64: 1.5.6
+    turbo-windows-64: 1.5.6
+    turbo-windows-arm64: 1.5.6
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -16422,7 +16480,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: d804a624ea07277bbd0e9fb5af20538f184a1beefe8d6a9483b24dabc784d3a4ce526430d2ff47cfcc7cd1cfc66f80eef89ea289889c95036c3669c171ffee14
+  checksum: 5a243f0113fb886c90e8d7b4e94b590acef9813b1cfb13330b3d62c2b09e89647b5aabbe3ecf80d5fe3d8c1ee74ad4eb81f25de30ef62eb1c8a15c23383bd943
   languageName: node
   linkType: hard
 
@@ -16843,7 +16901,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wagmi@npm:^0.6.7":
+"wagmi@npm:^0.6.8":
   version: 0.6.8
   resolution: "wagmi@npm:0.6.8"
   dependencies:
@@ -17384,7 +17442,7 @@ __metadata:
     husky: 8.0.1
     lint-staged: 12.5.0
     prettier: 2.7.1
-    turbo: 1.5.5
+    turbo: 1.5.6
   languageName: unknown
   linkType: soft
 
