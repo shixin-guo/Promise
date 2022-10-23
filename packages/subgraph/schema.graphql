@@ -1,12 +1,27 @@
-type znftEntity @entity {
+type NFT @entity {
   id: ID!
   count: BigInt!
-  owner: Bytes! # address
+  creator: User!
+  owner: User!
   fileUrl: String!
   price: BigInt!
+  sold: Boolean!
+  specs: String
+  createdAt: BigInt!
+  updatedAt: BigInt
 }
-type UpdateListingPriceEntity @entity {
+type GlobalData @entity {
   id: ID!
-  price: BigInt!
-  operator: Bytes! # address
+  listingPrice: BigInt!
+  listingPriceUpdateAt: BigInt!
+}
+
+type User @entity {
+  id: ID!
+  tokens: [NFT!] @derivedFrom(field: "owner")
+  created: [NFT!] @derivedFrom(field: "creator")
+  tokensCount: BigInt!
+  createdCount: BigInt!
+  firstJoinTime: BigInt!
+  lastActivityTime: BigInt!
 }

@@ -1,81 +1,75 @@
-import { BigInt } from '@graphprotocol/graph-ts'
+import { BigInt, log } from '@graphprotocol/graph-ts'
 import {
-  NFTMarketplace,
-  Approval,
-  ApprovalForAll,
   MarketItemCreated,
+  BuyMarketItem,
+  ResellMarketItem,
   UpdateListingPrice,
-  Transfer,
 } from '../generated/NFTMarketplace/NFTMarketplace'
-import { znftEntity, UpdateListingPriceEntity } from '../generated/schema'
+import { getGlobalData } from './helper/global'
+import { NFT, User } from '../generated/schema'
 
-export function handleApproval(event: Approval): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let entity = znftEntity.load(event.transaction.from.toHex())
-
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (!entity) {
-    entity = new znftEntity(event.transaction.from.toHex())
-
-    // Entity fields can be set using simple assignments
-    entity.count = BigInt.fromI32(0)
-  }
-
-  // BigInt and BigDecimal math are supported
-  entity.count = entity.count + BigInt.fromI32(1)
-
-  // Entity fields can be set based on event parameters
-  entity.owner = event.params.owner
-
-  // Entities can be written to the store with `.save()`
-  entity.save()
-
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract.balanceOf(...)
-  // - contract.fetchItemsListed(...)
-  // - contract.fetchMarketItems(...)
-  // - contract.fetchMyNFTs(...)
-  // - contract.getApproved(...)
-  // - contract.getCreateTokenId(...)
-  // - contract.getListingPrice(...)
-  // - contract.isApprovedForAll(...)
-  // - contract.name(...)
-  // - contract.ownerOf(...)
-  // - contract.supportsInterface(...)
-  // - contract.symbol(...)
-  // - contract.tokenURI(...)
+export function handleUpdateListingPrice(event: UpdateListingPrice): void {
+  let GlobalData = getGlobalData()
+  GlobalData.listingPrice = event.params.listingPrice
+  GlobalData.listingPriceUpdateAt = event.block.timestamp as BigInt
 }
-
-export function handleApprovalForAll(event: ApprovalForAll): void {}
 
 export function handleMarketItemCreated(event: MarketItemCreated): void {
-  let entity = znftEntity.load(event.transaction.from.toHex())
+  const tokenId = event.params.tokenId.toHex()
+  const creatorAddress = event.params.seller.toHexString()
+  const timestamp = event.block.timestamp as BigInt
+  let entity = NFT.load(tokenId)
   if (!entity) {
-    entity = new znftEntity(event.transaction.from.toHex())
-    entity.count = BigInt.fromI32(0)
+    entity = new NFT(tokenId)
+    entity.owner = event.params.owner.toHex()
+    entity.price = event.params.price
+    entity.fileUrl = event.params.fileUrl
+    entity.sold = event.params.sold
+    entity.creator = creatorAddress
+    entity.createdAt = timestamp
+    entity.updatedAt = timestamp
+    log.log(event.transaction.hash)
   }
-  entity.count = entity.count + BigInt.fromI32(1)
-  entity.owner = event.params.owner
+  entity.save()
+  let user = User.load(creatorAddress)
+  if (!user) {
+    user = new User(creatorAddress)
+    user.firstJoinTime = timestamp
+  }
+  user.lastActivityTime = timestamp
+  user.save()
+}
+export function handleBuyMarketItem(event: BuyMarketItem): void {
+  const tokenId = event.params.tokenId.toHex()
+  const buyerAddress = event.params.seller.toHexString()
+  const timestamp = event.block.timestamp as BigInt
+  let entity = NFT.load(tokenId)
+  if (!entity) {
+    entity = new NFT(tokenId)
+  }
+  entity.owner = event.params.owner.toHexString()
+  entity.sold = event.params.sold
+  entity.updatedAt = timestamp
+  entity.save()
+  let user = User.load(buyerAddress)
+  if (!user) {
+    user = new User(buyerAddress)
+    user.firstJoinTime = timestamp
+  }
+  user.lastActivityTime = timestamp
+  user.save()
+}
+export function handlerResellMarketItem(event: ResellMarketItem): void {
+  const tokenId = event.params.tokenId.toHex()
+  const resellerAddress = event.params.seller.toHexString()
+  const timestamp = event.block.timestamp as BigInt
+  let entity = NFT.load(tokenId)
+  if (!entity) {
+    entity = new NFT(tokenId)
+  }
+  entity.sold = event.params.sold
   entity.price = event.params.price
-  entity.fileUrl = event.params.fileUrl
+  entity.owner = event.params.owner.toHexString()
+  entity.updatedAt = timestamp
   entity.save()
 }
-
-export function handleTransfer(event: Transfer): void {}
-export function HandleUpdateListingPrice(event: UpdateListingPrice): void {}
