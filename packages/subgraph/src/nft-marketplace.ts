@@ -28,7 +28,7 @@ export function handleMarketItemCreated(event: MarketItemCreated): void {
     entity.creator = creatorAddress
     entity.createdAt = timestamp
     entity.updatedAt = timestamp
-    log.log(event.transaction.hash)
+    log.info('create nft hash {}', [event.transaction.hash.toHexString()])
   }
   entity.save()
   let user = User.load(creatorAddress)
