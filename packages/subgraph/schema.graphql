@@ -18,10 +18,8 @@ type GlobalData @entity {
 
 type User @entity {
   id: ID!
-  tokens: [NFT!] @derivedFrom(field: "owner")
-  created: [NFT!] @derivedFrom(field: "creator")
-  tokensCount: BigInt!
-  createdCount: BigInt!
+  ownedToken: [NFT!] @derivedFrom(field: "owner")
+  createdToken: [NFT!] @derivedFrom(field: "creator")
   firstJoinTime: BigInt!
   lastActivityTime: BigInt!
 }

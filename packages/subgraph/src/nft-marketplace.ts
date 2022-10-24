@@ -21,7 +21,7 @@ export function handleMarketItemCreated(event: MarketItemCreated): void {
   let entity = NFT.load(tokenId)
   if (!entity) {
     entity = new NFT(tokenId)
-    entity.owner = event.params.owner.toHex()
+    entity.owner = event.params.owner.toHexString()
     entity.price = event.params.price
     entity.fileUrl = event.params.fileUrl
     entity.sold = event.params.sold
@@ -61,7 +61,6 @@ export function handleBuyMarketItem(event: BuyMarketItem): void {
 }
 export function handlerResellMarketItem(event: ResellMarketItem): void {
   const tokenId = event.params.tokenId.toHex()
-  const resellerAddress = event.params.seller.toHexString()
   const timestamp = event.block.timestamp as BigInt
   let entity = NFT.load(tokenId)
   if (!entity) {
