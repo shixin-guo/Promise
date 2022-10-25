@@ -29,10 +29,6 @@ export function handleMarketItemCreated(event: MarketItemCreated): void {
     entity.creator = creatorAddress
     entity.createdAt = timestamp
     entity.updatedAt = timestamp
-    log.info('create owner hash {} {}', [
-      event.params.owner.toHexString(),
-      event.params.seller.toHexString(),
-    ])
   }
   entity.save()
   let user = User.load(creatorAddress)
@@ -83,9 +79,6 @@ export function handlerResellMarketItem(event: ResellMarketItem): void {
   entity.sold = event.params.sold
   entity.price = event.params.price
   entity.owner = event.params.owner.toHexString()
-  log.info('handlerResellMarketItem owner hash {}', [
-    event.params.owner.toHexString(),
-  ])
   entity.updatedAt = timestamp
   entity.save()
 }
