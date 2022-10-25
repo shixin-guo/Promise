@@ -1,0 +1,24 @@
+type NFT @entity {
+  id: ID!
+  creator: User!
+  owner: User!
+  fileUrl: String!
+  price: BigInt!
+  sold: Boolean!
+  specs: String
+  createdAt: BigInt!
+  updatedAt: BigInt
+}
+type GlobalData @entity {
+  id: ID!
+  listingPrice: BigInt!
+  listingPriceUpdateAt: BigInt!
+}
+
+type User @entity {
+  id: ID!
+  ownedToken: [NFT!] @derivedFrom(field: "owner")
+  createdToken: [NFT!] @derivedFrom(field: "creator")
+  firstJoinTime: BigInt!
+  lastActivityTime: BigInt!
+}

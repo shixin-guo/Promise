@@ -1,32 +1,28 @@
 {
-  "name": "commerce",
+  "name": "znft-website",
   "license": "MIT",
   "private": true,
   "workspaces": {
     "packages": [
       "packages/*",
       "site/*"
-    ],
-    "nohoist": [
-      "**/@nomiclabs/**"
     ]
   },
   "scripts": {
-    "build": "turbo run build --scope=next-commerce --include-dependencies --no-deps",
+    "build": "turbo run build --scope=marketplace --include-dependencies --no-deps",
     "dev": "turbo run dev",
-    "dev:web": "turbo run dev --scope=next-commerce --include-dependencies --no-deps",
-    "start:node": "yarn workspace contract start:node",
-    "dev:deploy": "yarn workspace contract deploy:local",
-    "test:deploy": "yarn workspace contract deploy:rinkeby",
-    "start": "turbo run start",
+    "dev:ui": "turbo run dev --scope=marketplace --include-dependencies --no-deps",
+    "contract:start": "yarn workspace contract start:node",
+    "contract:local": "yarn workspace contract deploy:local",
+    "contract:goerli": "yarn workspace contract deploy:goerli",
     "types": "turbo run types",
     "prettier-fix": "prettier --write ."
   },
   "devDependencies": {
-    "husky": "7.0.4",
-    "lint-staged": "12.4.1",
+    "husky": "8.0.1",
+    "lint-staged": "12.5.0",
     "prettier": "2.7.1",
-    "turbo": "1.3.1"
+    "turbo": "1.5.6"
   },
   "husky": {
     "hooks": {
@@ -44,5 +40,11 @@
       "git add"
     ]
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "installConfig": {
+    "hoistingLimits": "**/@nomiclabs/**"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
 }

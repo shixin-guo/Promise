@@ -4,7 +4,7 @@ import usePrice from '@framework/product/use-price'
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { Button, Text, Container } from '@components/ui'
-import { Bag, Cross, Check, MapPin, CreditCard } from '@components/icons'
+import { Bag, Cross, Check, CreditCard } from '@components/icons'
 import { CartItem } from '@components/cart'
 import { useUI } from '@components/ui/context'
 
@@ -113,11 +113,10 @@ export default function Cart() {
       </div>
       <div className="lg:col-span-5">
         <div className="flex-shrink-0 px-4 py-24 sm:px-6">
-          {process.env.COMMERCE_CUSTOMCHECKOUT_ENABLED && (
-            <>
-              {/* Shipping Address */}
-              {/* Only available with customCheckout set to true - Meaning that the provider does offer checkout functionality. */}
-              {/* <div className="rounded-md border border-accent-2 px-6 py-6 mb-4 text-center flex items-center justify-center cursor-pointer hover:border-accent-4">
+          <>
+            {/* Shipping Address */}
+            {/* Only available with customCheckout set to true - Meaning that the provider does offer checkout functionality. */}
+            {/* <div className="rounded-md border border-accent-2 px-6 py-6 mb-4 text-center flex items-center justify-center cursor-pointer hover:border-accent-4">
                 <div className="mr-5">
                   <MapPin />
                 </div>
@@ -129,19 +128,18 @@ export default function Cart() {
                   </span>
                 </div>
               </div> */}
-              {/* Payment Method */}
-              {/* Only available with customCheckout set to true - Meaning that the provider does offer checkout functionality. */}
-              <div className="rounded-md border border-accent-2 px-6 py-6 mb-4 text-center flex items-center justify-center cursor-pointer hover:border-accent-4">
-                <div className="mr-5">
-                  <CreditCard />
-                </div>
-                <div className="text-sm text-center font-medium">
-                  <span className="uppercase">+ Add Payment Method</span>
-                  {/* <span>VISA #### #### #### 2345</span> */}
-                </div>
+            {/* Payment Method */}
+            {/* Only available with customCheckout set to true - Meaning that the provider does offer checkout functionality. */}
+            <div className="rounded-md border border-accent-2 px-6 py-6 mb-4 text-center flex items-center justify-center cursor-pointer hover:border-accent-4">
+              <div className="mr-5">
+                <CreditCard />
               </div>
-            </>
-          )}
+              <div className="text-sm text-center font-medium">
+                <span className="uppercase">+ Add Payment Method</span>
+                {/* <span>VISA #### #### #### 2345</span> */}
+              </div>
+            </div>
+          </>
           <div className="border-t border-accent-2">
             <ul className="py-3">
               <li className="flex justify-between py-1">
@@ -170,15 +168,9 @@ export default function Cart() {
                 </Button>
               ) : (
                 <>
-                  {process.env.COMMERCE_CUSTOMCHECKOUT_ENABLED ? (
-                    <Button Component="a" width="100%" onClick={goToCheckout}>
-                      Proceed to Checkout ({total})
-                    </Button>
-                  ) : (
-                    <Button href="/checkout" Component="a" width="100%">
-                      Proceed to Checkout
-                    </Button>
-                  )}
+                  <Button Component="a" width="100%" onClick={goToCheckout}>
+                    Proceed to Checkout ({total})
+                  </Button>
                 </>
               )}
             </div>

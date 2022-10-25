@@ -1,14 +1,12 @@
 import { ethers } from 'ethers'
 import { useConnect, useContract, useSigner, useAccount } from 'wagmi'
-// todo put into a util file
-// todo whether need use online prod json and address
-import NFTMarketplace from '../../../../packages/contract/artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import NFTMarketplace from 'contract/abi/contracts/NFTMarketplace.sol/NFTMarketplace.json'
 import type { SubmitCheckoutHook } from '@vercel/commerce/types/checkout'
 import type { MutationHook } from '@vercel/commerce/utils/types'
 import { doc, updateDoc } from 'firebase/firestore'
 
 import { firebaseDb } from '../firebase/clientApp'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import useSubmitCheckout, {
   UseSubmitCheckout,
 } from '@vercel/commerce/checkout/use-submit-checkout'
@@ -34,13 +32,11 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
 
       const { data: signer } = useSigner()
       const removeItemFromCart = useRemoveItem()
-      const { connect, connectors, error, isLoading, pendingConnector } =
-        useConnect()
       const { data: cartData, mutate: refreshCart } = useCart()
       const cartItem = cartData.lineItems
       const contract = useContract({
         addressOrName: process.env.NEXT_PUBLIC_MARKETPLACEADDRESS || '',
-        contractInterface: NFTMarketplace.abi,
+        contractInterface: NFTMarketplace,
         signerOrProvider: signer,
       })
       return useCallback(
@@ -50,20 +46,17 @@ export const handler: MutationHook<SubmitCheckoutHook> = {
               nft.variant.price.toString(),
               'ether'
             )
-            debugger
-            const transaction = await contract.createMarketSale(nft.tokenID, {
+            const transaction = await contract.buyToken(nft.tokenID, {
               value: price,
             })
             await transaction.wait()
             await await fetch(nft)
             await removeItemFromCart(nft)
-            debugger
             const washingtonRef = doc(firebaseDb, 'collections', nft.id)
             await updateDoc(washingtonRef, {
               arthur: address,
             })
             router.push('/orders')
-            console.log(111)
           })
           return {}
         },

@@ -48,13 +48,11 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
             {!!product.images.length && (
               <ZoomVirtualBackgroundBtn url={product.images[0].url} />
             )}
-            {process.env.COMMERCE_WISHLIST_ENABLED && (
-              <WishlistButton
-                className={s.wishlistButton}
-                productId={product.id}
-                variant={product.variants[0]}
-              />
-            )}
+            <WishlistButton
+              className={s.wishlistButton}
+              productId={product.id}
+              variant={product.variants[0]}
+            />
           </div>
 
           <ProductSidebar
