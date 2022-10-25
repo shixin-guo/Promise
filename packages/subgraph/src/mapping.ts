@@ -17,18 +17,22 @@ export function handleUpdateListingPrice(event: UpdateListingPrice): void {
 export function handleMarketItemCreated(event: MarketItemCreated): void {
   const tokenId = event.params.tokenId.toHex()
   const creatorAddress = event.params.seller.toHexString()
+  const ownerAddress = event.params.owner.toHexString()
   const timestamp = event.block.timestamp as BigInt
   let entity = NFT.load(tokenId)
   if (!entity) {
     entity = new NFT(tokenId)
-    entity.owner = event.params.owner.toHexString()
+    entity.owner = ownerAddress
     entity.price = event.params.price
     entity.fileUrl = event.params.fileUrl
     entity.sold = event.params.sold
     entity.creator = creatorAddress
     entity.createdAt = timestamp
     entity.updatedAt = timestamp
-    log.info('create nft hash {}', [event.transaction.hash.toHexString()])
+    log.info('create owner hash {} {}', [
+      event.params.owner.toHexString(),
+      event.params.seller.toHexString(),
+    ])
   }
   entity.save()
   let user = User.load(creatorAddress)
@@ -38,6 +42,13 @@ export function handleMarketItemCreated(event: MarketItemCreated): void {
   }
   user.lastActivityTime = timestamp
   user.save()
+  let userB = User.load(ownerAddress)
+  if (!userB) {
+    userB = new User(ownerAddress)
+    userB.firstJoinTime = timestamp
+  }
+  userB.lastActivityTime = timestamp
+  userB.save()
 }
 export function handleBuyMarketItem(event: BuyMarketItem): void {
   const tokenId = event.params.tokenId.toHex()
@@ -48,6 +59,9 @@ export function handleBuyMarketItem(event: BuyMarketItem): void {
     entity = new NFT(tokenId)
   }
   entity.owner = event.params.owner.toHexString()
+  log.info('handleBuyMarketItem owner hash {}', [
+    event.params.owner.toHexString(),
+  ])
   entity.sold = event.params.sold
   entity.updatedAt = timestamp
   entity.save()
@@ -69,6 +83,9 @@ export function handlerResellMarketItem(event: ResellMarketItem): void {
   entity.sold = event.params.sold
   entity.price = event.params.price
   entity.owner = event.params.owner.toHexString()
+  log.info('handlerResellMarketItem owner hash {}', [
+    event.params.owner.toHexString(),
+  ])
   entity.updatedAt = timestamp
   entity.save()
 }

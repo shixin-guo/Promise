@@ -5,9 +5,6 @@
     "codegen": "graph codegen --output-dir ./generated",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ znft-goerli",
-    "create-local": "graph create --node http://localhost:8020/ znft-goerli",
-    "remove-local": "graph remove --node http://localhost:8020/ znft-goerli",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 znft-goerli",
     "test": "graph test"
   },
   "dependencies": {
