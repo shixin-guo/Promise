@@ -27,14 +27,7 @@ contract NFTMarketplace is ERC721Upgradeable {
       string fileUrl;
     }
 
-    event MarketItemCreated (
-      uint256 indexed tokenId,
-      address seller,
-      address owner,
-      uint256 price,
-      bool sold,
-      string fileUrl
-    );
+
 
     event UpdateListingPrice (
       uint256 listingPrice
@@ -98,10 +91,19 @@ contract NFTMarketplace is ERC721Upgradeable {
 
       _mint(msg.sender, newTokenId);
       _setTokenURI(newTokenId, newTokenURI);
+      // todo not list only own by creator
       createMarketItem(newTokenId, price, fileUrl);
       return newTokenId;
     }
 
+    event MarketItemCreated (
+      uint256 indexed tokenId,
+      address seller,
+      address owner,
+      uint256 price,
+      bool sold,
+      string fileUrl
+    );
     function createMarketItem(
       uint256 tokenId,
       uint256 price,
@@ -133,8 +135,8 @@ contract NFTMarketplace is ERC721Upgradeable {
 
     event BuyMarketItem(
       uint256 indexed tokenId,
-      address seller,
-      address owner,
+      address from,
+      address to,
       bool sold
     );
 
@@ -155,16 +157,16 @@ contract NFTMarketplace is ERC721Upgradeable {
       payable(seller).transfer(msg.value);
       emit BuyMarketItem(
         tokenId,
-        msg.sender,
         address(this),
+        msg.sender,
         true
       );
     }
 
     event ResellMarketItem(
       uint256 indexed tokenId,
-      address seller,
-      address owner,
+      address from,
+      address to,
       uint256 price,
       bool sold
     );
