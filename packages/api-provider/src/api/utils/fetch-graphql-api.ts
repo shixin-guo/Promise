@@ -9,7 +9,7 @@ const fetchGraphqlApi: GraphQLFetcher = async (
   headers?: HeadersInit
 ) => {
   try {
-    const res = await fetch(API_URL, {
+    const res = await fetch(API_URL!, {
       method: 'POST',
       headers: {
         'X-Shopify-Storefront-Access-Token': API_TOKEN!,
@@ -33,7 +33,7 @@ const fetchGraphqlApi: GraphQLFetcher = async (
     throw getError(
       [
         {
-          message: `${err} \n Most likely related to an unexpected output. E.g: NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN & NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN might be incorect.`,
+          message: `${err} \n Most likely related to an unexpected output. E.g: NEXT_PUBLIC_THE_GRAPH_URL & NEXT_PUBLIC_THE_GRAPH_ACCESS_TOKEN might be incorect.`,
         },
       ],
       500

@@ -8,10 +8,7 @@ import { checkoutToCart } from '../utils'
 import getCheckoutQuery from '../utils/queries/get-checkout-query'
 import Cookies from 'js-cookie'
 
-import {
-  SHOPIFY_CHECKOUT_ID_COOKIE,
-  SHOPIFY_CHECKOUT_URL_COOKIE,
-} from '../const'
+import { SHOPIFY_CHECKOUT_URL_COOKIE } from '../const'
 
 export default useCommerceCart as UseCart<typeof handler>
 
@@ -28,7 +25,6 @@ export const handler: SWRHook<GetCartHook> = {
         },
       })
       if (checkout?.completedAt) {
-        Cookies.remove(SHOPIFY_CHECKOUT_ID_COOKIE)
         Cookies.remove(SHOPIFY_CHECKOUT_URL_COOKIE)
         return null
       } else {

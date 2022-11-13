@@ -1,5 +1,4 @@
 import {
-  SHOPIFY_CHECKOUT_ID_COOKIE,
   SHOPIFY_CHECKOUT_URL_COOKIE,
   SHOPIFY_CUSTOMER_TOKEN_COOKIE,
 } from '../../../const'
@@ -18,7 +17,6 @@ const getCheckout: CheckoutEndpoint['handlers']['getCheckout'] = async ({
     try {
       await config.fetch(associateCustomerWithCheckoutMutation, {
         variables: {
-          checkoutId: cookies.get(SHOPIFY_CHECKOUT_ID_COOKIE),
           customerAccessToken: cookies.get(SHOPIFY_CUSTOMER_TOKEN_COOKIE),
         },
       })

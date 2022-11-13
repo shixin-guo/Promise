@@ -154,7 +154,6 @@ export interface CommerceAPIConfig {
   locales?: string[]
   commerceUrl: string
   apiToken: string
-  cartCookie: string
   cartCookieMaxAge: number
   customerCookie: string
   fetch<Data = any, Variables = any>(
