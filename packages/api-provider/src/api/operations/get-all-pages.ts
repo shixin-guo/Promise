@@ -38,6 +38,7 @@ export default function getAllPagesOperation({
     preview?: boolean
     query?: string
   } = {}): Promise<T['data']> {
+    debugger
     const {
       fetch,
       locale,

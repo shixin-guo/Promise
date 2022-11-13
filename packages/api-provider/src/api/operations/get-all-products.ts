@@ -44,15 +44,7 @@ export default function getAllProductsOperation({
     const { data } = await fetch<
       GetAllProductsQuery,
       GetAllProductsQueryVariables
-    >(
-      query,
-      { variables },
-      {
-        ...(locale && {
-          'Accept-Language': locale,
-        }),
-      }
-    )
+    >(query, { variables })
 
     return {
       products: data.products.edges.map(({ node }) =>

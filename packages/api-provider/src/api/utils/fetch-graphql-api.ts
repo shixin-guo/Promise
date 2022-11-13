@@ -1,6 +1,6 @@
 import type { GraphQLFetcher } from '@vercel/commerce/api'
 
-import { API_URL, API_TOKEN } from '../../const'
+import { API_URL } from '../../const'
 import { getError } from '../../utils/handle-fetch-response'
 
 const fetchGraphqlApi: GraphQLFetcher = async (
@@ -9,10 +9,10 @@ const fetchGraphqlApi: GraphQLFetcher = async (
   headers?: HeadersInit
 ) => {
   try {
+    console.log(query, variables)
     const res = await fetch(API_URL!, {
       method: 'POST',
       headers: {
-        'X-Shopify-Storefront-Access-Token': API_TOKEN!,
         ...headers,
         'Content-Type': 'application/json',
       },
@@ -33,7 +33,7 @@ const fetchGraphqlApi: GraphQLFetcher = async (
     throw getError(
       [
         {
-          message: `${err} \n Most likely related to an unexpected output. E.g: NEXT_PUBLIC_THE_GRAPH_URL & NEXT_PUBLIC_THE_GRAPH_ACCESS_TOKEN might be incorect.`,
+          message: err,
         },
       ],
       500
