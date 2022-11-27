@@ -36,7 +36,7 @@ export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   createZoomConfig()
-
+  debugger
   return (
     <>
       <Grid variant="filled">

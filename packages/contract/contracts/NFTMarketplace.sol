@@ -40,7 +40,9 @@ contract NFTMarketplace is ERC721Upgradeable {
     //   emit UpdateListingPrice(listingPrice);
     //   owner = payable(msg.sender);
     // }
-    
+    function withdraw() {
+      
+    }
     /* Updates the listing price of the contract */
     function updateListingPrice(uint _listingPrice) public payable {
       require(owner == msg.sender, "Only marketplace owner can update listing price.");

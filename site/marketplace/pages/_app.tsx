@@ -20,7 +20,6 @@ const Noop: FC = ({ children }) => <>{children}</>
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   // const { theme } = useTheme()
-  // console.log(theme)
   const Layout = (Component as any).Layout || Noop
   return (
     <WagmiConfig client={client}>

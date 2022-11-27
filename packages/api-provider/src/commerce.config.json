@@ -1,7 +1,0 @@
-{
-  "provider": "api-provider",
-  "features": {
-    "wishlist": false,
-    "customerAuth": true
-  }
-}
