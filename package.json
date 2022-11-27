@@ -2,15 +2,10 @@
   "name": "znft-website",
   "license": "MIT",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "site/*"
-    ]
-  },
   "scripts": {
-    "build": "turbo run build --scope=marketplace --include-dependencies --no-deps",
     "dev": "turbo run dev",
+    "start": "turbo run start",
+    "build": "turbo run build --scope=marketplace --include-dependencies --no-deps",
     "dev:ui": "turbo run dev --scope=marketplace --include-dependencies --no-deps",
     "contract:start": "yarn workspace contract start:node",
     "contract:local": "yarn workspace contract deploy:local",
@@ -19,32 +14,14 @@
     "prettier-fix": "prettier --write ."
   },
   "devDependencies": {
-    "husky": "8.0.1",
-    "lint-staged": "12.5.0",
-    "prettier": "2.7.1",
-    "turbo": "1.5.6"
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "turbo": "^1.4.6"
   },
   "husky": {
     "hooks": {
       "pre-commit": "turbo run lint"
     }
   },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "eslint",
-      "prettier --write",
-      "git add"
-    ],
-    "**/*.{md,mdx,json}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "packageManager": "yarn@3.2.1",
-  "installConfig": {
-    "hoistingLimits": "**/@nomiclabs/**"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.3"
-  }
+  "packageManager": "pnpm@7.5.0"
 }
