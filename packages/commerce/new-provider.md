@@ -4,7 +4,17 @@
 
 A commerce provider is a headless e-commerce platform that integrates with the [Commerce Framework](./README.md). Right now we have the following providers:
 
-
+- Local ([packages/local](../local))
+- Shopify ([packages/shopify](../shopify))
+- Swell ([packages/swell](../swell))
+- BigCommerce ([packages/bigcommerce](../bigcommerce))
+- Vendure ([packages/vendure](../vendure))
+- Saleor ([packages/saleor](../saleor))
+- OrderCloud ([packages/ordercloud](../ordercloud))
+- Spree ([packages/spree](../spree))
+- Kibo Commerce ([packages/kibocommerce](../kibocommerce))
+- Commerce.js ([packages/commercejs](../commercejs))
+- SFCC - SalesForce Cloud Commerce ([packages/sfcc](../sfcc))
 
 Adding a commerce provider means adding a new folder in `packages` with a folder structure like the next one:
 
@@ -59,7 +69,10 @@ Then, open [/site/.env.template](/site/.env.template) and add the provider name 
 Using BigCommerce as an example. The first thing to do is export a `CommerceProvider` component that includes a `provider` object with all the handlers that can be used for hooks:
 
 ```tsx
-import { getCommerceProvider, useCommerce as useCoreCommerce } from '@vercel/commerce'
+import {
+  getCommerceProvider,
+  useCommerce as useCoreCommerce,
+} from '@vercel/commerce'
 import { bigcommerceProvider, BigcommerceProvider } from './provider'
 
 export { bigcommerceProvider }
@@ -125,7 +138,7 @@ export default useCart as UseCart<typeof handler>
 
 export const handler: SWRHook<GetCartHook> = {
   fetchOptions: {
-    url: '/api/cart',
+    url: '/api/commerce/cart',
     method: 'GET',
   },
   useHook:
@@ -165,7 +178,7 @@ export default useAddItem as UseAddItem<typeof handler>
 
 export const handler: MutationHook<AddItemHook> = {
   fetchOptions: {
-    url: '/api/cart',
+    url: '/api/commerce/cart',
     method: 'POST',
   },
   async fetcher({ input: item, options, fetch }) {
@@ -203,25 +216,26 @@ export const handler: MutationHook<AddItemHook> = {
 ```
 
 ## Showing progress and features
+
 When creating a PR for a new provider, include this list in the PR description and mark the progress as you push so we can organize the code review. Not all points are required (but advised) so make sure to keep the list up to date.
 
 **Status**
 
-* [ ]  CommerceProvider
-* [ ]  Schema & TS types
-* [ ]  API Operations - Get all collections
-* [ ]  API Operations - Get all pages
-* [ ]  API Operations - Get all products
-* [ ]  API Operations - Get page
-* [ ]  API Operations - Get product
-* [ ]  API Operations - Get Shop Info (categories and vendors working — `vendors` query still a WIP PR on Reaction)
-* [ ]  Hook - Add Item
-* [ ]  Hook - Remove Item
-* [ ]  Hook - Update Item
-* [ ]  Hook - Get Cart (account-tied carts working, anonymous carts working, cart reconciliation working)
-* [ ]  Auth (based on a WIP PR on Reaction - still need to implement refresh tokens)
-* [ ]  Customer information
-* [ ]  Product attributes - Size, Colors
-* [ ]  Custom checkout
-* [ ]  Typing (in progress)
-* [ ]  Tests
+- [ ] CommerceProvider
+- [ ] Schema & TS types
+- [ ] API Operations - Get all collections
+- [ ] API Operations - Get all pages
+- [ ] API Operations - Get all products
+- [ ] API Operations - Get page
+- [ ] API Operations - Get product
+- [ ] API Operations - Get Shop Info (categories and vendors working — `vendors` query still a WIP PR on Reaction)
+- [ ] Hook - Add Item
+- [ ] Hook - Remove Item
+- [ ] Hook - Update Item
+- [ ] Hook - Get Cart (account-tied carts working, anonymous carts working, cart reconciliation working)
+- [ ] Auth (based on a WIP PR on Reaction - still need to implement refresh tokens)
+- [ ] Customer information
+- [ ] Product attributes - Size, Colors
+- [ ] Custom checkout
+- [ ] Typing (in progress)
+- [ ] Tests
