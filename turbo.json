@@ -1,11 +1,12 @@
 {
+  "$schema": "https://turborepo.org/schema.json",
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "next-commerce#build": {
+    "marketplace#build": {
       "dependsOn": [
         "^build",
         "$COMMERCE_PROVIDER",
@@ -26,10 +27,10 @@
       "outputs": []
     },
     "dev": {
-      "cache": true
+      "cache": false
     },
     "start": {
-      "cache": true
+      "cache": false
     },
     "types": {
       "outputs": ["dist/**/*.d.ts"]

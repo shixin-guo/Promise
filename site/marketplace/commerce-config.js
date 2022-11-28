@@ -8,10 +8,10 @@ const merge = require('deepmerge')
 const prettier = require('prettier')
 const core = require('@vercel/commerce/config')
 
-const PROVIDERS = ['@vercel/commerce-local', '@vercel/commerce-commercejs']
+const PROVIDERS = ['@pearl/api-provide']
 
 function getProviderName() {
-  return '@vercel/commerce-local'
+  return '@pearl/api-provide'
 }
 
 function withCommerceConfig(nextConfig = {}) {

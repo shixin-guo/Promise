@@ -3,7 +3,7 @@ import Link from 'next/link'
 import s from './UserNav.module.css'
 import useCart from '@framework/cart/use-cart'
 import { useUI } from '@components/ui/context'
-import { Heart, Bag, Menu } from '@components/icons'
+import { Bag, Menu } from '@components/icons'
 import CustomerMenuContent from './CustomerMenuContent'
 import React, { useEffect } from 'react'
 import { useAccount } from 'wagmi'
@@ -53,45 +53,38 @@ const UserNav: React.FC<{
             </Link>
           </li>
         )}
-        {process.env.COMMERCE_CART_ENABLED && (
-          <li className={s.item}>
-            <Button
-              className={s.item}
-              variant="naked"
-              onClick={() => {
-                setSidebarView('CART_VIEW')
-                toggleSidebar()
-              }}
-              aria-label={`Cart items: ${itemsCount}`}
-            >
-              <Bag />
-              {itemsCount > 0 && (
-                <span className={s.bagCount}>{itemsCount}</span>
-              )}
-            </Button>
-          </li>
-        )}
-        {/* {process.env.COMMERCE_WISHLIST_ENABLED && (
-          <li className={s.item}>
+        <li className={s.item}>
+          <Button
+            className={s.item}
+            variant="naked"
+            onClick={() => {
+              setSidebarView('CART_VIEW')
+              toggleSidebar()
+            }}
+            aria-label={`Cart items: ${itemsCount}`}
+          >
+            <Bag />
+            {itemsCount > 0 && <span className={s.bagCount}>{itemsCount}</span>}
+          </Button>
+        </li>
+        {/* <li className={s.item}>
             <Link href="/wishlist">
               <a onClick={closeSidebarIfPresent} aria-label="Wishlist">
                 <Heart />
               </a>
             </Link>
-          </li>
-        )} */}
-        {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && (
-          <li className={s.item}>
-            <Dropdown>
-              <DropdownTrigger>
-                <span aria-label="Menu" className={s.avatarButton}>
-                  <ConnectKitButton onClick={onClickKitButton} />
-                </span>
-              </DropdownTrigger>
-              <CustomerMenuContent />
-            </Dropdown>
-          </li>
-        )}
+          </li> */}
+
+        <li className={s.item}>
+          <Dropdown>
+            <DropdownTrigger>
+              <span aria-label="Menu" className={s.avatarButton}>
+                <ConnectKitButton onClick={onClickKitButton} />
+              </span>
+            </DropdownTrigger>
+            <CustomerMenuContent />
+          </Dropdown>
+        </li>
         <li className={s.mobileMenu}>
           <Button
             className={s.item}

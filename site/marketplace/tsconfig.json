@@ -23,8 +23,8 @@
       "@components/*": ["components/*"],
       "@commerce": ["../../packages/commerce/src"],
       "@commerce/*": ["../../packages/commerce/src/*"],
-      "@framework": ["../../packages/local/src"],
-      "@framework/*": ["../../packages/local/src/*"],
+      "@framework": ["../../packages/api-provider/src"],
+      "@framework/*": ["../../packages/api-provider/src/*"],
       "@contract": ["../../packages/contract"]
     }
   },

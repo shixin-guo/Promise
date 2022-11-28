@@ -5,12 +5,13 @@ import type { SignupHook } from '../types/signup'
 import type { Provider } from '..'
 
 export type UseSignup<
-  H extends MutationHook<SignupHook<any>> = MutationHook<SignupHook>
+  H extends MutationHook<SignupHook> = MutationHook<SignupHook>
 > = ReturnType<H['useHook']>
 
 export const fetcher: HookFetcherFn<SignupHook> = mutationFetcher
 
 const fn = (provider: Provider) => provider.auth?.useSignup!
+
 const useSignup: UseSignup = (...args) => {
   const hook = useHook(fn)
   return useMutationHook({ fetcher, ...hook })(...args)
