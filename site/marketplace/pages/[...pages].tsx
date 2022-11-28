@@ -1,4 +1,8 @@
-import type { GetStaticPathsContext, GetStaticPropsContext } from 'next'
+import type {
+  GetStaticPathsContext,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next'
 import commerce from '@lib/api/commerce'
 import { Text } from '@components/ui'
 import { Layout } from '@components/common'
@@ -66,7 +70,9 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
   }
 }
 
-export default function Pages({ page }: { page: Page }) {
+export default function Pages({
+  page,
+}: {page: Page}) {
   const router = useRouter()
 
   return router.isFallback ? (

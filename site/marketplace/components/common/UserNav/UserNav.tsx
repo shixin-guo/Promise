@@ -1,10 +1,12 @@
 import cn from 'clsx'
 import Link from 'next/link'
 import s from './UserNav.module.css'
+import { Avatar } from '@components/common'
 import useCart from '@framework/cart/use-cart'
 import { useUI } from '@components/ui/context'
-import { Bag, Menu } from '@components/icons'
+import { Heart, Bag, Menu } from '@components/icons'
 import CustomerMenuContent from './CustomerMenuContent'
+import useCustomer from '@framework/customer/use-customer'
 import React, { useEffect } from 'react'
 import { useAccount } from 'wagmi'
 import { ConnectKitButton } from 'connectkit'
@@ -91,8 +93,8 @@ const UserNav: React.FC<{
             aria-label="Menu"
             variant="naked"
             onClick={() => {
-              openSidebar()
               setSidebarView('MOBILE_MENU_VIEW')
+              openSidebar()
             }}
           >
             <Menu />

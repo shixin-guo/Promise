@@ -1,5 +1,6 @@
-const { withCommerceConfig } = require('./commerce-config')
-// const CircularDependencyPlugin = require('circular-dependency-plugin')
+const commerce = require('./commerce.config.json')
+const { withCommerceConfig, getProviderName } = require('./commerce-config')
+
 const ContentSecurityPolicy = `
   default-src 'self' data: blob: 'unsafe-inline' 'unsafe-eval' *.googleapis.com *.google.com *.gstatic.com vitals.vercel-insights.com *.googletagmanager.com *.firebase.com;
   connect-src *;
@@ -40,6 +41,7 @@ const securityHeaders = [
   },
 ]
 module.exports = withCommerceConfig({
+  commerce,
   i18n: {
     locales: ['en-US', 'es'],
     defaultLocale: 'en-US',
@@ -49,6 +51,10 @@ module.exports = withCommerceConfig({
   },
   rewrites() {
     return [].filter(Boolean)
+  },
+  // Avoid Module not found: ESM packages (supports-color) need to be imported. Use 'import' to reference the package instead. https://nextjs.org/docs/messages/import-esm-externals
+  experimental: {
+    esmExternals: 'loose',
   },
   async headers() {
     return [
@@ -62,5 +68,4 @@ module.exports = withCommerceConfig({
 })
 
 // Don't delete this console log, useful to see the commerce config in Vercel deployments
-// eslint-disable-next-line no-console
 console.log('next.config.js', JSON.stringify(module.exports, null, 2))

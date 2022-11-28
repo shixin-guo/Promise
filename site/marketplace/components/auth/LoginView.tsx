@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react'
+import { FC, useEffect, useState, useCallback } from 'react'
 import { Logo, Button, Input } from '@components/ui'
-import useLogin from '@framework/auth/use-login'
+// import useLogin from '@framework/auth/use-login'
 import { useUI } from '@components/ui/context'
 import { validate } from 'email-validator'
 
@@ -14,7 +14,8 @@ const LoginView: React.FC = () => {
   const [disabled, setDisabled] = useState(false)
   const { setModalView, closeModal } = useUI()
 
-  const login = useLogin()
+  // const login = useLogin()
+
   const handleLogin = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault()
 
@@ -26,14 +27,18 @@ const LoginView: React.FC = () => {
     try {
       setLoading(true)
       setMessage('')
-      await login({
-        email,
-        password,
-      })
+      // await login({
+      //   email,
+      //   password,
+      // })
       setLoading(false)
       closeModal()
-    } catch (e: any) {
-      setMessage(e.code || 'unknown error')
+    } catch ({ errors }) {
+      if (errors instanceof Array) {
+        setMessage(errors.map((e: any) => e.message).join('<br/>'))
+      } else {
+        setMessage('Unexpected error')
+      }
       setLoading(false)
       setDisabled(false)
     }

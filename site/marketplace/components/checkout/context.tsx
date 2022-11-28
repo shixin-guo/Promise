@@ -5,6 +5,7 @@ import React, {
   useReducer,
   useContext,
   createContext,
+  ReactNode,
 } from 'react'
 import type { CardFields } from '@commerce/types/customer/card'
 import type { AddressFields } from '@commerce/types/customer/address'
@@ -65,20 +66,17 @@ const checkoutReducer = (state: State, action: Action): State => {
   }
 }
 
-export const CheckoutProvider: FC = (props) => {
+export const CheckoutProvider: FC<{ children?: ReactNode }> = (props) => {
   const [state, dispatch] = useReducer(checkoutReducer, initialState)
 
   const setCardFields = useCallback(
-    (card: CardFields) => {
-      dispatch({ type: 'SET_CARD_FIELDS', card })
-    },
+    (card: CardFields) => dispatch({ type: 'SET_CARD_FIELDS', card }),
     [dispatch]
   )
 
   const setAddressFields = useCallback(
-    (address: AddressFields) => {
-      dispatch({ type: 'SET_ADDRESS_FIELDS', address })
-    },
+    (address: AddressFields) =>
+      dispatch({ type: 'SET_ADDRESS_FIELDS', address }),
     [dispatch]
   )
 

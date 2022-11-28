@@ -9,7 +9,7 @@ import { Navbar, Footer } from '@components/common'
 import ShippingView from '@components/checkout/ShippingView'
 import CartSidebarView from '@components/cart/CartSidebarView'
 import { useAcceptCookies } from '@lib/hooks/useAcceptCookies'
-import { Sidebar, LoadingDots } from '@components/ui'
+import { Sidebar, Button, LoadingDots } from '@components/ui'
 import PaymentMethodView from '@components/checkout/PaymentMethodView'
 import CheckoutSidebarView from '@components/checkout/CheckoutSidebarView'
 import { CheckoutProvider } from '@components/checkout/context'
@@ -53,6 +53,7 @@ interface Props {
     pages?: Page[]
     categories: Category[]
   }
+  children?: React.ReactNode
 }
 
 const ModalView: React.FC<{ modalView: string; closeModal(): any }> = ({
@@ -108,7 +109,7 @@ const Layout: React.FC<Props> = ({
 }) => {
   const { acceptedCookies, onAcceptCookies } = useAcceptCookies()
   const { locale = 'en-US' } = useRouter()
-  const navBarLinks = categories.slice(0, 2).map((c) => ({
+  const navBarlinks = categories.slice(0, 2).map((c) => ({
     label: c.name,
     href: `/search/${c.slug}`,
   }))
@@ -116,12 +117,12 @@ const Layout: React.FC<Props> = ({
   return (
     <CommerceProvider locale={locale}>
       <div className={cn(s.root)}>
-        <Navbar links={navBarLinks} />
+        <Navbar links={navBarlinks} />
         <main className="fit">{children}</main>
-        {/* <Footer pages={pageProps.pages} /> */}
+        <Footer pages={pageProps.pages} />
         <ModalUI />
         <CheckoutProvider>
-          <SidebarUI links={navBarLinks} />
+          <SidebarUI links={navBarlinks} />
         </CheckoutProvider>
         {/* <FeatureBar
           title="This site uses cookies to improve your experience. By clicking, you agree to our Privacy Policy."

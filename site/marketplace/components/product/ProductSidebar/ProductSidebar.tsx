@@ -1,14 +1,16 @@
 import s from './ProductSidebar.module.css'
 import { useAddItem } from '@framework/cart'
 import { FC, useEffect, useState } from 'react'
+import { ProductOptions } from '@components/product'
 import Image from 'next/image'
 import type { Product } from '@commerce/types/product'
-import { Button, Text, Input, Collapse, useUI } from '@components/ui'
+import { Button, Text, Rating, Input, Collapse, useUI } from '@components/ui'
 import {
   getProductVariant,
   selectDefaultOptionFromProduct,
   SelectedOptions,
 } from '../helpers'
+import ErrorMessage from '@components/ui/ErrorMessage'
 import { useAccount } from 'wagmi'
 import Link from 'next/link'
 
@@ -19,26 +21,37 @@ interface ProductSidebarProps {
 
 const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
   const addItem = useAddItem()
-  const { openSidebar } = useUI()
+  const { openSidebar, setSidebarView } = useUI()
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<null | Error>(null)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({})
   const { address } = useAccount()
   const isOwner = address === product.arthur
   useEffect(() => {
     selectDefaultOptionFromProduct(product, setSelectedOptions)
   }, [product])
+
   const variant = getProductVariant(product, selectedOptions)
   const addToCart = async () => {
     setLoading(true)
+    setError(null)
     try {
       await addItem({
         productId: String(product.id),
         variantId: String(variant ? variant.id : product.variants[0]?.id),
       })
+      setSidebarView('CART_VIEW')
       openSidebar()
       setLoading(false)
     } catch (err) {
       setLoading(false)
+      if (err instanceof Error) {
+        console.error(err)
+        setError({
+          ...err,
+          message: 'Could not add item to cart. Please try again.',
+        })
+      }
     }
   }
   const [wording, setWording] = useState('Gift your friend this NFT')
@@ -49,34 +62,25 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
       setWording('Completed')
     }, 3000)
   }
+
   return (
     <div className={className}>
+      <ProductOptions
+        options={product.options}
+        selectedOptions={selectedOptions}
+        setSelectedOptions={setSelectedOptions}
+      />
       <Text
         className="pb-4 break-words w-full max-w-xl"
         html={product.descriptionHtml || product.description}
       />
+      <div className="flex flex-row justify-between items-center">
+        <Rating value={4} />
+        <div className="text-accent-6 pr-1 font-medium text-sm">36 reviews</div>
+      </div>
       <div>
-        {isOwner ? (
-          <>
-            <label className="text-base font-semibold my-1">
-              Your Friend Email:
-            </label>
-            <Input
-              className="w-full border-2 border-gray-300 rounded-lg p-2 pb-2 mb-3"
-              placeholder="Provide Your Friend Email"
-            />
-            <Button
-              aria-label="Add to Cart"
-              type="button"
-              className={s.button}
-              onClick={sendAsGift}
-              loading={loading}
-              disabled={variant?.availableForSale === false}
-            >
-              {wording}
-            </Button>
-          </>
-        ) : (
+        {error && <ErrorMessage error={error} className="my-5" />}
+        {process.env.COMMERCE_CART_ENABLED && (
           <Button
             aria-label="Add to Cart"
             type="button"

@@ -15,21 +15,21 @@ export async function getStaticProps({
   preview,
 }: GetStaticPropsContext<{ slug: string }>) {
   const config = { locale, locales }
-  // const pagesPromise = commerce.getAllPages({ config, preview })
-  // const siteInfoPromise = commerce.getSiteInfo({ config, preview })
+  const pagesPromise = commerce.getAllPages({ config, preview })
+  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
   const productPromise = commerce.getProduct({
     variables: { slug: params!.slug },
     config,
     preview,
   })
-
   const allProductsPromise = commerce.getAllProducts({
     variables: { first: 4 },
     config,
     preview,
   })
-  // const { pages } = await pagesPromise
-  // const { categories } = await siteInfoPromise
+
+  const { pages } = await pagesPromise
+  const { categories } = await siteInfoPromise
   const { product } = await productPromise
   const { products: relatedProducts } = await allProductsPromise
 
@@ -39,10 +39,10 @@ export async function getStaticProps({
 
   return {
     props: {
-      // pages,
+      pages,
       product,
       relatedProducts,
-      // categories,
+      categories,
     },
     revalidate: 200,
   }

@@ -28,6 +28,7 @@ const PaymentMethodView: FC = () => {
 
   async function handleSubmit(event: React.ChangeEvent<Form>) {
     event.preventDefault()
+
     await addCard({
       cardHolder: event.target.cardHolder.value,
       cardNumber: event.target.cardNumber.value,

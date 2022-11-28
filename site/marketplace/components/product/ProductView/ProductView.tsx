@@ -22,12 +22,17 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
     baseAmount: product.price.retailPrice,
     currencyCode: 'ETH',
   })
+
   return (
     <>
       <Container className="max-w-none w-full" clean>
         <div className={cn(s.root, 'fit')}>
           <div className={cn(s.main, 'fit')}>
-            <ProductTag name={product.name} price={`${price}`} fontSize={32} />
+            <ProductTag
+              name={product.name}
+              price={`${price} ${product.price?.currencyCode}`}
+              fontSize={32}
+            />
             <div className={s.sliderContainer}>
               <ProductSlider key={product.id}>
                 {product.images.map((image, i) => (

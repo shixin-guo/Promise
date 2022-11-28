@@ -4,13 +4,14 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
+import type { Brand } from '@commerce/types/site'
+import type { Product } from '@commerce/types/product'
+
 import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
-import type { Product } from '@commerce/types/product'
 import { Container, Skeleton } from '@components/ui'
-import useSearch from '@framework/product/use-search'
 
-import getSlug from '@lib/get-slug'
+import useSearch from '@framework/product/use-search'
 import rangeMap from '@lib/range-map'
 
 const SORT = {
@@ -26,6 +27,7 @@ import {
   getDesignerPath,
   useSearchMeta,
 } from '@lib/search'
+import ErrorMessage from './ui/ErrorMessage'
 
 export default function Search({ categories, brands }: SearchPropsType) {
   const [activeFilter, setActiveFilter] = useState('')
@@ -42,18 +44,20 @@ export default function Search({ categories, brands }: SearchPropsType) {
   const { pathname, category, brand } = useSearchMeta(asPath)
   const isMy = pathname === '/orders'
   const activeCategory = categories.find((cat: any) => cat.slug === category)
-  const activeBrand = brands.find(
-    (b: any) => getSlug(b.node.path) === `brands/${brand}`
-  )?.node
+  const activeBrand = brands.find((b: Brand) => b.slug === brand)
 
-  const { data } = useSearch({
+  const { data, error } = useSearch({
     search: typeof q === 'string' ? q : '',
     categoryId: activeCategory?.id,
-    brandId: (activeBrand as any)?.entityId,
+    brandId: activeBrand?.id,
     sort: typeof sort === 'string' ? sort : '',
     locale,
     isMy,
   })
+
+  if (error) {
+    return <ErrorMessage error={error} />
+  }
 
   const handleClick = (event: any, filter: string) => {
     if (filter !== activeFilter) {

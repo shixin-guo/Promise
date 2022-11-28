@@ -31,6 +31,7 @@ const ProductCard: FC<Props> = ({
     baseAmount: product.price.retailPrice,
     currencyCode: 'ETH',
   })
+
   const rootClassName = cn(
     s.root,
     { [s.slim]: variant === 'slim', [s.simple]: variant === 'simple' },
@@ -61,6 +62,7 @@ const ProductCard: FC<Props> = ({
             )}
           </>
         )}
+
         {variant === 'simple' && (
           <>
             {/* <WishlistButton

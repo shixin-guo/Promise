@@ -2,7 +2,7 @@ import '@assets/main.css'
 import '@assets/chrome-bug.css'
 import 'keen-slider/keen-slider.min.css'
 
-import { FC } from 'react'
+import { FC, ReactNode, useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
@@ -16,11 +16,15 @@ const client = createClient(
     chains: [chain.localhost, chain.mainnet, chain.goerli, chain.sepolia],
   })
 )
-const Noop: FC = ({ children }) => <>{children}</>
+const Noop: FC<{ children?: ReactNode }> = ({ children }) => <>{children}</>
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  // const { theme } = useTheme()
   const Layout = (Component as any).Layout || Noop
+
+  useEffect(() => {
+    document.body.classList?.remove('loading')
+  }, [])
+
   return (
     <WagmiConfig client={client}>
       <ConnectKitProvider mode={'light'}>

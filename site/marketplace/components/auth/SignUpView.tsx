@@ -3,7 +3,7 @@ import { validate } from 'email-validator'
 import { Info } from '@components/icons'
 import { useUI } from '@components/ui/context'
 import { Logo, Button, Input } from '@components/ui'
-import useSignup from '@framework/auth/use-signup'
+// import useSignup from '@framework/auth/use-signup'
 
 interface Props {}
 
@@ -18,7 +18,7 @@ const SignUpView: FC<Props> = () => {
   const [dirty, setDirty] = useState(false)
   const [disabled, setDisabled] = useState(false)
 
-  const signup = useSignup()
+  // const signup = useSignup()
   const { setModalView, closeModal } = useUI()
 
   const handleSignup = async (e: React.SyntheticEvent<EventTarget>) => {
@@ -32,18 +32,23 @@ const SignUpView: FC<Props> = () => {
     try {
       setLoading(true)
       setMessage('')
-      const user = await signup({
-        email,
-        firstName,
-        lastName,
-        password,
-      })
+      // await signup({
+      //   email,
+      //   firstName,
+      //   lastName,
+      //   password,
+      // })
       setLoading(false)
       closeModal()
-    } catch (errors: any) {
-      // todo any
-      setMessage(errors?.code || 'unknown error')
+    } catch ({ errors }) {
+      console.error(errors)
+      if (errors instanceof Array) {
+        setMessage(errors.map((e: any) => e.message).join('<br/>'))
+      } else {
+        setMessage('Unexpected error')
+      }
       setLoading(false)
+      setDisabled(false)
     }
   }
 
@@ -68,7 +73,12 @@ const SignUpView: FC<Props> = () => {
     >
       <div className="flex flex-col space-y-4">
         {message && (
-          <div className="text-red border border-red p-3">{message}</div>
+          <div
+            className="text-red border border-red p-3"
+            dangerouslySetInnerHTML={{
+              __html: message,
+            }}
+          ></div>
         )}
         <Input placeholder="First Name" onChange={setFirstName} />
         <Input placeholder="Last Name" onChange={setLastName} />
