@@ -1,4 +1,3 @@
-const commerce = require('./commerce.config.json')
 const { withCommerceConfig } = require('./commerce-config')
 
 const ContentSecurityPolicy = `
@@ -41,7 +40,6 @@ const securityHeaders = [
   },
 ]
 module.exports = withCommerceConfig({
-  commerce,
   i18n: {
     locales: ['en-US', 'es'],
     defaultLocale: 'en-US',
