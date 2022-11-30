@@ -8,6 +8,7 @@
     "bundlr",
     "codegen",
     "connectkit",
+    "deepmerge",
     "graphprotocol",
     "MARKETPLACEADDRESS",
     "Searchbar",

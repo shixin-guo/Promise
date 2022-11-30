@@ -1,5 +1,5 @@
 const commerce = require('./commerce.config.json')
-const { withCommerceConfig, getProviderName } = require('./commerce-config')
+const { withCommerceConfig } = require('./commerce-config')
 
 const ContentSecurityPolicy = `
   default-src 'self' data: blob: 'unsafe-inline' 'unsafe-eval' *.googleapis.com *.google.com *.gstatic.com vitals.vercel-insights.com *.googletagmanager.com *.firebase.com;
@@ -68,4 +68,5 @@ module.exports = withCommerceConfig({
 })
 
 // Don't delete this console log, useful to see the commerce config in Vercel deployments
+// eslint-disable-next-line no-console
 console.log('next.config.js', JSON.stringify(module.exports, null, 2))
