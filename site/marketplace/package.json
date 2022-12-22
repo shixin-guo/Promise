@@ -55,7 +55,7 @@
     "@types/node": "17.0.45",
     "@types/react": "17.0.45",
     "eslint": "8.17.0",
-    "eslint-config-next": "12.1.6",
+    "eslint-config-next": "13.1.0",
     "eslint-config-prettier": "8.5.0",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-preset-env": "7.5.0",
