@@ -3,32 +3,15 @@ import type {
   OperationOptions,
 } from '@pearl/commerce/api/operations'
 import { GetProductOperation } from '@pearl/commerce/types/product'
-import { normalizeProduct, getProductQuery } from '../../utils'
+import getFirstNFTsQuery from '../../utils/queries/get-all-products-query'
 import type { ShopifyConfig, Provider } from '..'
-import {
-  GetProductBySlugQuery,
-  Product as ShopifyProduct,
-} from '../../../schema'
+import { GetAllProductsQuery } from '../../../schema'
 
 export default function getProductOperation({
   commerce,
 }: OperationContext<Provider>) {
-  async function getProduct<T extends GetProductOperation>(opts: {
-    variables: T['variables']
-    config?: Partial<ShopifyConfig>
-    preview?: boolean
-  }): Promise<T['data']>
-
-  async function getProduct<T extends GetProductOperation>(
-    opts: {
-      variables: T['variables']
-      config?: Partial<ShopifyConfig>
-      preview?: boolean
-    } & OperationOptions
-  ): Promise<T['data']>
-
   async function getProduct<T extends GetProductOperation>({
-    query = getProductQuery,
+    query = getFirstNFTsQuery,
     variables,
     config: cfg,
   }: {
@@ -36,28 +19,12 @@ export default function getProductOperation({
     variables: T['variables']
     config?: Partial<ShopifyConfig>
     preview?: boolean
-  }): Promise<T['data']> {
+  }): Promise<any> {
     const { fetch, locale } = commerce.getConfig(cfg)
-
-    const {
-      data: { productByHandle },
-    } = await fetch<GetProductBySlugQuery>(
-      query,
-      {
-        variables,
-      },
-      {
-        ...(locale && {
-          'Accept-Language': locale,
-        }),
-      }
-    )
-
-    return {
-      ...(productByHandle && {
-        product: normalizeProduct(productByHandle as ShopifyProduct),
-      }),
-    }
+    const { data } = await fetch<GetAllProductsQuery>(query, {
+      variables,
+    })
+    return data
   }
 
   return getProduct

@@ -1,1 +1,1 @@
-export { default as getAllProductsQuery } from './get-all-products-query'
+export { default as getFirstNFTsQuery } from './get-all-products-query'

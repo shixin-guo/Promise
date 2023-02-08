@@ -9,35 +9,25 @@ import {
   Nft,
 } from '../../../schema'
 import type { ShopifyConfig, Provider } from '..'
-import getAllProductsQuery from '../../utils/queries/get-all-products-query'
+import getFirstNFTsQuery from '../../utils/queries/get-all-products-query'
 
 export default function getAllProductsOperation({
   commerce,
-}: OperationContext<Provider>) {
+}: {
+  commerce: any
+}) {
   async function getAllProducts<T extends GetAllProductsOperation>({
-    query = getAllProductsQuery,
+    query = getFirstNFTsQuery,
     variables,
     config,
   }: {
     query?: string
     variables?: T['variables']
     config?: Partial<ShopifyConfig>
-    preview?: boolean
-  } = {}): Promise<T['data']> {
-    const { fetch, locale } = commerce.getConfig(config)
+  } = {}): Promise<any> {
+    const { fetch } = commerce.getConfig(config)
 
-    const { data } = await fetch<
-      GetAllProductsQuery,
-      GetAllProductsQueryVariables
-    >(
-      query,
-      { variables },
-      {
-        ...(locale && {
-          'Accept-Language': locale,
-        }),
-      }
-    )
+    const { data } = await fetch(query, { variables })
 
     return {
       products: data.nfts ?? [],

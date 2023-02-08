@@ -9,7 +9,7 @@ import {
   ProductEdge,
 } from '../../../schema'
 import type { ShopifyConfig, Provider } from '..'
-import { getAllProductsQuery } from '../../utils'
+import { getFirstNFTsQuery } from '../../utils'
 
 export default function getAllProductPathsOperation({
   commerce,
@@ -29,7 +29,7 @@ export default function getAllProductPathsOperation({
   ): Promise<T['data']>
 
   async function getAllProductPaths<T extends GetAllProductPathsOperation>({
-    query = getAllProductsQuery,
+    query = getFirstNFTsQuery,
     config,
     variables,
   }: {

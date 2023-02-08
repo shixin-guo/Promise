@@ -10,7 +10,7 @@ import {
 } from '../../schema'
 
 import {
-  getAllProductsQuery,
+  getFirstNFTsQuery,
   getCollectionProductsQuery,
   getSearchVariables,
   normalizeProduct,
@@ -30,7 +30,7 @@ export default useSearch as UseSearch<typeof handler>
 
 export const handler: SWRHook<SearchProductsHook> = {
   fetchOptions: {
-    query: getAllProductsQuery,
+    query: getFirstNFTsQuery,
   },
   async fetcher({ input, options, fetch }) {
     const { categoryId, brandId } = input

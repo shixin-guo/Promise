@@ -134,15 +134,7 @@ export type Operations<P extends APIProvider> = {
       variables?: T['variables']
       config?: P['config']
       preview?: boolean
-    }): Promise<T['data']>
-
-    <T extends GetAllProductsOperation>(
-      opts: {
-        variables?: T['variables']
-        config?: P['config']
-        preview?: boolean
-      } & OperationOptions
-    ): Promise<T['data']>
+    }): Promise<any>
   }
 
   getProduct: {

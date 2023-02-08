@@ -1,4 +1,4 @@
-const getAllProductsQuery = /* GraphQL */ `
+const getFirstNFTsQuery = /* GraphQL */ `
   query getAllProducts($first: Int = 10) {
     nfts(first: $first) {
       id
@@ -12,4 +12,4 @@ const getAllProductsQuery = /* GraphQL */ `
     }
   }
 `
-export default getAllProductsQuery
+export default getFirstNFTsQuery
