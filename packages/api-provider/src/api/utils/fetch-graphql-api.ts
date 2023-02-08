@@ -1,4 +1,4 @@
-import type { GraphQLFetcher } from '@vercel/commerce/api'
+import type { GraphQLFetcher } from '@pearl/commerce/api'
 
 import { API_URL, API_TOKEN } from '../../const'
 import { getError } from '../../utils/handle-fetch-response'

@@ -6,7 +6,7 @@ const path = require('path')
 const fs = require('fs')
 const merge = require('deepmerge')
 const prettier = require('prettier')
-const core = require('@vercel/commerce/config')
+const core = require('@pearl/commerce/config')
 
 function withCommerceConfig(nextConfig = {}) {
   const config = merge(

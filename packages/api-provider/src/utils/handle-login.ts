@@ -1,4 +1,4 @@
-import { FetcherOptions } from '@vercel/commerce/utils/types'
+import { FetcherOptions } from '@pearl/commerce/utils/types'
 import { CustomerAccessTokenCreateInput } from '../../schema'
 import { setCustomerToken } from './customer-token'
 import { customerAccessTokenCreateMutation } from './mutations'

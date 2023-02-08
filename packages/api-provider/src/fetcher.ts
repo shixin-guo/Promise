@@ -1,4 +1,4 @@
-import { Fetcher } from '@vercel/commerce/utils/types'
+import { Fetcher } from '@pearl/commerce/utils/types'
 import { API_TOKEN, API_URL } from './const'
 import { handleFetchResponse } from './utils'
 

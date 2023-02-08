@@ -1,8 +1,8 @@
 import type {
   OperationContext,
   OperationOptions,
-} from '@vercel/commerce/api/operations'
-import { GetProductOperation } from '@vercel/commerce/types/product'
+} from '@pearl/commerce/api/operations'
+import { GetProductOperation } from '@pearl/commerce/types/product'
 import { normalizeProduct, getProductQuery } from '../../utils'
 import type { ShopifyConfig, Provider } from '..'
 import {

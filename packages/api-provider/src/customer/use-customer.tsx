@@ -1,10 +1,10 @@
-import type { SWRHook } from '@vercel/commerce/utils/types'
-import type { CustomerHook } from '@vercel/commerce/types/customer'
+import type { SWRHook } from '@pearl/commerce/utils/types'
+import type { CustomerHook } from '@pearl/commerce/types/customer'
 import type { GetCustomerQuery, GetCustomerQueryVariables } from '../../schema'
 import { getCustomerQuery, getCustomerToken } from '../utils'
 import useCustomer, {
   type UseCustomer,
-} from '@vercel/commerce/customer/use-customer'
+} from '@pearl/commerce/customer/use-customer'
 
 export default useCustomer as UseCustomer<typeof handler>
 

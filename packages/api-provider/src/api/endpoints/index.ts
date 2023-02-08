@@ -1,6 +1,6 @@
 import type { Provider, ShopifyAPI } from '..'
 
-import createEndpoints from '@vercel/commerce/api/endpoints'
+import createEndpoints from '@pearl/commerce/api/endpoints'
 import checkout from './checkout'
 import products from './catalog/products'
 

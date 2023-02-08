@@ -1,2 +1,2 @@
-export * from '@vercel/commerce/product/use-price'
-export { default } from '@vercel/commerce/product/use-price'
+export * from '@pearl/commerce/product/use-price'
+export { default } from '@pearl/commerce/product/use-price'

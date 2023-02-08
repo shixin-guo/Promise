@@ -203,7 +203,8 @@ export type GetAllProductPathsOperation = {
 }
 
 export type GetAllProductsOperation = {
-  data: { products: Product[] }
+  // todo
+  data: { products: any[] }
   variables: {
     relevance?: 'featured' | 'best_selling' | 'newest'
     ids?: string[]

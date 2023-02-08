@@ -36,7 +36,6 @@ export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   createZoomConfig()
-  debugger
   return (
     <>
       <Grid variant="filled">
@@ -52,11 +51,6 @@ export default function Home({
           />
         ))}
       </Grid>
-      {/* <Marquee variant="secondary">
-        {products.slice(3, 6).map((product: any) => (
-          <ProductCard key={product.id} product={product} variant="slim" />
-        ))}
-      </Marquee> */}
       <Hero
         headline="Capturing memorable moments during your Zoom meeting"
         description=" A Zoom App to capture these screenshots capture should be useful. It can even turn them into NFTs for sharing and be engraved on the blockchain. It would also support applying NFT assets (image, video) as virtual background."
@@ -73,11 +67,6 @@ export default function Home({
           />
         ))}
       </Grid>
-      {/* <Marquee>
-        {products.slice(6)?.map((product: any) => (
-          <ProductCard key={product.id} product={product} variant="slim" />
-        ))}
-      </Marquee> */}
     </>
   )
 }

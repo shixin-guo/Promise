@@ -1,7 +1,7 @@
-import type { Page } from '@vercel/commerce/types/page'
-import type { Product } from '@vercel/commerce/types/product'
-import type { Cart, LineItem } from '@vercel/commerce/types/cart'
-import type { Category } from '@vercel/commerce/types/site'
+import type { Page } from '@pearl/commerce/types/page'
+import type { Product } from '@pearl/commerce/types/product'
+import type { Cart, LineItem } from '@pearl/commerce/types/cart'
+import type { Category } from '@pearl/commerce/types/site'
 
 import type {
   Product as ShopifyProduct,

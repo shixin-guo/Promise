@@ -1,4 +1,4 @@
-import { FetcherError } from '@vercel/commerce/utils/errors'
+import { FetcherError } from '@pearl/commerce/utils/errors'
 
 export function getError(errors: any[] | null, status: number) {
   errors = errors ?? [{ message: 'Failed to fetch Shopify API' }]

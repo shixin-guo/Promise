@@ -1,10 +1,10 @@
 import type {
   OperationContext,
   OperationOptions,
-} from '@vercel/commerce/api/operations'
+} from '@pearl/commerce/api/operations'
 import { GetSiteInfoQueryVariables } from '../../../schema'
 import type { ShopifyConfig, Provider } from '..'
-import { GetSiteInfoOperation } from '@vercel/commerce/types/site'
+import { GetSiteInfoOperation } from '@pearl/commerce/types/site'
 
 import { getCategories, getBrands } from '../../utils'
 

@@ -1,8 +1,8 @@
-import type { SWRHook } from '@vercel/commerce/utils/types'
-import type { GetCartHook } from '@vercel/commerce/types/cart'
+import type { SWRHook } from '@pearl/commerce/utils/types'
+import type { GetCartHook } from '@pearl/commerce/types/cart'
 
 import { useMemo } from 'react'
-import useCommerceCart, { type UseCart } from '@vercel/commerce/cart/use-cart'
+import useCommerceCart, { type UseCart } from '@pearl/commerce/cart/use-cart'
 
 import { checkoutToCart } from '../utils'
 // import getCheckoutQuery from '../utils/queries/get-checkout-query'

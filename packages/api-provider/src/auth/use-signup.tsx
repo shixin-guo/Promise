@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
-import type { MutationHook } from '@vercel/commerce/utils/types'
-import { CommerceError } from '@vercel/commerce/utils/errors'
-import useSignup, { type UseSignup } from '@vercel/commerce/auth/use-signup'
-import type { SignupHook } from '@vercel/commerce/types/signup'
+import type { MutationHook } from '@pearl/commerce/utils/types'
+import { CommerceError } from '@pearl/commerce/utils/errors'
+import useSignup, { type UseSignup } from '@pearl/commerce/auth/use-signup'
+import type { SignupHook } from '@pearl/commerce/types/signup'
 import useCustomer from '../customer/use-customer'
 import { Mutation, MutationCustomerCreateArgs } from '../../schema'
 

@@ -1,7 +1,7 @@
 import type {
   OperationContext,
   OperationOptions,
-} from '@vercel/commerce/api/operations'
+} from '@pearl/commerce/api/operations'
 import { normalizePage } from '../../utils'
 import type { ShopifyConfig, Provider } from '..'
 // import {
@@ -9,7 +9,7 @@ import type { ShopifyConfig, Provider } from '..'
 //   GetPageQueryVariables,
 //   Page as ShopifyPage,
 // } from '../../../schema'
-import { GetPageOperation } from '@vercel/commerce/types/page'
+import { GetPageOperation } from '@pearl/commerce/types/page'
 // import getPageQuery from '../../utils/queries/get-page-query'
 
 export default function getPageOperation({

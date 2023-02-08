@@ -1,4 +1,4 @@
-import { ValidationError } from '@vercel/commerce/utils/errors'
+import { ValidationError } from '@pearl/commerce/utils/errors'
 
 import {
   CheckoutErrorCode,

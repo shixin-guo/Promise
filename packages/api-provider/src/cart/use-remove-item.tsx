@@ -2,16 +2,12 @@ import { useCallback } from 'react'
 import type {
   MutationHookContext,
   HookFetcherContext,
-} from '@vercel/commerce/utils/types'
-import { ValidationError } from '@vercel/commerce/utils/errors'
+} from '@pearl/commerce/utils/types'
+import { ValidationError } from '@pearl/commerce/utils/errors'
 import useRemoveItem, {
   UseRemoveItem,
-} from '@vercel/commerce/cart/use-remove-item'
-import type {
-  Cart,
-  LineItem,
-  RemoveItemHook,
-} from '@vercel/commerce/types/cart'
+} from '@pearl/commerce/cart/use-remove-item'
+import type { Cart, LineItem, RemoveItemHook } from '@pearl/commerce/types/cart'
 import useCart from './use-cart'
 
 export type RemoveItemFn<T = any> = T extends LineItem

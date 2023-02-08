@@ -13,7 +13,7 @@ import {
 //   Mutation,
 //   MutationCheckoutCreateArgs,
 // } from '../../schema'
-import { FetcherOptions } from '@vercel/commerce/utils/types'
+import { FetcherOptions } from '@pearl/commerce/utils/types'
 
 // export const checkoutCreate = async (
 //   fetch: <T = any, B = Body>(options: FetcherOptions<B>) => Promise<T>,

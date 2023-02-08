@@ -1,8 +1,8 @@
 import type {
   OperationContext,
   OperationOptions,
-} from '@vercel/commerce/api/operations'
-import { GetAllProductPathsOperation } from '@vercel/commerce/types/product'
+} from '@pearl/commerce/api/operations'
+import { GetAllProductPathsOperation } from '@pearl/commerce/types/product'
 import {
   GetAllProductPathsQuery,
   GetAllProductPathsQueryVariables,

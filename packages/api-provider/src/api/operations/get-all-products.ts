@@ -1,8 +1,8 @@
 import type {
   OperationContext,
   OperationOptions,
-} from '@vercel/commerce/api/operations'
-import { GetAllProductsOperation } from '@vercel/commerce/types/product'
+} from '@pearl/commerce/api/operations'
+import { GetAllProductsOperation } from '@pearl/commerce/types/product'
 import {
   GetAllProductsQuery,
   GetAllProductsQueryVariables,
@@ -10,25 +10,10 @@ import {
 } from '../../../schema'
 import type { ShopifyConfig, Provider } from '..'
 import getAllProductsQuery from '../../utils/queries/get-all-products-query'
-import { normalizeProduct } from '../../utils'
 
 export default function getAllProductsOperation({
   commerce,
 }: OperationContext<Provider>) {
-  async function getAllProducts<T extends GetAllProductsOperation>(opts?: {
-    variables?: T['variables']
-    config?: Partial<ShopifyConfig>
-    preview?: boolean
-  }): Promise<T['data']>
-
-  async function getAllProducts<T extends GetAllProductsOperation>(
-    opts: {
-      variables?: T['variables']
-      config?: Partial<ShopifyConfig>
-      preview?: boolean
-    } & OperationOptions
-  ): Promise<T['data']>
-
   async function getAllProducts<T extends GetAllProductsOperation>({
     query = getAllProductsQuery,
     variables,
@@ -55,9 +40,7 @@ export default function getAllProductsOperation({
     )
 
     return {
-      products:
-        data.nfts?.map(({ node }: { node: Nft }) => normalizeProduct(node)) ??
-        [],
+      products: data.nfts ?? [],
     }
   }
 

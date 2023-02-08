@@ -49,7 +49,7 @@
     }
   },
   "dependencies": {
-    "@vercel/commerce": "workspace:*",
+    "@pearl/commerce": "workspace:*",
     "js-cookie": "^3.0.1",
     "lodash.debounce": "^4.0.8"
   },

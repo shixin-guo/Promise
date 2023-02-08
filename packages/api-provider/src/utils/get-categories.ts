@@ -1,4 +1,4 @@
-import type { Category } from '@vercel/commerce/types/site'
+import type { Category } from '@pearl/commerce/types/site'
 import type { ShopifyConfig } from '../api'
 // import type { CollectionEdge } from '../../schema'
 import { normalizeCategory } from './normalize'
