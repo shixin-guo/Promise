@@ -10503,7 +10503,7 @@ __metadata:
     next-themes: 0.2.0
     postcss: 8.4.14
     postcss-flexbugs-fixes: 5.0.2
-    postcss-nesting: 10.1.8
+    postcss-nesting: 11.2.0
     postcss-preset-env: 7.5.0
     prettier: 2.7.1
     rc-util: 5.21.5
@@ -11442,15 +11442,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:10.1.8":
-  version: 10.1.8
-  resolution: "postcss-nesting@npm:10.1.8"
+"postcss-nesting@npm:11.2.0":
+  version: 11.2.0
+  resolution: "postcss-nesting@npm:11.2.0"
   dependencies:
     "@csstools/selector-specificity": ^2.0.0
     postcss-selector-parser: ^6.0.10
   peerDependencies:
     postcss: ^8.4
-  checksum: 6ba0a88c1c9951f78d2c377c43c99a3a6eea8d6e41b80146cfa7ef917dfb5750a595cb74c9b1c01329c530a2aaeaaaa88f6d2a02e04e3a8d209729dc4d28a4a7
+  checksum: 4b10d08cea01643d8397ce51331d7a29860c1c4d6e48f6fca117c21b19a1ba56ff6d8c27a4055dbff3b264892869cb4397d4b937b6ddf7da09497b19bb83c24d
   languageName: node
   linkType: hard
 
