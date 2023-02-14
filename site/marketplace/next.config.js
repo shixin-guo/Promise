@@ -45,7 +45,7 @@ module.exports = withCommerceConfig({
     defaultLocale: 'en-US',
   },
   images: {
-    domains: ['firebasestorage.googleapis.com'],
+    domains: ['firebasestorage.googleapis.com', 'arweave.net'],
   },
   rewrites() {
     return [].filter(Boolean)

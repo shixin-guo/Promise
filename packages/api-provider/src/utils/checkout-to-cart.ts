@@ -11,7 +11,7 @@ import {
   Maybe,
 } from '../../schema'
 
-import { normalizeCart } from './normalize'
+// import { normalizeCart } from './normalize'
 import throwUserErrors from './throw-user-errors'
 
 export type CheckoutQuery = {
@@ -35,7 +35,7 @@ const checkoutToCart = (checkoutPayload?: Maybe<CheckoutPayload>): Cart => {
     })
   }
 
-  return normalizeCart(checkoutPayload?.checkout)
+  return checkoutPayload?.checkout
 }
 
 export default checkoutToCart

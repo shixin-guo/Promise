@@ -2,7 +2,7 @@ import cn from 'clsx'
 import Link from 'next/link'
 import s from './UserNav.module.css'
 import { Avatar } from '@components/common'
-import useCart from '@framework/cart/use-cart'
+// import useCart from '@framework/cart/use-cart'
 import { useUI } from '@components/ui/context'
 import { Heart, Bag, Menu } from '@components/icons'
 import CustomerMenuContent from './CustomerMenuContent'
@@ -25,21 +25,21 @@ const countItem = (count: number, item: LineItem) => count + item?.quantity || 0
 const UserNav: React.FC<{
   className?: string
 }> = ({ className }) => {
-  const { data: cart } = useCart()
+  // const { data: cart } = useCart()
   const { toggleSidebar, closeSidebarIfPresent, setSidebarView, openSidebar } =
     useUI()
-  const itemsCount = cart?.lineItems.reduce(countItem, 0) ?? 0
+  // const itemsCount = cart?.lineItems.reduce(countItem, 0) ?? 0
   const { isConnected = false } = useAccount()
   const DropdownTrigger = isConnected ? DropdownTriggerInst : React.Fragment
-  const login = useLogin()
-  useEffect(() => {
-    // todo remove after demo
-    isConnected &&
-      login({
-        email: 'guo@12.com',
-        password: 'Pass@123',
-      })
-  }, [isConnected, login])
+  // const login = useLogin()
+  // useEffect(() => {
+  //   // todo remove after demo
+  //   isConnected &&
+  //     login({
+  //       email: 'guo@12.com',
+  //       password: 'Pass@123',
+  //     })
+  // }, [isConnected, login])
   const onClickKitButton = (open: () => void) => {
     !isConnected ? open() : null
   }
@@ -56,7 +56,7 @@ const UserNav: React.FC<{
           </li>
         )}
         <li className={s.item}>
-          <Button
+          {/* <Button
             className={s.item}
             variant="naked"
             onClick={() => {
@@ -67,7 +67,7 @@ const UserNav: React.FC<{
           >
             <Bag />
             {itemsCount > 0 && <span className={s.bagCount}>{itemsCount}</span>}
-          </Button>
+          </Button> */}
         </li>
         {/* <li className={s.item}>
             <Link href="/wishlist">

@@ -1,7 +1,7 @@
 import type { Category } from '@pearl/commerce/types/site'
 import type { ShopifyConfig } from '../api'
 // import type { CollectionEdge } from '../../schema'
-import { normalizeCategory } from './normalize'
+
 // import getSiteCollectionsQuery from './queries/get-all-collections-query'
 
 const getCategories = async ({

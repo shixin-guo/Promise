@@ -7,25 +7,17 @@ import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { createZoomConfig } from '@lib/zoom'
 
 export async function getStaticProps({
-  preview,
   locale,
   locales,
 }: GetStaticPropsContext) {
   const config = { locale, locales }
-  const { products } = await commerce.getAllProducts({
+  const products = await commerce.getAllProducts({
     variables: { first: 6 },
     config,
   })
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
-  const { pages } = await pagesPromise
-  const { categories, brands } = await siteInfoPromise
   return {
     props: {
       products,
-      categories,
-      brands,
-      pages,
     },
     revalidate: 60,
   }
@@ -38,7 +30,7 @@ export default function Home({
   return (
     <>
       <Grid variant="filled">
-        {products.slice(3, 7).map((product: any, i: number) => (
+        {products.map((product, i: number) => (
           <ProductCard
             key={product.id}
             product={product}
@@ -54,18 +46,6 @@ export default function Home({
         headline="Capturing memorable moments during your Zoom meeting"
         description=" A Zoom App to capture these screenshots capture should be useful. It can even turn them into NFTs for sharing and be engraved on the blockchain. It would also support applying NFT assets (image, video) as virtual background."
       />
-      <Grid layout="B" variant="filled">
-        {products.slice(0, 3).map((product: any, i: number) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            imgProps={{
-              width: i === 0 ? 540 : 270,
-              height: i === 0 ? 303 : 152,
-            }}
-          />
-        ))}
-      </Grid>
     </>
   )
 }

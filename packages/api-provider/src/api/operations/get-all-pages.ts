@@ -7,7 +7,7 @@ import type {
 //   GetAllPagesQueryVariables,
 //   PageEdge,
 // } from '../../../schema'
-import { normalizePages } from '../../utils'
+// import { normalizePages } from '../../utils'
 import type { ShopifyConfig, Provider } from '..'
 import type { GetAllPagesOperation, Page } from '@pearl/commerce/types/page'
 // import getAllPagesQuery from '../../utils/queries/get-all-pages-query'
@@ -63,7 +63,7 @@ export default function getAllPagesOperation({
       pages: locales.reduce<Page[]>(
         (arr, locale) =>
           // arr.concat(normalizePages(data.pages.edges as PageEdge[], locale)),
-          arr.concat(normalizePages(data.pages.edges as [], locale)),
+          arr.concat(data.pages.edges as []),
 
         []
       ),

@@ -1,14 +1,5 @@
-import type {
-  OperationContext,
-  OperationOptions,
-} from '@pearl/commerce/api/operations'
-import { GetAllProductsOperation } from '@pearl/commerce/types/product'
-import {
-  GetAllProductsQuery,
-  GetAllProductsQueryVariables,
-  Nft,
-} from '../../../schema'
-import type { ShopifyConfig, Provider } from '..'
+import { NFT } from '@pearl/commerce/types/product'
+import type { ShopifyConfig } from '..'
 import getFirstNFTsQuery from '../../utils/queries/get-all-products-query'
 
 export default function getAllProductsOperation({
@@ -16,22 +7,20 @@ export default function getAllProductsOperation({
 }: {
   commerce: any
 }) {
-  async function getAllProducts<T extends GetAllProductsOperation>({
+  async function getAllProducts({
     query = getFirstNFTsQuery,
     variables,
     config,
   }: {
     query?: string
-    variables?: T['variables']
+    variables?: { first: number; after?: string; orderBy?: string }
     config?: Partial<ShopifyConfig>
-  } = {}): Promise<any> {
+  } = {}): Promise<NFT[]> {
     const { fetch } = commerce.getConfig(config)
 
     const { data } = await fetch(query, { variables })
 
-    return {
-      products: data.nfts ?? [],
-    }
+    return data.nfts ?? []
   }
 
   return getAllProducts

@@ -115,8 +115,7 @@ export default function CreatePage() {
     await listNFT2Chain()
     updateFormInput(defaultFormInput)
   }
-  function handleUploadError(e: Error) {
-    console.log(e)
+  function handleUploadError() {
     setLoading(false)
   }
   return (

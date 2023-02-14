@@ -1,5 +1,8 @@
 type NFT @entity {
   id: ID!
+  name: String!
+  description: String!
+  othersInfo: String
   creator: User!
   owner: User!
   fileUrl: String!

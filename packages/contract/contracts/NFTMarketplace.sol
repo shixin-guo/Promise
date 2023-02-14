@@ -25,9 +25,10 @@ contract NFTMarketplace is ERC721Upgradeable {
       uint256 price;
       bool sold;
       string fileUrl;
+      string name;
+      string description;
+      string othersInfo;
     }
-
-
 
     event UpdateListingPrice (
       uint256 listingPrice
@@ -40,9 +41,9 @@ contract NFTMarketplace is ERC721Upgradeable {
     //   emit UpdateListingPrice(listingPrice);
     //   owner = payable(msg.sender);
     // }
-    function withdraw() {
+    // function withdraw() {
       
-    }
+    // }
     /* Updates the listing price of the contract */
     function updateListingPrice(uint _listingPrice) public payable {
       require(owner == msg.sender, "Only marketplace owner can update listing price.");
@@ -87,14 +88,20 @@ contract NFTMarketplace is ERC721Upgradeable {
       _tokenURIs[tokenId] = _tokenURI;
     }
     /* Mints a token and lists it in the marketplace */
-    function createToken(string memory newTokenURI, uint256 price, string memory fileUrl) public payable returns (uint) {
+    function createToken(
+      string memory newTokenURI, 
+      uint256 price, 
+      string memory fileUrl, 
+      string memory description,
+      string memory othersInfo
+    ) public payable returns (uint) {
       _tokenIds.increment();
       uint256 newTokenId = _tokenIds.current();
 
       _mint(msg.sender, newTokenId);
       _setTokenURI(newTokenId, newTokenURI);
       // todo not list only own by creator
-      createMarketItem(newTokenId, price, fileUrl);
+      createMarketItem(newTokenId, price, fileUrl, newTokenURI, description, othersInfo);
       return newTokenId;
     }
 
@@ -104,12 +111,18 @@ contract NFTMarketplace is ERC721Upgradeable {
       address owner,
       uint256 price,
       bool sold,
-      string fileUrl
+      string fileUrl,
+      string name,
+      string description,
+      string othersInfo
     );
     function createMarketItem(
       uint256 tokenId,
       uint256 price,
-      string memory fileUrl
+      string memory fileUrl,
+      string memory name,
+      string memory description,
+      string memory othersInfo
     ) private {
       require(price > 0, "Price must be at least 1 wei");
       // require(fileUrl != '',"ImageUrl can not be empty" );
@@ -121,7 +134,10 @@ contract NFTMarketplace is ERC721Upgradeable {
         payable(address(this)),
         price,
         false,
-        fileUrl
+        fileUrl,
+        name,
+        description,
+        othersInfo
       );
 
       _transfer(msg.sender, address(this), tokenId);
@@ -131,7 +147,10 @@ contract NFTMarketplace is ERC721Upgradeable {
         address(this),
         price,
         false,
-        fileUrl
+        fileUrl,
+        name,
+        description,
+        othersInfo
       );
     }
 

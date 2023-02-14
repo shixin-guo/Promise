@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import cn from 'clsx'
 import Link from 'next/link'
-import type { Product } from '@commerce/types/product'
+import type { NFT } from '@commerce/types/product'
 import s from './ProductCard.module.css'
 import Image, { ImageProps } from 'next/image'
 import WishlistButton from '@components/wishlist/WishlistButton'
@@ -11,7 +11,7 @@ import ProductTag from '../ProductTag'
 
 interface Props {
   className?: string
-  product: Product
+  product: NFT
   noNameTag?: boolean
   imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
   variant?: 'default' | 'slim' | 'simple'
@@ -27,8 +27,8 @@ const ProductCard: FC<Props> = ({
   variant = 'default',
 }) => {
   const { price } = usePrice({
-    amount: product.price.value,
-    baseAmount: product.price.retailPrice,
+    amount: product.price,
+    baseAmount: product.price,
     currencyCode: 'ETH',
   })
 
@@ -39,19 +39,19 @@ const ProductCard: FC<Props> = ({
   )
 
   return (
-    <Link href={`/product/${product.slug}`}>
+    <Link href={`/product/${product.id}`}>
       <a className={rootClassName} aria-label={product.name}>
         {variant === 'slim' && (
           <>
             <div className={s.header}>
               <span>{product.name}</span>
             </div>
-            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
-            {product?.images && (
+            <ZoomVirtualBackgroundBtn url={product?.fileUrl} />
+            {product?.fileUrl && (
               <div>
                 <Image
                   quality="85"
-                  src={product.images[0]?.url || placeholderImg}
+                  src={product.fileUrl || placeholderImg}
                   alt={product.name || 'Product Image'}
                   height={(320 * 1080) / 1920}
                   width={320}
@@ -70,7 +70,7 @@ const ProductCard: FC<Props> = ({
                 productId={product.id}
                 variant={product.variants[0]}
               /> */}
-            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
+            <ZoomVirtualBackgroundBtn url={product?.fileUrl} />
             {!noNameTag && (
               <div className={s.header}>
                 <h3 className={s.name}>
@@ -80,12 +80,12 @@ const ProductCard: FC<Props> = ({
               </div>
             )}
             <div className={s.imageContainer}>
-              {product?.images && (
+              {product?.fileUrl && (
                 <div>
                   <Image
                     alt={product.name || 'Product Image'}
                     className={s.productImage}
-                    src={product.images[0]?.url || placeholderImg}
+                    src={product.fileUrl || placeholderImg}
                     height={(540 * 1080) / 1920}
                     width={540}
                     quality="85"
@@ -100,20 +100,20 @@ const ProductCard: FC<Props> = ({
 
         {variant === 'default' && (
           <>
-            <WishlistButton
+            {/* <WishlistButton
               className={s.wishlistButton}
               productId={product.id}
               variant={product.variants[0] as any}
-            />
+            /> */}
             <ProductTag name={product.name} price={`${price} ${'ETH'}`} />
-            <ZoomVirtualBackgroundBtn url={product?.images[0]?.url} />
+            <ZoomVirtualBackgroundBtn url={product?.fileUrl} />
             <div className={s.imageContainer}>
-              {product?.images && (
+              {product?.fileUrl && (
                 <div>
                   <Image
                     alt={product.name || 'Product Image'}
                     className={s.productImage}
-                    src={product.images[0]?.url || placeholderImg}
+                    src={product.fileUrl || placeholderImg}
                     height={(540 * 1080) / 1920}
                     width={540}
                     quality="85"

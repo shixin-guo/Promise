@@ -137,6 +137,71 @@ export interface Product {
   arthur?: string
 }
 
+export interface NFT {
+  name: string
+  id: string
+  fileUrl: string
+  creator: {
+    id: string
+  }
+  owner: {
+    id: string
+  }
+  price: number
+}
+export interface Product {
+  /**
+   *  The unique identifier for the product.
+   */
+  id: string
+  /**
+   * The name of the product.
+   */
+  name: string
+  /**
+   * Stripped description of the product, single line.
+   */
+  description: string
+  /**
+   * The description of the product, complete with HTML formatting.
+   */
+  descriptionHtml?: string
+  /**
+   * The SKU (stock keeping unit) associated with the product.
+   */
+  sku?: string
+  /**
+   * A human-friendly unique string for the product, automatically generated from its title.
+   */
+  slug?: string
+  /**
+   * Relative URL on the storefront for the product.
+   */
+  path?: string
+  /**
+   * List of images associated with the product.
+   */
+  images: Image[]
+  /**
+   * List of the product’s variants.
+   */
+  variants: ProductVariant[]
+  /**
+   * The product's base price. Could be the minimum value, or default variant price.
+   */
+  price: ProductPrice
+  /**
+   * List of product's options.
+   */
+  options: ProductOption[]
+  /**
+   * The product’s vendor name.
+   */
+  vendor?: string
+  createTime?: Date
+  arthur?: string
+}
+
 export interface SearchProductsBody {
   /**
    * The search query string to filter the products by.
@@ -204,7 +269,7 @@ export type GetAllProductPathsOperation = {
 
 export type GetAllProductsOperation = {
   // todo
-  data: { products: any[] }
+  data: { products: NFT[] }
   variables: {
     relevance?: 'featured' | 'best_selling' | 'newest'
     ids?: string[]
@@ -213,6 +278,6 @@ export type GetAllProductsOperation = {
 }
 
 export type GetProductOperation = {
-  data: { product?: Product }
+  data: { product?: NFT[] }
   variables: { path: string; slug?: never } | { path?: never; slug: string }
 }

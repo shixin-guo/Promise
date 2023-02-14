@@ -11,7 +11,8 @@ export const withOperationCallback =
   async (...args: any[]) => {
     try {
       const data = await fn(...args)
-      parse({ name, data })
+      // todo
+      // parse({ name, data })
       return data
     } catch (error) {
       throw getOperationError(name, error)
